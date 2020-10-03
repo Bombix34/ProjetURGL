@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
 using UnityEngine;
 
-public class QuestArea : MonoBehaviour
+public class QuestArea : NetworkBehaviour
 {
     public Quest Quest { get; set; }
     private bool questOngoing = false;
+    private int playerInsideCollider = 0;
     private float timer = 0.0f;
     // Start is called before the first frame update
+    [ServerCallback]
     void Start()
     {
         this.transform.position = this.Quest.Position;
@@ -15,6 +16,7 @@ public class QuestArea : MonoBehaviour
     }
 
     // Update is called once per frame
+    [ServerCallback]
     void Update()
     {
         if (this.questOngoing)
@@ -23,18 +25,34 @@ public class QuestArea : MonoBehaviour
             if(timer >= this.Quest.Duration)
             {
                 QuestManager.Instance.FinishQuest(Quest.Guid);
+                Destroy(this.gameObject);
             }
         }
     }
 
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (!col.CompareTag(Tags.STUDENT_TAG))
+        {
+            return;
+        }
+        this.playerInsideCollider++;
         this.questOngoing = true;
     }
 
+    [ServerCallback]
     void OnTriggerExit2D(Collider2D col)
     {
-        this.questOngoing = false;
-        this.timer = 0;
+        if (!col.CompareTag(Tags.STUDENT_TAG))
+        {
+            return;
+        }
+        this.playerInsideCollider--;
+        if(this.playerInsideCollider == 0)
+        {
+            this.timer = 0;
+            this.questOngoing = false;
+        }
     }
 }

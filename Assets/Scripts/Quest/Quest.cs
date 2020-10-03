@@ -30,5 +30,6 @@ public class Quest: IQuest
     public void Finish()
     {
         this.QuestState = QuestState.DONE;
+        Debug.Log("DONE");
     }
 }

@@ -17,6 +17,11 @@ public class MainQuest : IMainQuest<Quest>
     public List<Quest> PrepQuests { get; }
     public Quest FinalQuest { get; }
     public MainQuestState MainQuestState { get; private set; } = MainQuestState.PREP_QUEST;
+    public Action<MainQuestState> OnMainQuestStateChange { get; set; }
+    public MainQuest()
+    {
+
+    }
 
     public MainQuest(string name, string description, List<Quest> prepQuests, Quest finalQuest)
     {
@@ -37,7 +42,7 @@ public class MainQuest : IMainQuest<Quest>
                 quest.Finish();
                 if(this.PrepQuests.All(q => q.QuestState == QuestState.DONE))
                 {
-                    this.MainQuestState = MainQuestState.FINAL_QUEST;
+                    this.ChangeMainQuestState(MainQuestState.FINAL_QUEST);
                 }
                 break;
             case MainQuestState.FINAL_QUEST:
@@ -47,8 +52,14 @@ public class MainQuest : IMainQuest<Quest>
                 }
 
                 this.FinalQuest.Finish();
-                this.MainQuestState = MainQuestState.DONE;
+                this.ChangeMainQuestState(MainQuestState.DONE);
                 break;
         }
+    }
+
+    private void ChangeMainQuestState(MainQuestState newState)
+    {
+        this.MainQuestState = newState;
+        this.OnMainQuestStateChange(this.MainQuestState);
     }
 }
