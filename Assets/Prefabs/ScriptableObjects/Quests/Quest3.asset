@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f367bf99e01344b56fd5cb27d0852, type: 3}
+  m_Name: Quest3
+  m_EditorClassIdentifier: 
+  questName: Sortir par la porte
+  description: Il vous faut maintenant sortir par la porte
+  duration: 10
+  position: {x: 10, y: 1}
+  radius: 3

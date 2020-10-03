@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25a434dfec6b374f84c2d9080274568, type: 3}
+  m_Name: MainQuest1
+  m_EditorClassIdentifier: 
+  questName: Trouver la sortie
+  description: "C'est par l\xE0 je vous jure"
+  prepQuests:
+  - {fileID: 11400000, guid: 569b8475448e63a47be066705881dba9, type: 2}
+  - {fileID: 11400000, guid: 2709769d85ff540478cb8ddcb3de654c, type: 2}
+  finalQuest: {fileID: 11400000, guid: 97ff5faa449bd7f4cb1d4147c8efe433, type: 2}
