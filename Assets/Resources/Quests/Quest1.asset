@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: "Trouv\xE9 la cl\xE9"
   description: "Vous devez trouv\xE9 la cl\xE9"
-  duration: 5
+  duration: 2
   position: {x: 2, y: 16}
   radius: 2
