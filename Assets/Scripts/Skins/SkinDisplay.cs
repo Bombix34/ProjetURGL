@@ -5,21 +5,26 @@ using Mirror;
 
 public class SkinDisplay : NetworkBehaviour
 {
+    [SyncVar]
+    private int colorId;
+    [SyncVar]
+    private int headsId;
     [SerializeField]
     private SkinDatas datas;
 
     [SerializeField]
     private SpriteRenderer bodySprite, headSprite;
 
-    public override void OnStartServer()
+    public override void OnStartClient()
     {
-        if(isServer || hasAuthority)
-            Generate();
+        base.OnStartClient();
+        bodySprite.color = datas.colors[colorId];
+        headSprite.sprite = datas.heads[headsId];
     }
 
-    private void Generate()
+    public override void OnStartServer()
     {
-        bodySprite.color = datas.colors[Random.Range(0, datas.colors.Count)];
-        headSprite.sprite = datas.heads[Random.Range(0, datas.heads.Count)];
+        this.colorId = Random.Range(0, datas.colors.Count);
+        this.headsId = Random.Range(0, datas.heads.Count);
     }
 }
