@@ -51,6 +51,7 @@ public class QuestManager : NetworkBehaviour
     [ServerCallback]
     private void InstantiateQuestArea(Quest quest)
     {
+        Debug.Log(quest.Radius);
         var questAreaGameObject = Instantiate(questAreaPrefab);
         questAreaGameObject.GetComponent<QuestArea>().Quest = quest;
         NetworkServer.Spawn(questAreaGameObject);

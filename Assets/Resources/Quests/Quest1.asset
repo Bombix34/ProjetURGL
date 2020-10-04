@@ -16,4 +16,4 @@ MonoBehaviour:
   description: "Vous devez trouv\xE9 la cl\xE9"
   duration: 5
   position: {x: 2, y: 16}
-  radius: 1
+  radius: 2
