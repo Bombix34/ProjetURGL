@@ -16,6 +16,7 @@ public class PNJWaitState : PNJState
 
     public override void Enter()
     {
+        manager.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         waitTime = Random.Range(2f, 6f);
     }
 

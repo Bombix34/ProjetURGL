@@ -8,16 +8,14 @@ public class PNJManager : ObjectManager
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
 
-
     private void Start()
     {
-        if (!isServer)
-            return;
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
+        if (!isServer)
+            return;
         PositionDatas = FindObjectOfType<PNJPositionDatas>();
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         ChangeState(new PNJMoveState(this, PositionDatas.GetPosition()));
     }
 
@@ -28,5 +26,10 @@ public class PNJManager : ObjectManager
         if (currentState == null)
             return;
         currentState.Execute();
+    }
+
+    public override void ChangeState(State newState = null)
+    {
+        base.ChangeState(newState);
     }
 }

@@ -15,7 +15,7 @@ public class PNJMoveState : PNJState
     {
         stateName = "PNJ_MOVE";
         manager = (PNJManager)curObject;
-        target = new Vector3(targetPosition.x + Random.Range(-0.6f,0.6f),targetPosition.y+Random.Range(-0.6f,0.6f),manager.transform.position.z);
+        target = new Vector3(targetPosition.x + Random.Range(-1f,1f),targetPosition.y+Random.Range(-1f,1f),manager.transform.position.z);
     }
 
     #region STATE_METHODS
