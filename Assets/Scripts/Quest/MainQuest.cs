@@ -12,12 +12,19 @@ public enum MainQuestState
 }
 public class MainQuest : IMainQuest<Quest>
 {
-    public string Name { get; }
-    public string Description { get; }
-    public List<Quest> PrepQuests { get; }
-    public Quest FinalQuest { get; }
-    public MainQuestState MainQuestState { get; private set; } = MainQuestState.PREP_QUEST;
+    public string name;
+    public string description;
+    public List<Quest> prepQuests;
+    public Quest finalQuest;
+    public MainQuestState mainQuestState = MainQuestState.PREP_QUEST;
+
+    public string Name { get => name; private set => name = value; }
+    public string Description { get => description; private set => description = value; }
+    public List<Quest> PrepQuests { get => prepQuests; private set => prepQuests = value; }
+    public Quest FinalQuest { get => finalQuest; private set => finalQuest = value; }
+    public MainQuestState MainQuestState { get => mainQuestState; private set => mainQuestState = value; }
     public Action<MainQuestState> OnMainQuestStateChange { get; set; }
+    public Action<Guid> OnFinishQuest { get; set; }
     public MainQuest()
     {
 
@@ -40,13 +47,13 @@ public class MainQuest : IMainQuest<Quest>
             case MainQuestState.PREP_QUEST:
                 var quest = this.PrepQuests.Single(q => q.Guid == guid);
                 quest.Finish();
-                if(this.PrepQuests.All(q => q.QuestState == QuestState.DONE))
+                if (this.PrepQuests.All(q => q.QuestState == QuestState.DONE))
                 {
                     this.ChangeMainQuestState(MainQuestState.FINAL_QUEST);
                 }
                 break;
             case MainQuestState.FINAL_QUEST:
-                if(this.FinalQuest.Guid != guid)
+                if (this.FinalQuest.Guid != guid)
                 {
                     throw new ArgumentException($"No quest for guid {guid}", nameof(guid));
                 }
@@ -55,6 +62,7 @@ public class MainQuest : IMainQuest<Quest>
                 this.ChangeMainQuestState(MainQuestState.DONE);
                 break;
         }
+        this.OnFinishQuest(guid);
     }
 
     private void ChangeMainQuestState(MainQuestState newState)

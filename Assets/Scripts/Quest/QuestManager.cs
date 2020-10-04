@@ -1,7 +1,5 @@
 ﻿using Mirror;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : NetworkBehaviour
@@ -17,11 +15,14 @@ public class QuestManager : NetworkBehaviour
     public MainQuestScriptableObject MainQuestScriptableObject { get => mainQuestScriptableObject; private set => mainQuestScriptableObject = value; }
     public static QuestManager Instance { get; private set; }
 
-    [ServerCallback]
     void Start()
     {
         Instance = this;
 
+        if (!isServer)
+        {
+            return;
+        }
         this.MainQuest = MainQuestScriptableObjectToMainQuestMapper.Map(MainQuestScriptableObject);
         this.MainQuest.OnMainQuestStateChange += this.OnChangeQuestState;
 
@@ -54,8 +55,8 @@ public class QuestManager : NetworkBehaviour
         NetworkServer.Spawn(questAreaGameObject);
     }
 
-    [ServerCallback]
-    public void FinishQuest(Guid guid)
+    [ClientRpc]
+    public void RpcFinishQuest(Guid guid)
     {
         this.MainQuest.FinishQuest(guid);
     }
