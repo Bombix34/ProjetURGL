@@ -23,6 +23,8 @@ public class PNJMoveState : PNJState
     public override void Enter()
     {
         manager.Agent.SetDestination(target);
+        manager.Animator.SetTrigger("MOVE");
+        
     }
 
     public override void Execute()

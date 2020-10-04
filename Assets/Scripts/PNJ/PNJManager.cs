@@ -7,6 +7,9 @@ public class PNJManager : ObjectManager
 {
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
+    public Animator Animator { get; private set; }
+    [SerializeField]
+    private GameObject rendererContainer;
 
     private void Start()
     {
@@ -15,6 +18,7 @@ public class PNJManager : ObjectManager
         Agent.updateUpAxis = false;
         if (!isServer)
             return;
+        Animator = GetComponent<Animator>();
         PositionDatas = FindObjectOfType<PNJPositionDatas>();
         ChangeState(new PNJMoveState(this, PositionDatas.GetPosition()));
     }
@@ -23,6 +27,7 @@ public class PNJManager : ObjectManager
     {
         if (!isServer)
             return;
+        UpdatePNJRotation();
         if (currentState == null)
             return;
         currentState.Execute();
@@ -31,5 +36,13 @@ public class PNJManager : ObjectManager
     public override void ChangeState(State newState = null)
     {
         base.ChangeState(newState);
+    }
+
+    private void UpdatePNJRotation()
+    {
+        if (Agent.destination.x < transform.position.x)
+            rendererContainer.transform.localScale = new Vector3(-1f, 1f, 1f);
+        else if(Agent.destination.x > transform.position.x)
+            rendererContainer.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }
