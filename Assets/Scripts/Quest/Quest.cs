@@ -8,15 +8,28 @@ public enum QuestState
     DONE
 }
 
-public class Quest: IQuest
+public class Quest : IQuest
 {
-    public Guid Guid { get; } = Guid.NewGuid();
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public QuestState QuestState { get; private set; } = QuestState.TODO;
-    public float Duration { get; private set; }
-    public Vector2 Position { get; private set; }
-    public float Radius { get; private set; }
+    public Guid guid = Guid.NewGuid();
+    public string name;
+    public string description;
+    public QuestState questState = QuestState.TODO;
+    public float duration;
+    public Vector2 position;
+    public float radius;
+
+    public Guid Guid { get => guid; private set => guid = value; }
+    public string Name { get => name; private set => name = value; }
+    public string Description { get => description; private set => description = value; }
+    public QuestState QuestState { get => questState; private set => questState = value; }
+    public float Duration { get => duration; private set => duration = value; }
+    public Vector2 Position { get => position; private set => position = value; }
+    public float Radius { get => radius; private set => radius = value; }
+
+    public Quest()
+    {
+
+    }
 
     public Quest(string name, string description, float duration, Vector2 position, float radius)
     {
@@ -30,6 +43,5 @@ public class Quest: IQuest
     public void Finish()
     {
         this.QuestState = QuestState.DONE;
-        Debug.Log("DONE");
     }
 }

@@ -11,8 +11,14 @@ public class QuestArea : NetworkBehaviour
     [ServerCallback]
     void Start()
     {
-        this.transform.position = this.Quest.Position;
-        this.transform.localScale = new Vector2(this.Quest.Radius, this.Quest.Radius);
+        this.RpcSetPositionAndScale(this.Quest.position, this.Quest.Radius);
+    }
+
+    [ClientRpc]
+    private void RpcSetPositionAndScale(Vector2 position, float radius)
+    {
+        this.transform.position = position;
+        this.transform.localScale = new Vector2(radius, radius);
     }
 
     // Update is called once per frame
@@ -24,7 +30,7 @@ public class QuestArea : NetworkBehaviour
             timer += Time.deltaTime;
             if(timer >= this.Quest.Duration)
             {
-                QuestManager.Instance.FinishQuest(Quest.Guid);
+                QuestManager.Instance.RpcFinishQuest(Quest.Guid);
                 Destroy(this.gameObject);
             }
         }
