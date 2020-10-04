@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Il vous faut maintenant sortir par la porte
   duration: 10
   position: {x: 0, y: 14}
-  radius: 1
+  radius: 3

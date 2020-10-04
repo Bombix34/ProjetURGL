@@ -16,4 +16,4 @@ MonoBehaviour:
   description: "Et oui y en avait deux, d\xE9so pas d\xE9so"
   duration: 6
   position: {x: -3, y: 16}
-  radius: 1
+  radius: 2
