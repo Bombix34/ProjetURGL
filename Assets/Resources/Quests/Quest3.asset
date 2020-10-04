@@ -15,5 +15,5 @@ MonoBehaviour:
   questName: Sortir par la porte
   description: Il vous faut maintenant sortir par la porte
   duration: 10
-  position: {x: 10, y: 1}
-  radius: 3
+  position: {x: 0, y: 14}
+  radius: 1

@@ -15,8 +15,9 @@ public class QuestManager : NetworkBehaviour
     public MainQuestScriptableObject MainQuestScriptableObject { get => mainQuestScriptableObject; private set => mainQuestScriptableObject = value; }
     public static QuestManager Instance { get; private set; }
 
-    void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
         Instance = this;
 
         if (!isServer)

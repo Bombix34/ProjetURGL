@@ -10,6 +10,8 @@ public class LocalPlayer : NetworkBehaviour
     [ClientCallback]
     public override void OnStartLocalPlayer()
     {
-        //GameObject.Find("Canvas").GetComponentsInChildren<Transform>(true).Single(q => q.name == "QuestPanel").gameObject.SetActive(true);
+        base.OnStartLocalPlayer();
+        var questPanel = FindObjectOfType<QuestPanel>();
+        questPanel.Init();
     }
 }

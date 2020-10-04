@@ -14,8 +14,7 @@ public class QuestPanel : MonoBehaviour
     private GameObject goalPanelPrefab;
     private Dictionary<Guid, GameObject> guidToGoalPanelDict = new Dictionary<Guid, GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         this.quest = QuestManager.Instance.MainQuest;
 
@@ -29,6 +28,7 @@ public class QuestPanel : MonoBehaviour
         this.quest.OnMainQuestStateChange += OnChangeQuestState;
         this.quest.OnFinishQuest += this.DestroyGoalPanelByGuid;
     }
+
     private void OnChangeQuestState(MainQuestState mainQuestState)
     {
         switch (mainQuestState)
