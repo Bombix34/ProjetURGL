@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: Sortir par la porte
   description: Il vous faut maintenant sortir par la porte
-  duration: 10
+  duration: 5
   position: {x: 0, y: 14}
   radius: 3
