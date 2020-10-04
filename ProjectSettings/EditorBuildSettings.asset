@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: d3a47db8c6434014bae367921be44003
-  - enabled: 1
-    path: Assets/Scenes/HugoScene.unity
-    guid: 33f517a600ce47d44ac582155979592b
   m_configObjects: {}
