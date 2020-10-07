@@ -7,11 +7,11 @@ public class PlayerManager : ObjectManager
     [SerializeField]
     protected PlayerSettings settings;
     public Animator Animator { get; private set; }
-    [SerializeField]
-    private GameObject rendererContainer;
+    private CharacterRenderer characterRenderer;
 
     protected void Start()
     {
+        characterRenderer = GetComponentInChildren<CharacterRenderer>();
         if (!isLocalPlayer)
             return;
         Animator = GetComponent<Animator>();
@@ -41,15 +41,14 @@ public class PlayerManager : ObjectManager
             float inputY = Input.GetAxis("Vertical");
 
             Vector3 movement = new Vector3(settings.MovementSpeed * inputX, settings.MovementSpeed * inputY, 0);
-            if(inputX<0)
+            if (inputX < 0)
             {
-                rendererContainer.transform.localScale = new Vector3(-1f, 1f, 1f);
+                characterRenderer.IsRendererFlip = true;
             }
-            else if(inputX!=0)
+            else if (inputX != 0)
             {
-                rendererContainer.transform.localScale = new Vector3(1f, 1f, 1f);
+                characterRenderer.IsRendererFlip = false;
             }
-
             movement *= Time.deltaTime;
             return movement;
         }

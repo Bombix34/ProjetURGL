@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  rendererContainer: {fileID: 6927430619342279196}
+  renderer: {fileID: 0}
 --- !u!114 &5389608665950757726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +367,7 @@ GameObject:
   - component: {fileID: 3600471115442164576}
   - component: {fileID: 5872565546624290413}
   - component: {fileID: 3874675101540346540}
+  - component: {fileID: 2821717188752981812}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -423,3 +424,17 @@ MonoBehaviour:
   datas: {fileID: 11400000, guid: e4916b6a51a74c04ebd973e98214a8d3, type: 2}
   bodySprite: {fileID: 712186628964533519}
   headSprite: {fileID: 9071676618425851176}
+--- !u!114 &2821717188752981812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6927430619342279196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf89b0a45e41816459d95fea47bb62ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
