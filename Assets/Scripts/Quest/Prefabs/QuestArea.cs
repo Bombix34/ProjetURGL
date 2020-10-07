@@ -18,7 +18,6 @@ public class QuestArea : NetworkBehaviour
     private void RpcSetPositionAndScale(Vector2 position, float radius)
     {
         this.transform.position = position;
-        Debug.Log(radius);
         this.transform.localScale = new Vector2(radius, radius);
     }
 

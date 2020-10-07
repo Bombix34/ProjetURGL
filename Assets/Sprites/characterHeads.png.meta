@@ -1,0 +1,869 @@
+fileFormatVersion: 2
+guid: e50b579787cbe8d4c9b84b16aa46bcd8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8435143770999220987
+    second: characterHeads_0
+  - first:
+      213: 2689071642912054350
+    second: characterHeads_1
+  - first:
+      213: -8018143587329579855
+    second: characterHeads_2
+  - first:
+      213: -6342342282844441099
+    second: characterHeads_3
+  - first:
+      213: -4101809752289275069
+    second: characterHeads_4
+  - first:
+      213: -6033164821200665944
+    second: characterHeads_5
+  - first:
+      213: -53393376814656867
+    second: characterHeads_6
+  - first:
+      213: 776509769238195955
+    second: characterHeads_7
+  - first:
+      213: -2023399904897757620
+    second: characterHeads_8
+  - first:
+      213: 4524810609720434777
+    second: characterHeads_9
+  - first:
+      213: -7845499647453367753
+    second: characterHeads_10
+  - first:
+      213: 6543929562860830514
+    second: characterHeads_11
+  - first:
+      213: 3531225697154226876
+    second: characterHeads_12
+  - first:
+      213: 380158798225450563
+    second: characterHeads_13
+  - first:
+      213: 8451142121307787601
+    second: characterHeads_14
+  - first:
+      213: -8505644707253197267
+    second: characterHeads_15
+  - first:
+      213: 3582703860339043535
+    second: characterHeads_16
+  - first:
+      213: -4941108364358450866
+    second: characterHeads_17
+  - first:
+      213: -7737987376394573347
+    second: characterHeads_18
+  - first:
+      213: -2418439304192554399
+    second: characterHeads_19
+  - first:
+      213: 1545420713731520261
+    second: characterHeads_20
+  - first:
+      213: -6658235046424803614
+    second: characterHeads_21
+  - first:
+      213: -1014548033818027610
+    second: characterHeads_22
+  - first:
+      213: 2481425015444091252
+    second: characterHeads_23
+  - first:
+      213: -2051367752315350158
+    second: characterHeads_24
+  - first:
+      213: -4820197980689885879
+    second: characterHeads_25
+  - first:
+      213: -4722760229834044103
+    second: characterHeads_26
+  - first:
+      213: -8787925816971542208
+    second: characterHeads_27
+  - first:
+      213: 7481102152241430662
+    second: characterHeads_28
+  - first:
+      213: 2547073180211795300
+    second: characterHeads_29
+  - first:
+      213: 2373932151677811770
+    second: characterHeads_30
+  - first:
+      213: -7371730193555853857
+    second: characterHeads_31
+  - first:
+      213: 3922901908795651839
+    second: characterHeads_32
+  - first:
+      213: 8049191967318255855
+    second: characterHeads_33
+  - first:
+      213: 3872938639973246031
+    second: characterHeads_34
+  - first:
+      213: 8403604688332934463
+    second: characterHeads_35
+  - first:
+      213: -4486333263271074990
+    second: characterHeads_36
+  - first:
+      213: 208523944232572609
+    second: characterHeads_37
+  - first:
+      213: 6730982605918069003
+    second: characterHeads_38
+  - first:
+      213: 8712328980418648141
+    second: characterHeads_39
+  - first:
+      213: -6924924825698381640
+    second: characterHeads_40
+  - first:
+      213: -3841227762347183992
+    second: characterHeads_41
+  - first:
+      213: -766989842895248221
+    second: characterHeads_42
+  - first:
+      213: 4729010227326347371
+    second: characterHeads_43
+  - first:
+      213: 4245458404831652443
+    second: characterHeads_44
+  - first:
+      213: -7439555532007230346
+    second: characterHeads_45
+  - first:
+      213: 6372891437745963868
+    second: characterHeads_46
+  - first:
+      213: 4346036504603012430
+    second: characterHeads_47
+  - first:
+      213: -3890588890639857381
+    second: characterHeads_48
+  - first:
+      213: -5954892724629364244
+    second: characterHeads_49
+  - first:
+      213: 781165346170584911
+    second: characterHeads_50
+  - first:
+      213: -2941830909237616325
+    second: characterHeads_51
+  - first:
+      213: 900680389821767741
+    second: characterHeads_52
+  - first:
+      213: -1360682819202345316
+    second: characterHeads_53
+  - first:
+      213: 8932446926848167797
+    second: characterHeads_54
+  - first:
+      213: -4190987745319042860
+    second: characterHeads_55
+  - first:
+      213: 6334374908105141626
+    second: characterHeads_56
+  - first:
+      213: 9217187413853347180
+    second: characterHeads_57
+  - first:
+      213: 182959579087919139
+    second: characterHeads_58
+  - first:
+      213: 3572311070440234505
+    second: characterHeads_59
+  - first:
+      213: -4999691605713973321
+    second: characterHeads_60
+  - first:
+      213: -1294623520100040063
+    second: characterHeads_61
+  - first:
+      213: -6616105654812851028
+    second: characterHeads_62
+  - first:
+      213: 4794086293270507506
+    second: characterHeads_63
+  - first:
+      213: 1196941616195209943
+    second: characterHeads_64
+  - first:
+      213: 6268776336601427207
+    second: characterHeads_65
+  - first:
+      213: 4179896581947473973
+    second: characterHeads_66
+  - first:
+      213: -8125745885870851386
+    second: characterHeads_67
+  - first:
+      213: 9200244917510107320
+    second: characterHeads_68
+  - first:
+      213: 7946409922043468312
+    second: characterHeads_69
+  - first:
+      213: -1837421757694524590
+    second: characterHeads_70
+  - first:
+      213: 3696746254313302525
+    second: characterHeads_71
+  - first:
+      213: -677937829616980099
+    second: characterHeads_72
+  - first:
+      213: -32681938181443263
+    second: characterHeads_73
+  - first:
+      213: 2839120792249075393
+    second: characterHeads_74
+  - first:
+      213: -2488637646790114691
+    second: characterHeads_75
+  - first:
+      213: 7488390043646393099
+    second: characterHeads_76
+  - first:
+      213: -8615124963649549141
+    second: characterHeads_77
+  - first:
+      213: -475415066409870551
+    second: characterHeads_78
+  - first:
+      213: -8065830951180054459
+    second: characterHeads_79
+  - first:
+      213: -4304523272265485034
+    second: characterHeads_80
+  - first:
+      213: 4601080869717059349
+    second: characterHeads_81
+  - first:
+      213: -7428841850563849275
+    second: characterHeads_82
+  - first:
+      213: 1025051973664224577
+    second: characterHeads_83
+  - first:
+      213: 4935053510256084019
+    second: characterHeads_84
+  - first:
+      213: -4730491471475416718
+    second: characterHeads_85
+  - first:
+      213: -7377788698536479979
+    second: characterHeads_86
+  - first:
+      213: 5162433505629557188
+    second: characterHeads_87
+  - first:
+      213: 5663657582838134195
+    second: characterHeads_88
+  - first:
+      213: 3781319590335970322
+    second: characterHeads_89
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 480
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: characterHeads_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1270
+        width: 284
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfae1c38196af0570800000000000000
+      internalID: 8435143770999220987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_1
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 1270
+        width: 286
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4c59537960815520800000000000000
+      internalID: 2689071642912054350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_2
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 1270
+        width: 285
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4e427a3e4d9b090800000000000000
+      internalID: -8018143587329579855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_3
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 1270
+        width: 285
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f5fd130c497bf7a0800000000000000
+      internalID: -6342342282844441099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_4
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1270
+        width: 286
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343909a33c17317c0800000000000000
+      internalID: -4101809752289275069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_5
+      rect:
+        serializedVersion: 2
+        x: 2116
+        y: 1270
+        width: 284
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a283f86f84e54ca0800000000000000
+      internalID: -6033164821200665944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 846
+        width: 284
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d929a95b10f424ff0800000000000000
+      internalID: -53393376814656867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_7
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 846
+        width: 286
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe20106587b6ca00800000000000000
+      internalID: 776509769238195955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_8
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 846
+        width: 285
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e8206c1807be3e0800000000000000
+      internalID: -2023399904897757620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_9
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 846
+        width: 285
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9502e4ca64b5bce30800000000000000
+      internalID: 4524810609720434777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_10
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 846
+        width: 286
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732f61c43af2f1390800000000000000
+      internalID: -7845499647453367753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_11
+      rect:
+        serializedVersion: 2
+        x: 2116
+        y: 846
+        width: 284
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f3f752445b0da50800000000000000
+      internalID: 6543929562860830514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 422
+        width: 284
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbadb94ff0f610130800000000000000
+      internalID: 3531225697154226876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_13
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 422
+        width: 286
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346a77ea968964500800000000000000
+      internalID: 380158798225450563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_14
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 422
+        width: 285
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15154e6bbfc784570800000000000000
+      internalID: 8451142121307787601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_15
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 422
+        width: 285
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26ed7e1431e5f980800000000000000
+      internalID: -8505644707253197267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_16
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 422
+        width: 286
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fccede2dd2258b130800000000000000
+      internalID: 3582703860339043535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 284
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a82ca244aff6ed0800000000000000
+      internalID: -2418439304192554399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_20
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 0
+        width: 286
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5077f7e73ff627510800000000000000
+      internalID: 1545420713731520261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_21
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 287
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e60bca80823993a0800000000000000
+      internalID: -6658235046424803614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_22
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 0
+        width: 285
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a994b440f99be1f0800000000000000
+      internalID: -1014548033818027610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_23
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 0
+        width: 286
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471305687eacf6220800000000000000
+      internalID: 2481425015444091252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characterHeads_24
+      rect:
+        serializedVersion: 2
+        x: 2116
+        y: 0
+        width: 284
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2735d8bd5e31883e0800000000000000
+      internalID: -2051367752315350158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
