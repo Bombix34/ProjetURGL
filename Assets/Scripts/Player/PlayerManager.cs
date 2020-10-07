@@ -15,6 +15,7 @@ public class PlayerManager : ObjectManager
         if (!isLocalPlayer)
             return;
         Animator = GetComponent<Animator>();
+        Camera.main.GetComponent<CameraManager>().StartCameraFollow(this.transform);
         ChangeState(new PlayerIdleState(this));
     }
 
