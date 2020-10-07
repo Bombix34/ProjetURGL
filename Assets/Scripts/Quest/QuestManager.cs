@@ -1,4 +1,4 @@
-﻿using Mirror;
+using Mirror;
 using System;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ public class QuestManager : NetworkBehaviour
                 this.InstantiateQuestArea(this.mainQuest.FinalQuest);
                 break;
             case MainQuestState.DONE:
-                Debug.Log("VICTORY");
+                VictoryScreen.Instance.Init(VictoryScreen.VictoryType.STUDENT_VICTORY);
                 break;
             default:
                 break;
