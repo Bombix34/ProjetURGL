@@ -5,6 +5,8 @@ using Mirror;
 
 public class SkinDisplay : NetworkBehaviour
 {
+    [SerializeField]
+    private bool IsAgent=false;
     [SyncVar]
     private int colorId;
     [SyncVar]
@@ -18,8 +20,17 @@ public class SkinDisplay : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        bodySprite.color = datas.colors[colorId];
-        headSprite.sprite = datas.heads[headsId];
+        if(!IsAgent)
+        {
+            bodySprite.color = datas.colors[colorId];
+            headSprite.sprite = datas.heads[headsId];
+        }
+        else
+        {
+            Debug.Log("WOW");
+            bodySprite.color = datas.agentColor;
+            headSprite.sprite = datas.agentHead;
+        }
     }
 
     public override void OnStartServer()

@@ -7,4 +7,8 @@ public class SkinDatas : ScriptableObject
 {
     public List<Color> colors;
     public List<Sprite> heads;
+
+
+    public Color agentColor;
+    public Sprite agentHead;
 }

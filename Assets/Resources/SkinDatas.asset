@@ -40,8 +40,10 @@ MonoBehaviour:
   - {fileID: -8505644707253197267, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: 3582703860339043535, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: -2418439304192554399, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
-  - {fileID: 1545420713731520261, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: -6658235046424803614, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: -1014548033818027610, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: 2481425015444091252, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
   - {fileID: -2051367752315350158, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
+  agentColor: {r: 0.14901961, g: 0.1254902, b: 0.1254902, a: 1}
+  agentHead: {fileID: 1545420713731520261, guid: e50b579787cbe8d4c9b84b16aa46bcd8,
+    type: 3}
