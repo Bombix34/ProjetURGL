@@ -6,13 +6,13 @@ public class PlayerManager : ObjectManager
 {
     [SerializeField]
     protected PlayerSettings settings;
+    public CharacterRenderer Renderer{ get; private set; }
     public Animator Animator { get; private set; }
-    private CharacterRenderer characterRenderer;
 
     protected void Start()
     {
-        characterRenderer = GetComponentInChildren<CharacterRenderer>();
-        if (!isLocalPlayer)
+        Renderer = GetComponentInChildren<CharacterRenderer>();
+        if (!hasAuthority)
             return;
         Animator = GetComponent<Animator>();
         Camera.main.GetComponent<CameraManager>().StartCameraFollow(this.transform);
@@ -21,18 +21,22 @@ public class PlayerManager : ObjectManager
 
     protected override void Update()
     {
-        if (!isLocalPlayer)
+        if (!hasAuthority)
             return;
         if (currentState == null)
             return;
         currentState.Execute();
     }
 
+    public void Init()
+    {
+    }
+
     public Vector2 MovementInput
     {
         get
         {
-            if (!isLocalPlayer)
+            if (!hasAuthority)
             {
                 // exit from update if this is not the local player
                 return Vector2.zero;
@@ -44,11 +48,11 @@ public class PlayerManager : ObjectManager
             Vector3 movement = new Vector3(settings.MovementSpeed * inputX, settings.MovementSpeed * inputY, 0);
             if (inputX < 0)
             {
-                characterRenderer.IsRendererFlip = true;
+                Renderer.IsRendererFlip = true;
             }
             else if (inputX != 0)
             {
-                characterRenderer.IsRendererFlip = false;
+                Renderer.IsRendererFlip = false;
             }
             movement *= Time.deltaTime;
             return movement;

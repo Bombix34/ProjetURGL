@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5041554032571199053}
   - component: {fileID: 63184557131283484}
   m_Layer: 0
-  m_Name: PNJ 1
+  m_Name: PrefabPNJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  renderer: {fileID: 0}
 --- !u!114 &5389608665950757726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  datas: {fileID: 11400000, guid: e4916b6a51a74c04ebd973e98214a8d3, type: 2}
+  datas: {fileID: 11400000, guid: 0a2fa655eda0ec1468f4f59bc19fcad8, type: 2}
   bodySprite: {fileID: 712186628964533519}
   headSprite: {fileID: 9071676618425851176}
 --- !u!114 &2821717188752981812

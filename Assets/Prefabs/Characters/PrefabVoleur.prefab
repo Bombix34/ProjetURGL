@@ -219,8 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  IsAgent: 0
-  datas: {fileID: 11400000, guid: e4916b6a51a74c04ebd973e98214a8d3, type: 2}
+  datas: {fileID: 11400000, guid: 0a2fa655eda0ec1468f4f59bc19fcad8, type: 2}
   bodySprite: {fileID: 3434138556138903739}
   headSprite: {fileID: 6346458092224353924}
 --- !u!1 &4858778346235626514
