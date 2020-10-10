@@ -1,7 +1,7 @@
 ﻿using Mirror;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : NetworkBehaviour
 {
     private readonly SyncList<ItemScriptableObject> items = new SyncList<ItemScriptableObject>();
 
@@ -29,12 +29,12 @@ public class Inventory : MonoBehaviour
             }
             this.HasValuableItem = true;
         }
-        this.Items.Add(item);
+        this.items.Add(item);
         return true;
     }
     public bool RemoveItem(ItemScriptableObject item)
     {
-        this.Items.Remove(item);
+        this.items.Remove(item);
         if (item.IsValuableItem)
         {
             this.HasValuableItem = false;
