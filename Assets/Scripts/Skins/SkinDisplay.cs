@@ -10,7 +10,7 @@ public class SkinDisplay : NetworkBehaviour
     [SyncVar]
     private int headsId;
     [SerializeField]
-    private SkinDatas datas;
+    private SkinDatas datas = null;
 
     [SerializeField]
     private SpriteRenderer bodySprite, headSprite;
