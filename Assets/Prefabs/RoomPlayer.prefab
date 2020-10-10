@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3816484657683710983}
   - component: {fileID: 1117735322635138579}
-  - component: {fileID: 4823542522370250084}
+  - component: {fileID: 3057842513603033846}
+  - component: {fileID: -408722319743222275}
+  - component: {fileID: 4803367198150298369}
   m_Layer: 0
   m_Name: RoomPlayer
   m_TagString: Untagged
@@ -48,7 +50,7 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &4823542522370250084
+--- !u!114 &3057842513603033846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8676346070144642529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79874ac94d5b1314788ecf0e86bd23fd, type: 3}
+  m_Script: {fileID: 11500000, guid: bf055433e06a943419d53acf366bea11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
@@ -65,3 +67,31 @@ MonoBehaviour:
   showRoomGUI: 1
   readyToBegin: 0
   index: 0
+--- !u!114 &-408722319743222275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676346070144642529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0ee5ae411f3364d82302e13a1bc462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+--- !u!114 &4803367198150298369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676346070144642529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790818702b76bf14f938932d4b5cecf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0
