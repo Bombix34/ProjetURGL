@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : ObjectManager
 {
+    public bool IsVigil = false;
     [SerializeField]
     protected PlayerSettings settings;
     public CharacterRenderer Renderer{ get; private set; }
