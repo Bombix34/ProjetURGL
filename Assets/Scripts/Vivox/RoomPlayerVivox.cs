@@ -55,9 +55,9 @@ public class RoomPlayerVivox : NetworkBehaviour
     {
         if (this.connected)
         {
-            vivoxVoiceManager.DisconnectAllChannels();
+            //vivoxVoiceManager.DisconnectAllChannels();
             //WARNING unity crash with this line sometimes (maybe fix with the if)...
-            vivoxVoiceManager.Logout();
+            //vivoxVoiceManager.Logout();
         }
     }
 }
