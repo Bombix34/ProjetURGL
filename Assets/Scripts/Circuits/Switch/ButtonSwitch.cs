@@ -27,10 +27,9 @@ public class ButtonSwitch : BaseSwitch
         this.OnDeactivate();
     }
 
-    // when the GameObjects collider arrange for this GameObject to travel to the left of the screen
     void OnTriggerStay2D(Collider2D col)
     {
-        if (!col.CompareTag(Tags.STUDENT_TAG))
+        if (!col.CompareTag(Tags.THIEF_TAG))
         {
             return;
         }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Tags
 {
-    public const string STUDENT_TAG = "Student";
+    public const string THIEF_TAG = "Thief";
 }
