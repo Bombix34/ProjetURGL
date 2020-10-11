@@ -39,7 +39,7 @@ public class QuestArea : NetworkBehaviour
     [ServerCallback]
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag(Tags.STUDENT_TAG))
+        if (!col.CompareTag(Tags.THIEF_TAG))
         {
             return;
         }
@@ -50,7 +50,7 @@ public class QuestArea : NetworkBehaviour
     [ServerCallback]
     void OnTriggerExit2D(Collider2D col)
     {
-        if (!col.CompareTag(Tags.STUDENT_TAG))
+        if (!col.CompareTag(Tags.THIEF_TAG))
         {
             return;
         }

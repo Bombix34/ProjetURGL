@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerManager : ObjectManager
@@ -27,6 +29,21 @@ public class PlayerManager : ObjectManager
         if (currentState == null)
             return;
         currentState.Execute();
+
+        //temporaire
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.CmdDropItem();
+        }
+    }
+
+    [Command]
+    private void CmdDropItem()
+    {
+        var inventory = GetComponent<Inventory>();
+        var item = inventory.Items.First();
+        print(inventory.Items.Count);
+        inventory.DropItem(item);
     }
 
     public void Init()

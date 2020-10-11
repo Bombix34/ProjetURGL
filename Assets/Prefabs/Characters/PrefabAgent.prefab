@@ -19,9 +19,10 @@ GameObject:
   - component: {fileID: 8043627761022975262}
   - component: {fileID: 8473955944307660049}
   - component: {fileID: 2449985201678900036}
+  - component: {fileID: -7514818319330959919}
   m_Layer: 0
   m_Name: PrefabAgent
-  m_TagString: Student
+  m_TagString: Thief
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +224,22 @@ MonoBehaviour:
   datas: {fileID: 11400000, guid: e4916b6a51a74c04ebd973e98214a8d3, type: 2}
   bodySprite: {fileID: 3434138556138903739}
   headSprite: {fileID: 6346458092224353924}
+--- !u!114 &-7514818319330959919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482ce69594da9654e9f66a56452e4b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  valuableItemPrefab: {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0,
+    type: 3}
 --- !u!1 &4858778346235626514
 GameObject:
   m_ObjectHideFlags: 0
