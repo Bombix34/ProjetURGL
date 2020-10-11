@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseActivatable : MonoBehaviour
+public abstract class BaseActivatable : NetworkBehaviour
 {
-    public virtual void Activate()
+    [Command(ignoreAuthority = true)]
+    public virtual void CmdActivate()
     {
         this.OnActivate();
+        this.RpcOnActivateClient();
     }
-    public virtual void Deactivate()
+
+    [Command(ignoreAuthority = true)]
+    public virtual void CmdDeactivate()
     {
         this.OnDeactivate();
+        this.RpcOnDeactivateClient();
     }
 
     public abstract void OnActivate();
+
+    [ClientRpc]
+    public virtual void RpcOnActivateClient() { return; }
     public abstract void OnDeactivate();
+    [ClientRpc]
+    public virtual void RpcOnDeactivateClient() { return; }
 }

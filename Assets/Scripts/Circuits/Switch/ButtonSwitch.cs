@@ -29,10 +29,11 @@ public class ButtonSwitch : BaseSwitch
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (!col.CompareTag(Tags.THIEF_TAG))
+        if (!this.IsTagValid(col))
         {
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             this.OnActivate();

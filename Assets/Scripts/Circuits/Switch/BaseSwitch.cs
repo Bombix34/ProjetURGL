@@ -4,22 +4,34 @@ using UnityEngine;
 
 public abstract class BaseSwitch : MonoBehaviour
 {
+
+    [SerializeField]
+    private Tags.TagSelection TagSelection = Tags.TagSelection.THIEF_AND_VIGIL;
     [SerializeField]
     private BaseActivatable activatable;
 
     public BaseActivatable Activatable { get => activatable; set => activatable = value; }
     public virtual void OnActivate()
     {
-        Activatable.Activate();
+        Activatable.CmdActivate();
     }
     public virtual void OnDeactivate()
     {
-        Activatable.Deactivate();
+        Activatable.CmdDeactivate();
     }
 
     private void OnDrawGizmos()
     {
+        if (this.Activatable == null)
+        {
+            return;
+        }
         Gizmos.color = Color.red;
         Gizmos.DrawLine(this.transform.position, this.Activatable.transform.position);
+    }
+
+    internal bool IsTagValid(Collider2D collider2D)
+    {
+        return collider2D.IsTagValid(TagSelection);
     }
 }

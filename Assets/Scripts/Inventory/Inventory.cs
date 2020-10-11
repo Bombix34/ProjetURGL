@@ -58,6 +58,9 @@ public class Inventory : NetworkBehaviour
         NetworkServer.Spawn(itemGameObject);
     }
 
-
+    public bool HasItem(string ItemName)
+    {
+        return this.Items.Any(item => item.ItemName == ItemName);
+    }
 
 }

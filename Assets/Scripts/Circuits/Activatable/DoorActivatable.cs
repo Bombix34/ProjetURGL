@@ -13,4 +13,14 @@ public class DoorActivatable : BaseActivatable
     {
         Debug.Log("close");
     }
+
+    public override void RpcOnActivateClient()
+    {
+        Debug.Log("open");
+    }
+
+    public override void RpcOnDeactivateClient()
+    {
+        Debug.Log("close");
+    }
 }
