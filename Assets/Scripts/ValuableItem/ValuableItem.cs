@@ -25,9 +25,8 @@ public class ValuableItem : NetworkBehaviour
     public void CmdTakeValuableItem(NetworkConnectionToClient sender = null)
     {
         var inventory = sender.identity.GetComponent<Inventory>();
-        if (!inventory.HasValuableItem)
+        if (inventory.AddItem(Item))
         {
-            inventory.AddItem(Item);
             Destroy(this.gameObject);
         }
     }

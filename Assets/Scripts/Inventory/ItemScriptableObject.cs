@@ -12,7 +12,7 @@ public class ItemScriptableObject : ScriptableObject
 
     public string ItemName = "ItemName";
     public ItemType Type = ItemType.NORMAL_ITEM;
-    public bool IsValuableItem { get => this.Type == ItemType.VALUABLE_ITEM; }
+    public bool IsValuableItem => this.Type == ItemType.VALUABLE_ITEM;
 
     public override bool Equals(object obj)
     {

@@ -9,9 +9,7 @@ public class Inventory : NetworkBehaviour
 
     public static Inventory Instance { get; private set; }
     public SyncList<ItemScriptableObject> Items { get; } = new SyncList<ItemScriptableObject>();
-    [SyncVar]
-    private bool hasValuableItem = false;
-    public bool HasValuableItem { get => hasValuableItem; private set => hasValuableItem = value; }
+    private bool HasValuableItem => Items.Any(q => q.IsValuableItem);
     public override void OnStartClient()
     {
         Instance = this;
@@ -26,11 +24,6 @@ public class Inventory : NetworkBehaviour
         }
         
         this.Items.Add(item);
-
-        if (item.IsValuableItem)
-        {
-            this.HasValuableItem = true;
-        }
         return true;
     }
 
@@ -38,10 +31,6 @@ public class Inventory : NetworkBehaviour
     public void RemoveItem(ItemScriptableObject item)
     {
         this.Items.Remove(item);
-        if (item.IsValuableItem)
-        {
-            this.HasValuableItem = false;
-        }
     }
 
 
