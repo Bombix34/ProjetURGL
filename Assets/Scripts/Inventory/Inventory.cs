@@ -1,45 +1,72 @@
 ﻿using Mirror;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : NetworkBehaviour
 {
-    private readonly SyncList<ItemScriptableObject> items = new SyncList<ItemScriptableObject>();
+    [SerializeField]
+    private GameObject valuableItemPrefab;
 
-    public SyncList<ItemScriptableObject> Items => items; 
-    public bool HasValuableItem { get; private set; } = false;
-    // Start is called before the first frame update
-    void Start()
+    public static Inventory Instance { get; private set; }
+    public SyncList<ItemScriptableObject> Items { get; } = new SyncList<ItemScriptableObject>();
+    [SyncVar]
+    private bool hasValuableItem = false;
+    public bool HasValuableItem { get => hasValuableItem; private set => hasValuableItem = value; }
+    public override void OnStartClient()
     {
-
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    [Server]
     public bool AddItem(ItemScriptableObject item)
     {
+        if (item.IsValuableItem && this.HasValuableItem)
+        {
+            return false;
+        }
+        
+        this.Items.Add(item);
+
         if (item.IsValuableItem)
         {
-            if (this.HasValuableItem)
-            {
-                return false;
-            }
             this.HasValuableItem = true;
         }
-        this.items.Add(item);
         return true;
     }
-    public bool RemoveItem(ItemScriptableObject item)
+
+    [Server]
+    public void RemoveItem(ItemScriptableObject item)
     {
-        this.items.Remove(item);
+        this.Items.Remove(item);
         if (item.IsValuableItem)
         {
             this.HasValuableItem = false;
         }
-        return true;
+    }
+
+
+    [Server]
+    public void DropItem(ItemScriptableObject item)
+    {
+        switch (item.Type)
+        {
+            case ItemScriptableObject.ItemType.NORMAL_ITEM:
+                break;
+            case ItemScriptableObject.ItemType.VALUABLE_ITEM:
+                this.InstantiateValuableItem(item);
+                this.RemoveItem(item);
+                break;
+            default:
+                break;
+        }
+    }
+
+    [Server]
+    public void InstantiateValuableItem(ItemScriptableObject item)
+    {
+        var itemGameObject = Instantiate(valuableItemPrefab, transform.position, transform.rotation);
+        itemGameObject.GetComponent<ValuableItem>().Item = item;
+        NetworkServer.Spawn(itemGameObject);
     }
 
 

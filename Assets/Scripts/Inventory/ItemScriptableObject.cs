@@ -10,12 +10,18 @@ public class ItemScriptableObject : ScriptableObject
         VALUABLE_ITEM
     }
 
-    [SerializeField]
-    private string itemName = "ItemName";
-    [SerializeField]
-    private ItemType type = ItemType.NORMAL_ITEM;
+    public string ItemName = "ItemName";
+    public ItemType Type = ItemType.NORMAL_ITEM;
+    public bool IsValuableItem { get => this.Type == ItemType.VALUABLE_ITEM; }
 
-    public string ItemName { get => itemName; }
-    public ItemType Type { get => type; }
-    public bool IsValuableItem { get => this.type == ItemType.VALUABLE_ITEM; }
+    public override bool Equals(object obj)
+    {
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        var item = (ItemScriptableObject)obj;
+
+        return this.ItemName == item.ItemName;
+    }
 }

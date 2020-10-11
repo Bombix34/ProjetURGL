@@ -1,10 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
+using System;
 using UnityEngine;
 
-public class ValuableItem : MonoBehaviour
+public class ValuableItem : NetworkBehaviour
 {
-    public ItemScriptableObject Item { get; set; }
+    [SerializeField]
+    private ItemScriptableObject item;
+
+    public ItemScriptableObject Item { get => item; set => item = value; }
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -14,7 +17,18 @@ public class ValuableItem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //On ramasse l'item
+            this.CmdTakeValuableItem();
+        }
+    }
+
+    [Command(ignoreAuthority = true)]
+    public void CmdTakeValuableItem(NetworkConnectionToClient sender = null)
+    {
+        var inventory = sender.identity.GetComponent<Inventory>();
+        if (!inventory.HasValuableItem)
+        {
+            inventory.AddItem(Item);
+            Destroy(this.gameObject);
         }
     }
 }
