@@ -18,6 +18,7 @@ public class RoomPlayerVivox : NetworkBehaviour
     // Start is called before the first frame update
     public override void OnStartLocalPlayer()
     {
+        this.matchIdentifier = RoomSettings.Instance.roomUniqueIdentifier;
         this.vivoxVoiceManager = VivoxVoiceManager.Instance;
         this.roomPlayerData = GetComponent<RoomPlayerData>();
 
