@@ -9,6 +9,13 @@ public class CameraManager : MonoBehaviour
     public float m_CameraOffsetZ;
     public float m_Smoothness = 0.3f;
 
+    public FieldOfView FieldOfView { get; set; }
+
+    private void Awake()
+    {
+        FieldOfView = GetComponentInChildren<FieldOfView>();
+    }
+
     private void Update()
     {
         if (m_Target == null )
