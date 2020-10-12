@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 63184557131283484}
   m_Layer: 0
   m_Name: PrefabPNJ
-  m_TagString: Untagged
+  m_TagString: Student
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712186628964533517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.29999995, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3600471115442164576}
@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3942761341428074053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.42, z: 0}
+  m_LocalPosition: {x: 0, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3600471115442164576}
@@ -447,9 +447,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
         type: 3}
+      propertyPath: spriteRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 712186628964533519}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: spriteRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 712186628964533519}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: spriteRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 9071676618425851176}
+    - target: {fileID: 776810164822887176, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460436168594459339, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97cd4b5ae9bdb5f44899ed2ebaff4a3d, type: 2}
     - target: {fileID: 5429174354143160614, guid: 2134b18e59ed4964195f6b6aa3a177b4,
         type: 3}
       propertyPath: m_LocalPosition.x

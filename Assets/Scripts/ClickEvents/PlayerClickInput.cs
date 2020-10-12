@@ -60,6 +60,8 @@ public class PlayerClickInput : NetworkBehaviour
         {
             if(currentObjectOver != null)
             {
+                if (currentObjectOver == currentObjectClicked)
+                    return;
                 if(currentObjectClicked!=null)
                     currentObjectClicked.OnMouseExitTrigger();
                 currentObjectClicked = currentObjectOver;
@@ -70,7 +72,6 @@ public class PlayerClickInput : NetworkBehaviour
             {
                 currentObjectClicked.OnMouseExitTrigger();
                 currentObjectClicked = null;
-
             }
         }
     }

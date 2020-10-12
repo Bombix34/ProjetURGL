@@ -508,6 +508,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
         type: 3}
+      propertyPath: spriteRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
       propertyPath: clickType
       value: 1
       objectReference: {fileID: 0}
@@ -516,6 +521,16 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 3434138556138903739}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: spriteRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 3434138556138903739}
+    - target: {fileID: 118763555876528439, guid: 2134b18e59ed4964195f6b6aa3a177b4,
+        type: 3}
+      propertyPath: spriteRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 6346458092224353924}
     - target: {fileID: 1592111003975103159, guid: 2134b18e59ed4964195f6b6aa3a177b4,
         type: 3}
       propertyPath: m_Offset.y

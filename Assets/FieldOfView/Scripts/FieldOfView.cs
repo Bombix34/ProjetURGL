@@ -130,10 +130,10 @@ public class FieldOfView : MonoBehaviour
         {
             Vector2 dir = (target.transform.position - player.transform.position).normalized;
             RaycastHit2D hit = Physics2D.Raycast(player.transform.position, dir, viewRadius, obstacleMask);
-            if (hit && hit.collider.gameObject != target)
+            if (hit && hit.collider.gameObject != target && hit.collider.gameObject != player)
             {
-                float distancePlayerHit = Vector2.Distance(player.transform.position, hit.collider.transform.position);
-                if (hit.collider.gameObject != target && distancePlayerHit < distancePlayerTarget)
+                float distancePlayerHit = Vector2.Distance(player.transform.position, hit.point);
+                if (distancePlayerHit < distancePlayerTarget)
                 {
                     return false;
                 }
