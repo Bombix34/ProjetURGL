@@ -1,15 +1,18 @@
 ﻿using Mirror;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using VivoxUnity;
 
 public class RoomPlayerVivox : NetworkBehaviour
 {
+    public delegate void ChannelTextMessageReceived(string message);
+
+    public static RoomPlayerVivox Instance;
     private bool connected = false;
     private string matchIdentifier="TODO";
     private VivoxVoiceManager vivoxVoiceManager;
     private RoomPlayerData roomPlayerData;
+    public ChannelTextMessageReceived channelTextMessageReceived;
 
     private string roomChannelName => $"{matchIdentifier}-room";
     private string thiefChannelName => $"{matchIdentifier}-thief";
@@ -18,6 +21,8 @@ public class RoomPlayerVivox : NetworkBehaviour
     // Start is called before the first frame update
     public override void OnStartLocalPlayer()
     {
+        Instance = this;
+        this.matchIdentifier = RoomSettings.Instance.roomUniqueIdentifier;
         this.vivoxVoiceManager = VivoxVoiceManager.Instance;
         this.roomPlayerData = GetComponent<RoomPlayerData>();
 
@@ -28,6 +33,7 @@ public class RoomPlayerVivox : NetworkBehaviour
     private void OnLogin()
     {
         this.connected = true;
+        vivoxVoiceManager.OnTextMessageLogReceivedEvent += this.OnReceiveTextMessage;
         this.JoinRoomChannel();
     }
 
@@ -48,7 +54,7 @@ public class RoomPlayerVivox : NetworkBehaviour
 
     private void JoinChannel(string channelName)
     {
-        vivoxVoiceManager.JoinChannel(channelName, VivoxUnity.ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
+        vivoxVoiceManager.JoinChannel(channelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
     }
 
     private void OnDestroy()
@@ -59,5 +65,16 @@ public class RoomPlayerVivox : NetworkBehaviour
             //WARNING unity crash with this line sometimes (maybe fix with the if)...
             //vivoxVoiceManager.Logout();
         }
+    }
+
+    public void OnReceiveTextMessage(string sender, IChannelTextMessage channelTextMessage)
+    {
+        Debug.LogWarning(channelTextMessage.Message);
+        channelTextMessageReceived?.Invoke($"{sender}: {channelTextMessage.Message}");
+    }
+
+    public void SendChatMessage(string message)
+    {
+        vivoxVoiceManager.SendTextMessage(message, vivoxVoiceManager.ActiveChannels.First().Key);
     }
 }
