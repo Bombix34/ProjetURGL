@@ -11,7 +11,5 @@ public class LocalPlayer : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        var questPanel = FindObjectOfType<QuestPanel>();
-        questPanel.Init();
     }
 }
