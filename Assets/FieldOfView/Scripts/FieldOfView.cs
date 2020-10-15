@@ -8,6 +8,10 @@ public class FieldOfView : MonoBehaviour
     public float viewAngle;
 
     public LayerMask obstacleMask;
+
+
+    public LayerMask characterMask;
+
     public MeshFilter viewMeshFilter;
 
     public float meshResolution;
@@ -27,7 +31,8 @@ public class FieldOfView : MonoBehaviour
     }
 
     void LateUpdate()
-    {//draw field of view
+    {
+        //draw field of view
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;
         viewPoints.Clear();
@@ -121,7 +126,7 @@ public class FieldOfView : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
     }
 
-    public bool IsPlayerCanInteractWithObject(GameObject player, GameObject target)
+    public bool IsObjectVisibleFromPlayer(GameObject player, GameObject target)
     {
         float distancePlayerTarget = Vector2.Distance(player.transform.position, target.transform.position);
         if (distancePlayerTarget > viewRadius)
@@ -144,6 +149,7 @@ public class FieldOfView : MonoBehaviour
                 return true;
         }
     }
+
 
     public struct ViewCastInfo
     {

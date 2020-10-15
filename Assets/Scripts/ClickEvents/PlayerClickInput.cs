@@ -9,8 +9,8 @@ public class PlayerClickInput : NetworkBehaviour
     private LayerMask clickLayer;
     private PlayerManager manager;
 
-    private ClickTrigger currentObjectOver = null;
-    private ClickTrigger currentObjectClicked = null;
+    public ClickTrigger CurrentObjectOver { get; private set; } = null;
+    public ClickTrigger CurrentObjectClicked { get; private set; } = null;
 
     private void Start()
     {
@@ -34,22 +34,22 @@ public class PlayerClickInput : NetworkBehaviour
 
     private void DistanceTest()
     {
-        if(currentObjectClicked!=null)
+        if(CurrentObjectClicked!=null)
         {
             FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
-            if (!fieldViewManager.IsPlayerCanInteractWithObject(manager.gameObject, currentObjectClicked.transform.parent.gameObject))
+            if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectClicked.transform.parent.gameObject))
             {
-                currentObjectClicked.OnMouseExitTrigger();
-                currentObjectClicked = null;
+                CurrentObjectClicked.OnMouseExitTrigger();
+                CurrentObjectClicked = null;
             }
         }
-        else if(currentObjectOver!=null)
+        else if(CurrentObjectOver!=null)
         {
             FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
-            if (!fieldViewManager.IsPlayerCanInteractWithObject(manager.gameObject, currentObjectOver.transform.parent.gameObject))
+            if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectOver.transform.parent.gameObject))
             {
-                currentObjectOver.OnMouseExitTrigger();
-                currentObjectOver = null;
+                CurrentObjectOver.OnMouseExitTrigger();
+                CurrentObjectOver = null;
             }
         }
     }
@@ -58,20 +58,20 @@ public class PlayerClickInput : NetworkBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if(currentObjectOver != null)
+            if(CurrentObjectOver != null)
             {
-                if (currentObjectOver == currentObjectClicked)
+                if (CurrentObjectOver == CurrentObjectClicked)
                     return;
-                if(currentObjectClicked!=null)
-                    currentObjectClicked.OnMouseExitTrigger();
-                currentObjectClicked = currentObjectOver;
-                currentObjectOver = null;
-                currentObjectClicked.OnClickObject(manager);
+                if(CurrentObjectClicked!=null)
+                    CurrentObjectClicked.OnMouseExitTrigger();
+                CurrentObjectClicked = CurrentObjectOver;
+                CurrentObjectOver = null;
+                CurrentObjectClicked.OnClickObject(manager);
             }
-            else if(currentObjectClicked!=null)
+            else if(CurrentObjectClicked!=null)
             {
-                currentObjectClicked.OnMouseExitTrigger();
-                currentObjectClicked = null;
+                CurrentObjectClicked.OnMouseExitTrigger();
+                CurrentObjectClicked = null;
             }
         }
     }
@@ -83,20 +83,20 @@ public class PlayerClickInput : NetworkBehaviour
         {
             if (hit)
             {
-                if(currentObjectOver != null && currentObjectOver.gameObject != hit.collider.gameObject)
-                    currentObjectOver.OnMouseExitTrigger();
-                currentObjectOver = hit.collider.gameObject.GetComponent<ClickTrigger>();
-                if(currentObjectClicked==null)
-                    currentObjectOver.OnMouseOverTrigger(manager);
+                if(CurrentObjectOver != null && CurrentObjectOver.gameObject != hit.collider.gameObject)
+                    CurrentObjectOver.OnMouseExitTrigger();
+                CurrentObjectOver = hit.collider.gameObject.GetComponent<ClickTrigger>();
+                if(CurrentObjectClicked==null)
+                    CurrentObjectOver.OnMouseOverTrigger(manager);
             }
             else
             {
-                if (currentObjectOver != null )
+                if (CurrentObjectOver != null )
                 {
-                    if(currentObjectOver != currentObjectClicked)
-                        currentObjectOver.OnMouseExitTrigger();
+                    if(CurrentObjectOver != CurrentObjectClicked)
+                        CurrentObjectOver.OnMouseExitTrigger();
                 }
-                currentObjectOver = null;
+                CurrentObjectOver = null;
             }
         }
     }
