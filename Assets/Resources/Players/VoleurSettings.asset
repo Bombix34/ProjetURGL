@@ -15,4 +15,4 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1773344343124318752, guid: 9ff901264a66db8458c8e76e4fa7641a,
     type: 3}
   MovementSpeed: 1.6
-  SkinDatas: {fileID: 0}
+  MovementSpeedWithValuableItemMultiplier: 0.7
