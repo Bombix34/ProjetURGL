@@ -9,7 +9,7 @@ public class Inventory : NetworkBehaviour
 
     public static Inventory Instance { get; private set; }
     public SyncList<ItemScriptableObject> Items { get; } = new SyncList<ItemScriptableObject>();
-    private bool HasValuableItem => Items.Any(q => q.IsValuableItem);
+    public bool HasValuableItem => Items.Any(q => q.IsValuableItem);
     public override void OnStartClient()
     {
         Instance = this;
