@@ -11,12 +11,14 @@ public class PlayerManager : ObjectManager
     protected PlayerSettings settings;
     public CharacterRenderer Renderer{ get; private set; }
     public Animator Animator { get; private set; }
+    private Inventory inventory;
 
     protected void Start()
     {
         Renderer = GetComponentInChildren<CharacterRenderer>();
         if (!hasAuthority)
             return;
+        this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
 
@@ -76,6 +78,12 @@ public class PlayerManager : ObjectManager
                 Renderer.IsRendererFlip = false;
             }
             movement *= Time.deltaTime;
+
+            if (this.inventory.HasValuableItem)
+            {
+                movement *= this.settings.MovementSpeedWithValuableItemMultiplier;
+            }
+
             return movement;
         }
     }
