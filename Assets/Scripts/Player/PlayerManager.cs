@@ -18,7 +18,10 @@ public class PlayerManager : ObjectManager
         if (!hasAuthority)
             return;
         Animator = GetComponent<Animator>();
-        Camera.main.GetComponent<CameraManager>().StartCameraFollow(this.transform);
+        var cameraManager = Camera.main.GetComponent<CameraManager>();
+
+        cameraManager.Init(transform);
+        cameraManager.StartIntro();
         ChangeState(new PlayerIdleState(this));
     }
 
