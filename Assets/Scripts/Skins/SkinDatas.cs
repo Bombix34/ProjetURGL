@@ -6,5 +6,6 @@ using UnityEngine;
 public class SkinDatas : ScriptableObject
 {
     public List<Color> colors;
-    public List<Sprite> heads;
+
+    public List<RuntimeAnimatorController> animatorController;
 }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
-  heads:
-  - {fileID: 1545420713731520261, guid: e50b579787cbe8d4c9b84b16aa46bcd8, type: 3}
+  animatorController:
+  - {fileID: 9100000, guid: dccd4f06f6c1c494395e8d5a34aac942, type: 2}

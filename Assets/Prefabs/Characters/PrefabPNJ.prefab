@@ -438,7 +438,7 @@ MonoBehaviour:
   syncInterval: 0.1
   datas: {fileID: 11400000, guid: 0a2fa655eda0ec1468f4f59bc19fcad8, type: 2}
   bodySprite: {fileID: 712186628964533519}
-  headSprite: {fileID: 9071676618425851176}
+  animator: {fileID: 884065244836304654}
 --- !u!114 &2821717188752981812
 MonoBehaviour:
   m_ObjectHideFlags: 0
