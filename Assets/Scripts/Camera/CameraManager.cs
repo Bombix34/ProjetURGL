@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField]
-    private CameraConfigScriptableObject cameraConfig;
+    private CameraConfigScriptableObject cameraConfig = null;
     private Transform playerTransform;
     private BaseCameraMovements cameraMovement;
 

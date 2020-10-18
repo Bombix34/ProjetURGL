@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item/Item")]
 public class ItemScriptableObject : ScriptableObject
@@ -23,5 +24,10 @@ public class ItemScriptableObject : ScriptableObject
         var item = (ItemScriptableObject)obj;
 
         return this.ItemName == item.ItemName;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
     }
 }

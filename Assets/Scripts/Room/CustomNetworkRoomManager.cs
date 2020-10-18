@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Mirror;
+using System;
 
 /*
 	Documentation: https://mirror-networking.com/docs/Components/NetworkRoomManager.html
@@ -18,8 +19,8 @@ using Mirror;
 /// </summary>
 public class CustomNetworkRoomManager : NetworkRoomManager
 {
-    [SerializeField] private GameSettings settings;
-    private int CurrentAgentNumber = 0;
+    [SerializeField]
+    private GameSettings settings = null;
     #region Server Callbacks
 
     /// <summary>
@@ -80,14 +81,23 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <returns>A new GamePlayer object.</returns>
     public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
     {
-        settings.PlayerNumber = roomSlots.Count;
-        Transform startPos = GetStartPosition();
-        GameObject prefabPlayer = settings.VoleurSettings.PlayerPrefab;
-        if (CurrentAgentNumber < settings.AgentNumber)
+        var roomPlayerData = roomPlayer.GetComponent<RoomPlayerData>();
+
+        GameObject prefabPlayer;
+        switch (roomPlayerData.PlayerType)
         {
-            CurrentAgentNumber++;
-            prefabPlayer = settings.AgentSettings.PlayerPrefab;
+            case PlayerType.THIEF:
+                prefabPlayer = settings.VoleurSettings.PlayerPrefab;
+                break;
+            case PlayerType.VIGIL:
+                prefabPlayer = settings.AgentSettings.PlayerPrefab;
+                break;
+            case PlayerType.SPECTATOR:
+            default:
+                throw new NotImplementedException($"The value {roomPlayerData.PlayerType} is not implemented");
         }
+
+        Transform startPos = GetStartPosition();
         GameObject player = startPos != null
             ? Instantiate(prefabPlayer, startPos.position, startPos.rotation)
             : Instantiate(prefabPlayer);
@@ -169,7 +179,10 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <summary>
     /// This is called on the client when the client stops.
     /// </summary>
-    public override void OnRoomStopClient() { }
+    public override void OnRoomStopClient() {
+        VivoxVoiceManager.Instance.DisconnectAllChannels();
+        VivoxVoiceManager.Instance.Logout();
+    }
 
     /// <summary>
     /// This is called on the client when the client is finished loading a new networked scene.

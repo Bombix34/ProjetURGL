@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemInInventoryAreaSwitch : AreaSwitch
 {
     [SerializeField]
-    private string itemNameToActivate;
+    private string itemNameToActivate = null;
 
     public string ItemNameToActivate => itemNameToActivate;
 
