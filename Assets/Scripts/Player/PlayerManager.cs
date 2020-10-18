@@ -46,9 +46,9 @@ public class PlayerManager : ObjectManager
     [Command]
     private void CmdDropItem()
     {
+        //to change
         var inventory = GetComponent<Inventory>();
         var item = inventory.Items.First();
-        print(inventory.Items.Count);
         inventory.DropItem(item);
     }
 

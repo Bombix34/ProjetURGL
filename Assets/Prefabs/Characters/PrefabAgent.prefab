@@ -275,7 +275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  valuableItemPrefab: {fileID: 0}
+  valuableItemPrefab: {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0,
+    type: 3}
 --- !u!1 &4858778346235626514
 GameObject:
   m_ObjectHideFlags: 0

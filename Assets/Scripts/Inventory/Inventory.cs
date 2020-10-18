@@ -6,9 +6,10 @@ public class Inventory : NetworkBehaviour
 {
     [SerializeField]
     private GameObject valuableItemPrefab = null;
+    private readonly SyncList<ItemScriptableObject> items = new SyncList<ItemScriptableObject>();
 
     public static Inventory Instance { get; private set; }
-    public SyncList<ItemScriptableObject> Items { get; } = new SyncList<ItemScriptableObject>();
+    public SyncList<ItemScriptableObject> Items => items; 
     public bool HasValuableItem => Items.Any(q => q.IsValuableItem);
     public override void OnStartClient()
     {
@@ -22,7 +23,7 @@ public class Inventory : NetworkBehaviour
         {
             return false;
         }
-        
+
         this.Items.Add(item);
         return true;
     }

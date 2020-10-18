@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 4297009561916211952}
   m_Layer: 0
   m_Name: PrefabVoleur
-  m_TagString: Student
+  m_TagString: Thief
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  valuableItemPrefab: {fileID: 0}
+  valuableItemPrefab: {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0,
+    type: 3}
 --- !u!1 &3779559880287027469
 GameObject:
   m_ObjectHideFlags: 0

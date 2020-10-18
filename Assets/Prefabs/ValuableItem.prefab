@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  Item: {fileID: 11400000, guid: 26f0e62435d15ef44a15b73e398dd06c, type: 2}
+  item: {fileID: 11400000, guid: 26f0e62435d15ef44a15b73e398dd06c, type: 2}
 --- !u!212 &4280388973731168913
 SpriteRenderer:
   m_ObjectHideFlags: 0
