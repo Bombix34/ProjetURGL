@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2449985201678900036}
   - component: {fileID: 8775732970209851778}
   - component: {fileID: 5604195240973277278}
+  - component: {fileID: -7514818319330959919}
   m_Layer: 0
   m_Name: PrefabAgent
   m_TagString: Vigil
@@ -155,7 +156,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   IsVigil: 1
-  settings: {fileID: 11400000, guid: 87e6025d34527d44e96a1414168e937f, type: 2}
+  settings: {fileID: 11400000, guid: c8860cc24ffe31643a553c93ef5f3578, type: 2}
 --- !u!95 &8898629381136237773
 Animator:
   serializedVersion: 3

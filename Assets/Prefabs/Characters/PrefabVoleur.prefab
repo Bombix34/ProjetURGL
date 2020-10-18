@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 7215998734108363191}
   - component: {fileID: 7041686661203159777}
   - component: {fileID: 205668025060550566}
+  - component: {fileID: 8130957098232117540}
   m_Layer: 0
   m_Name: PrefabVoleur
   m_TagString: Student

@@ -7,8 +7,5 @@ public class GameSettings : ScriptableObject
 {
     [Header("REGLAGES PREFABS JOUEURS")]
     public PlayerSettings VoleurSettings;
-      public PlayerSettings AgentSettings;
-    [Header("REGLAGES PARTIE")]
-    public int PlayerNumber = 1;
-    public int AgentNumber = 1;
+    public PlayerSettings AgentSettings;
 }

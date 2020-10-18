@@ -5,10 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerSettings")]
 public class PlayerSettings : ScriptableObject
 {
+    [Header("PLAYER TYPE")]
+    public PlayerType PlayerType;
     [Header("PREFAB")]
     public GameObject PlayerPrefab;
 
     [Header("MOVEMENT SETTINGS")]
-    [Range(0f,15f)]
+    [Range(0f, 15f)]
     public float MovementSpeed;
+
+    [Range(0f, 1f)]
+    public float MovementSpeedWithValuableItemMultiplier;
 }

@@ -8,25 +8,25 @@ public class VictoryScreen : Singleton<VictoryScreen>
 {
     public enum VictoryType
     {
-        STUDENT_VICTORY,
-        TEACHER_VICTORY
+        THIEFS_VICTORY,
+        VIGILS_VICTORY
     }
-    const string STUDENT_VICTORY = "Les enfants ont gagnés";
-    const string TEACHER_VICTORY = "Les enseignants ont gagnés";
+    const string THIEFS_VICTORY = "Les voleurs ont gagnés";
+    const string VIGILS_VICTORY = "Les vigiles ont gagnés";
     [SerializeField]
-    private GameObject panel;
+    private GameObject panel = null;
     [SerializeField]
-    private TextMeshProUGUI textMeshProUGUI;
+    private TextMeshProUGUI textMeshProUGUI = null;
 
     public void Init(VictoryType victoryType)
     {
         switch (victoryType)
         {
-            case VictoryType.STUDENT_VICTORY:
-                this.textMeshProUGUI.text = STUDENT_VICTORY;
+            case VictoryType.THIEFS_VICTORY:
+                this.textMeshProUGUI.text = THIEFS_VICTORY;
                 break;
-            case VictoryType.TEACHER_VICTORY:
-                this.textMeshProUGUI.text = TEACHER_VICTORY;
+            case VictoryType.VIGILS_VICTORY:
+                this.textMeshProUGUI.text = VIGILS_VICTORY;
                 break;
         }
         panel.SetActive(true);

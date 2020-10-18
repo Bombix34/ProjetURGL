@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Student
   - Vigil
+  - Thief
   layers:
   - Default
   - TransparentFX
