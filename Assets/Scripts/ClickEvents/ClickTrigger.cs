@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TriggerTag))]
 public class ClickTrigger : MonoBehaviour
 {
-    public TriggerClickType clickType;
+    private TriggerTag tagTrigger;
     [SerializeField]
     private SpriteRenderer[] spriteRenderers;
 
@@ -14,12 +15,15 @@ public class ClickTrigger : MonoBehaviour
     private GameObject feedbackRadiusContainer;
     private float lineWidth=0.03f;
 
+    public float AreaRange { get; set; } = 1.4f;
+
 
     [SerializeField]
     private Material interactMaterial;
 
     private void Start()
     {
+        tagTrigger = GetComponent<TriggerTag>();
         feedbackRadiusContainer = GetComponentInChildren<SpriteRenderer>().gameObject;
         feedbackRadiusContainer.SetActive(false);
     }
@@ -47,7 +51,7 @@ public class ClickTrigger : MonoBehaviour
             }
             spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.size);
             spriteRenderers[0].material.SetColor("_SolidOutline", highlightSettings.onMouseClickColor);
-            DrawFeedbackRadius(1.4f);
+            DrawFeedbackRadius(highlightSettings.onMouseClickColor);
         }
     }
 
@@ -73,6 +77,13 @@ public class ClickTrigger : MonoBehaviour
         feedbackRadiusContainer.SetActive(false);
     }
 
+    public void PlayerInActionRange(bool isInRange)
+    {
+        Color finalColor = isInRange ? highlightSettings.onCanInteractColor : highlightSettings.onMouseClickColor;
+        DrawFeedbackRadius(finalColor);
+        spriteRenderers[0].material.SetColor("_SolidOutline", finalColor);
+    }
+
 
     private bool PlayerCanInteract(PlayerManager currentPlayer)
     {
@@ -80,30 +91,18 @@ public class ClickTrigger : MonoBehaviour
         if (!fieldViewManager.IsObjectVisibleFromPlayer(currentPlayer.gameObject, this.transform.parent.gameObject))
             return false;
         bool isPlayerVigil = currentPlayer.IsVigil;
-        bool result = false;
-        switch (clickType)
-        {
-            case TriggerClickType.PNJ:
-                if (isPlayerVigil)
-                    result = true;
-                break;
-            case TriggerClickType.VIGIL:
-                break;
-            case TriggerClickType.THIEF:
-                if (isPlayerVigil)
-                    result = true;
-                break;
-        }
+        TriggerTagType playerTag = isPlayerVigil ? TriggerTagType.VIGIL : TriggerTagType.THIEF;
+        bool result = ActionsData.Instance.IsActionValid(playerTag, tagTrigger.TagType);
         return result;
     }
 
 
-    public void DrawFeedbackRadius(float radius)
+    public void DrawFeedbackRadius(Color color)
     {
         feedbackRadiusContainer.SetActive(true);
         SpriteRenderer rendererFeedback = feedbackRadiusContainer.GetComponent<SpriteRenderer>();
-        feedbackRadiusContainer.transform.localScale = new Vector2(radius, radius);
-        Color finalColor = new Color(highlightSettings.onMouseClickColor.r, highlightSettings.onMouseClickColor.g, highlightSettings.onMouseClickColor.b, 0.6f);
+        feedbackRadiusContainer.transform.localScale = new Vector2(AreaRange, AreaRange);
+        Color finalColor = new Color(color.r, color.g, color.b, 0.6f);
         rendererFeedback.color = finalColor;
     }
 

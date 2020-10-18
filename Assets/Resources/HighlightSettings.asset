@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 877d55e78e36dfe4cb683410010bb619, type: 3}
   m_Name: HighlightSettings
   m_EditorClassIdentifier: 
-  size: 20
+  size: 5
   onMouseOverColor: {r: 1, g: 1, b: 1, a: 1}
-  onMouseClickColor: {r: 1, g: 0.83875704, b: 0.3160377, a: 1}
-  onCanInteractColor: {r: 0.5615195, g: 0.8679245, b: 0.33980063, a: 1}
+  onMouseClickColor: {r: 1, g: 0.83875704, b: 0.3160377, a: 0.5882353}
+  onCanInteractColor: {r: 0.5615195, g: 0.8679245, b: 0.33980063, a: 0.5882353}

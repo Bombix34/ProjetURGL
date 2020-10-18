@@ -9,6 +9,7 @@ public class PlayerAreaRenderer : NetworkBehaviour
     private Material defaultMaterial, behindMaskMaterial;
     private GameObject[] allObjects;
     private PlayerClickInput playerClickInput;
+    private FieldOfView fieldViewManager;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerAreaRenderer : NetworkBehaviour
             return;
         playerClickInput = GetComponent<PlayerClickInput>();
         allObjects = GameObject.FindGameObjectsWithTag("PositionTrigger");
+        fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
     }
 
     private void Update()
@@ -26,7 +28,6 @@ public class PlayerAreaRenderer : NetworkBehaviour
         {
             if (obj.transform.parent == this.transform || obj.transform.parent == playerClickInput.CurrentObjectClicked || obj.transform.parent == playerClickInput.CurrentObjectOver)
                 continue;
-            FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
             if (!fieldViewManager.IsObjectVisibleFromPlayer(this.transform.gameObject, obj))
                 obj.transform.parent.GetComponentInChildren<CharacterRenderer>().SwitchMaterial(behindMaskMaterial, false);
             else

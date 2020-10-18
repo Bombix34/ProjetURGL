@@ -42,21 +42,18 @@ public class PlayerManager : ObjectManager
                 // exit from update if this is not the local player
                 return Vector2.zero;
             }
-
-            float inputX = Input.GetAxis("Horizontal");
-            float inputY = Input.GetAxis("Vertical");
-
-            Vector3 movement = new Vector3(settings.MovementSpeed * inputX, settings.MovementSpeed * inputY, 0);
-            if (inputX < 0)
+            Vector2 inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            inputVector *= settings.MovementSpeed;
+            if (inputVector.x < 0)
             {
                 Renderer.IsRendererFlip = true;
             }
-            else if (inputX != 0)
+            else if (inputVector.x != 0)
             {
                 Renderer.IsRendererFlip = false;
             }
-            movement *= Time.deltaTime;
-            return movement;
+            inputVector *= Time.deltaTime;
+            return inputVector;
         }
     }
 }

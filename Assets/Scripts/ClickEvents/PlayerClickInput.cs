@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.EventSystems;
 
 public class PlayerClickInput : NetworkBehaviour
 {
@@ -11,6 +12,10 @@ public class PlayerClickInput : NetworkBehaviour
 
     public ClickTrigger CurrentObjectOver { get; private set; } = null;
     public ClickTrigger CurrentObjectClicked { get; private set; } = null;
+
+    private bool isObjectClickedInActionRange = false;
+
+    public Event currentEvent;
 
     private void Start()
     {
@@ -36,11 +41,21 @@ public class PlayerClickInput : NetworkBehaviour
     {
         if(CurrentObjectClicked!=null)
         {
+            if (CurrentObjectClicked == manager.GetComponentInChildren<ClickTrigger>())
+            { 
+                CurrentObjectClicked = null;
+                return;
+            }
             FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
             if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectClicked.transform.parent.gameObject))
             {
                 CurrentObjectClicked.OnMouseExitTrigger();
                 CurrentObjectClicked = null;
+            }
+            else
+            {
+                isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= 1.4f;
+                CurrentObjectClicked.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }
         else if(CurrentObjectOver!=null)
@@ -60,7 +75,7 @@ public class PlayerClickInput : NetworkBehaviour
         {
             if(CurrentObjectOver != null)
             {
-                if (CurrentObjectOver == CurrentObjectClicked)
+                if (CurrentObjectOver == CurrentObjectClicked || CurrentObjectOver == manager.GetComponentInChildren<ClickTrigger>())
                     return;
                 if(CurrentObjectClicked!=null)
                     CurrentObjectClicked.OnMouseExitTrigger();

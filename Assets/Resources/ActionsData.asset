@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69b9acaf442c764ab4c0472f2b39f0f, type: 3}
-  m_Name: AgentSettings
+  m_Script: {fileID: 11500000, guid: 929c0fad35faa594b91ba4aebc32e66c, type: 3}
+  m_Name: ActionsData
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 1773344343124318752, guid: d68b92712825c5f41a62f400c9017081,
-    type: 3}
-  MovementSpeed: 2.6
+  actionsData:
+  - tag1: 1
+    tag2: 2
+    concerningAction: 0
