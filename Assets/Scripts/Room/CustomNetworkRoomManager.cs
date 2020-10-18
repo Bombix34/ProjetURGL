@@ -21,6 +21,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
 {
     [SerializeField]
     private GameSettings settings = null;
+    private bool quitting = false;
     #region Server Callbacks
 
     /// <summary>
@@ -179,9 +180,20 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <summary>
     /// This is called on the client when the client stops.
     /// </summary>
-    public override void OnRoomStopClient() {
+    public override void OnRoomStopClient()
+    {
+        if (quitting)
+        {
+            return;
+        }
         VivoxVoiceManager.Instance.DisconnectAllChannels();
         VivoxVoiceManager.Instance.Logout();
+    }
+
+    public override void OnApplicationQuit()
+    {
+        this.quitting = true;
+        base.OnApplicationQuit();
     }
 
     /// <summary>
