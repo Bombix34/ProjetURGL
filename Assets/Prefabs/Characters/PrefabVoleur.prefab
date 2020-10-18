@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 7215998734108363191}
   - component: {fileID: 7041686661203159777}
   - component: {fileID: 205668025060550566}
-  - component: {fileID: 8130957098232117540}
+  - component: {fileID: 4297009561916211952}
   m_Layer: 0
   m_Name: PrefabVoleur
   m_TagString: Student
@@ -261,6 +261,21 @@ MonoBehaviour:
   syncInterval: 0.1
   defaultMaterial: {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}
   behindMaskMaterial: {fileID: 2100000, guid: 97cd4b5ae9bdb5f44899ed2ebaff4a3d, type: 2}
+--- !u!114 &4297009561916211952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482ce69594da9654e9f66a56452e4b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  valuableItemPrefab: {fileID: 0}
 --- !u!1 &3779559880287027469
 GameObject:
   m_ObjectHideFlags: 0

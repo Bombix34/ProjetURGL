@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(TriggerTag))]
 public class ClickTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private ActionsData actionDatas;
     private TriggerTag tagTrigger;
     [SerializeField]
     private SpriteRenderer[] spriteRenderers;
@@ -92,7 +94,7 @@ public class ClickTrigger : MonoBehaviour
             return false;
         bool isPlayerVigil = currentPlayer.IsVigil;
         TriggerTagType playerTag = isPlayerVigil ? TriggerTagType.VIGIL : TriggerTagType.THIEF;
-        bool result = ActionsData.Instance.IsActionValid(playerTag, tagTrigger.TagType);
+        bool result = actionDatas.IsActionValid(playerTag, tagTrigger.TagType);
         return result;
     }
 

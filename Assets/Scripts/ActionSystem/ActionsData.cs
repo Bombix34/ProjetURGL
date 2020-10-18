@@ -8,13 +8,6 @@ public class ActionsData : ScriptableObject
     [SerializeField]
     private List<ActionPair> actionsData;
 
-    public static ActionsData Instance { get; private set; }
-
-    private void OnEnable()
-    {
-        Instance = this;
-    }
-
     public bool IsActionValid(TriggerTagType tag1, TriggerTagType tag2)
     {
         bool result = false;

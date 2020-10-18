@@ -71,14 +71,14 @@ public class PlayerManager : ObjectManager
             {
                 Renderer.IsRendererFlip = false;
             }
-            movement *= Time.deltaTime;
+            inputVector *= Time.deltaTime;
 
             if (this.inventory.HasValuableItem)
             {
-                movement *= this.settings.MovementSpeedWithValuableItemMultiplier;
+                inputVector *= this.settings.MovementSpeedWithValuableItemMultiplier;
             }
 
-            return movement;
+            return inputVector;
         }
     }
 }
