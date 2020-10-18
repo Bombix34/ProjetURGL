@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerSettings")]
 public class PlayerSettings : ScriptableObject
 {
+    [Header("PLAYER TYPE")]
+    public PlayerType PlayerType;
     [Header("PREFAB")]
     public GameObject PlayerPrefab;
 

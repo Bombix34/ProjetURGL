@@ -13,7 +13,7 @@ public class SkinDisplay : NetworkBehaviour
     private SkinDatas datas = null;
 
     [SerializeField]
-    private SpriteRenderer bodySprite, headSprite;
+    private SpriteRenderer bodySprite = null, headSprite = null;
 
     public override void OnStartClient()
     {

@@ -180,10 +180,6 @@ public class VivoxVoiceManager : MonoBehaviour
     {
         string uniqueId = Guid.NewGuid().ToString();
         //for proto purposes only, need to get a real token from server eventually
-        print(_tokenIssuer);
-        print(uniqueId);
-        print(_domain);
-        print(displayName);
         _accountId = new AccountId(_tokenIssuer, uniqueId, _domain, displayName);
         LoginSession = _client.GetLoginSession(_accountId);
         LoginSession.PropertyChanged += OnLoginSessionPropertyChanged;
@@ -211,10 +207,11 @@ public class VivoxVoiceManager : MonoBehaviour
             OnUserLoggedOutEvent?.Invoke();
             LoginSession.PropertyChanged -= OnLoginSessionPropertyChanged;
             LoginSession.Logout();
+            this.Clean();
         }
     }
 
-    public void JoinChannel(string channelName, ChannelType channelType, ChatCapability chatCapability,
+    public IChannelSession JoinChannel(string channelName, ChannelType channelType, ChatCapability chatCapability,
         bool switchTransmission = true, Channel3DProperties properties = null)
     {
         if (LoginState == LoginState.LoggedIn)
@@ -240,10 +237,12 @@ public class VivoxVoiceManager : MonoBehaviour
                     return;
                 }
             });
+            return channelSession;
         }
         else
         {
             VivoxLogError("Cannot join a channel when not logged in.");
+            return null;
         }
     }
 
@@ -278,6 +277,7 @@ public class VivoxVoiceManager : MonoBehaviour
             foreach (var channelSession in ActiveChannels)
             {
                 channelSession?.Disconnect();
+                LoginSession.DeleteChannelSession(channelSession.Channel);
             }
         }
     }
@@ -403,7 +403,7 @@ public class VivoxVoiceManager : MonoBehaviour
         {
             case "SpeechDetected":
                 {
-                    VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
+                    //VivoxLog($"OnSpeechDetectedEvent: {username} in {channel}.");
                     OnSpeechDetectedEvent?.Invoke(username, channel, valueEventArg.Value.SpeechDetected);
                     break;
                 }
@@ -454,6 +454,13 @@ public class VivoxVoiceManager : MonoBehaviour
             user.DeleteChannelSession(channelSession.Channel);
 
         }
+    }
+
+    private void Clean()
+    {
+        OnUserLoggedInEvent = null;
+        OnTextMessageLogReceivedEvent = null;
+        LoginSession = null;
     }
 
     #endregion

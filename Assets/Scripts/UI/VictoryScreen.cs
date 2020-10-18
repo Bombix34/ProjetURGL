@@ -14,9 +14,9 @@ public class VictoryScreen : Singleton<VictoryScreen>
     const string THIEFS_VICTORY = "Les voleurs ont gagnés";
     const string VIGILS_VICTORY = "Les vigiles ont gagnés";
     [SerializeField]
-    private GameObject panel;
+    private GameObject panel = null;
     [SerializeField]
-    private TextMeshProUGUI textMeshProUGUI;
+    private TextMeshProUGUI textMeshProUGUI = null;
 
     public void Init(VictoryType victoryType)
     {

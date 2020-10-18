@@ -1,18 +1,33 @@
 ﻿using Mirror;
 using UnityEngine;
 
+public enum PlayerType
+{
+    THIEF,
+    VIGIL,
+    SPECTATOR
+}
 public class RoomPlayerData : NetworkBehaviour
 {
     [SyncVar]
     private string playerIdentifier;
+    [SyncVar]
+    private PlayerType playerType;
 
-    public string GetPlayerIndentifier()
+    public string PlayerIndentifier => this.playerIdentifier;
+
+    public PlayerType PlayerType { get => playerType; }
+
+    public override void OnStartServer()
     {
-        if (string.IsNullOrWhiteSpace(playerIdentifier))
-        {
-            this.playerIdentifier = $"Tombeur {Random.Range(1000, 9999)}";
-        }
+        base.OnStartServer();
+        this.playerIdentifier = $"Tombeur {Random.Range(1000, 9999)}";
+        this.playerType = PlayerType.THIEF;
+    }
 
-        return this.playerIdentifier;
+    [Command]
+    public void CmdChangePlayerType(PlayerType playerType)
+    {
+        this.playerType = playerType;
     }
 }

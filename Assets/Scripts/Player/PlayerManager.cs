@@ -25,6 +25,7 @@ public class PlayerManager : ObjectManager
         cameraManager.Init(transform);
         cameraManager.StartIntro();
         ChangeState(new PlayerIdleState(this));
+        RoomPlayerVivox.Instance.StartGame(settings.PlayerType);
     }
 
     protected override void Update()
@@ -49,10 +50,6 @@ public class PlayerManager : ObjectManager
         var item = inventory.Items.First();
         print(inventory.Items.Count);
         inventory.DropItem(item);
-    }
-
-    public void Init()
-    {
     }
 
     public Vector2 MovementInput

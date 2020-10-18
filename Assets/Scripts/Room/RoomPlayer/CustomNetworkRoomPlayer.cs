@@ -126,12 +126,38 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     {
         GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
 
-        GUILayout.Label(this.roomPlayerData.GetPlayerIndentifier());
+        GUILayout.Label(this.roomPlayerData.PlayerIndentifier);
 
         if (readyToBegin)
             GUILayout.Label("Ready");
         else
             GUILayout.Label("Not Ready");
+
+        if (isLocalPlayer)
+        {
+            switch (roomPlayerData.PlayerType)
+            {
+                case PlayerType.THIEF:
+                    if (GUILayout.Button($"{PlayerType.THIEF}"))
+                        roomPlayerData.CmdChangePlayerType(PlayerType.VIGIL);
+                    break;
+                case PlayerType.VIGIL:
+                    if (GUILayout.Button($"{PlayerType.VIGIL}"))
+                        roomPlayerData.CmdChangePlayerType(PlayerType.SPECTATOR);
+                    break;
+                case PlayerType.SPECTATOR:
+                    if (GUILayout.Button($"{PlayerType.SPECTATOR}"))
+                        roomPlayerData.CmdChangePlayerType(PlayerType.THIEF);
+                    break;
+                default:
+                    throw new NotImplementedException($"The value {roomPlayerData.PlayerType} is not implemented");
+            }
+        }
+        else
+        {
+            GUILayout.Label($"{roomPlayerData.PlayerType}");
+        }
+        
 
         if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
         {

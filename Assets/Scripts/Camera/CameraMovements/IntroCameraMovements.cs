@@ -68,7 +68,6 @@ public class IntroCameraMovements : BaseCameraMovements
 
     private void NextTarget()
     {
-        Debug.Log("nextTARGET");
         if (this._targetsPositions.Count == 0)
         {
             this.currentIntroCameraMovementsState = IntroCameraMovementsState.FINISHED;

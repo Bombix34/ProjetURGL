@@ -13,6 +13,9 @@ public class GameCameraMovements : BaseCameraMovements
 
     public override void Move()
     {
-        this.MoveToPosition(playerTransform.position);
+        if (playerTransform)
+        {
+            this.MoveToPosition(playerTransform.position);
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inventory : NetworkBehaviour
 {
     [SerializeField]
-    private GameObject valuableItemPrefab;
+    private GameObject valuableItemPrefab = null;
 
     public static Inventory Instance { get; private set; }
     public SyncList<ItemScriptableObject> Items { get; } = new SyncList<ItemScriptableObject>();
