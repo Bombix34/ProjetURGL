@@ -17,6 +17,8 @@ public class ClickTrigger : MonoBehaviour
     private GameObject feedbackRadiusContainer;
     private float lineWidth=0.03f;
 
+    public bool IsInRange { get; set; } = false;
+
     public float AreaRange { get; set; } = 1.4f;
 
 
@@ -32,7 +34,7 @@ public class ClickTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (feedbackRadiusContainer == null)
+        if (feedbackRadiusContainer == null || !feedbackRadiusContainer.activeInHierarchy)
             return;
         SpriteRenderer rend = feedbackRadiusContainer.GetComponent<SpriteRenderer>();
         float alpha = Mathf.PingPong(Time.time*0.8f, 0.6f);
@@ -40,7 +42,7 @@ public class ClickTrigger : MonoBehaviour
     }
 
 
-    public void OnClickObject(PlayerManager currentPlayer)
+    public bool OnClickObject(PlayerManager currentPlayer)
     {
         if (PlayerCanInteract(currentPlayer))
         {
@@ -54,10 +56,12 @@ public class ClickTrigger : MonoBehaviour
             spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.size);
             spriteRenderers[0].material.SetColor("_SolidOutline", highlightSettings.onMouseClickColor);
             DrawFeedbackRadius(highlightSettings.onMouseClickColor);
+            return true;
         }
+        return false;
     }
 
-    public void OnMouseOverTrigger(PlayerManager currentPlayer)
+    public bool OnMouseOverTrigger(PlayerManager currentPlayer)
     {
         if(PlayerCanInteract(currentPlayer))
         {
@@ -67,7 +71,9 @@ public class ClickTrigger : MonoBehaviour
             }
             spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.size);
             spriteRenderers[0].material.SetColor("_SolidOutline", highlightSettings.onMouseOverColor);
+            return true;
         }
+        return false;
     }
 
     public void OnMouseExitTrigger()
@@ -81,9 +87,14 @@ public class ClickTrigger : MonoBehaviour
 
     public void PlayerInActionRange(bool isInRange)
     {
-        Color finalColor = isInRange ? highlightSettings.onCanInteractColor : highlightSettings.onMouseClickColor;
-        DrawFeedbackRadius(finalColor);
-        spriteRenderers[0].material.SetColor("_SolidOutline", finalColor);
+        if(isInRange && !this.IsInRange || !isInRange && this.IsInRange)
+        {
+            this.IsInRange = isInRange;
+            Color finalColor = isInRange ? highlightSettings.onCanInteractColor : highlightSettings.onMouseClickColor;
+            SpriteRenderer rendererFeedback = feedbackRadiusContainer.GetComponent<SpriteRenderer>();
+            DrawFeedbackRadius(new Color(finalColor.r,finalColor.g,finalColor.b,rendererFeedback.color.a));
+            spriteRenderers[0].material.SetColor("_SolidOutline", finalColor);
+        }
     }
 
 
@@ -104,7 +115,7 @@ public class ClickTrigger : MonoBehaviour
         feedbackRadiusContainer.SetActive(true);
         SpriteRenderer rendererFeedback = feedbackRadiusContainer.GetComponent<SpriteRenderer>();
         feedbackRadiusContainer.transform.localScale = new Vector2(AreaRange, AreaRange);
-        Color finalColor = new Color(color.r, color.g, color.b, 0.6f);
+        Color finalColor = new Color(color.r, color.g, color.b, 0f);
         rendererFeedback.color = finalColor;
     }
 

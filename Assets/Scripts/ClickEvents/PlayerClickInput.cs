@@ -81,7 +81,8 @@ public class PlayerClickInput : NetworkBehaviour
                     CurrentObjectClicked.OnMouseExitTrigger();
                 CurrentObjectClicked = CurrentObjectOver;
                 CurrentObjectOver = null;
-                CurrentObjectClicked.OnClickObject(manager);
+                if (!CurrentObjectClicked.OnClickObject(manager))
+                    CurrentObjectClicked = null;
             }
             else if(CurrentObjectClicked!=null)
             {
@@ -102,7 +103,10 @@ public class PlayerClickInput : NetworkBehaviour
                     CurrentObjectOver.OnMouseExitTrigger();
                 CurrentObjectOver = hit.collider.gameObject.GetComponent<ClickTrigger>();
                 if(CurrentObjectClicked==null)
-                    CurrentObjectOver.OnMouseOverTrigger(manager);
+                {
+                    if (!CurrentObjectOver.OnMouseOverTrigger(manager))
+                        CurrentObjectOver = null;
+                }
             }
             else
             {

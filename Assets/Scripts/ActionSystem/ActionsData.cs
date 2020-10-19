@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "actios,")]
+//[CreateAssetMenu(menuName = "actions data")]
 public class ActionsData : ScriptableObject
 {
     [SerializeField]
