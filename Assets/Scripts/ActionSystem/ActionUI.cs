@@ -8,5 +8,8 @@ public class ActionUI : MonoBehaviour
     [SerializeField]
     private Button actionButton;
 
-
+    public void EnableButton(bool isEnable)
+    {
+        actionButton.interactable = isEnable;
+    }
 }

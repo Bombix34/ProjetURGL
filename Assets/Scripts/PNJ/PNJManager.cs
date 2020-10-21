@@ -46,7 +46,7 @@ public class PNJManager : ObjectManager
         float curPosX = transform.position.x;
         if (curPosX == previousPosX)
             return;
-        characterRenderer.IsRendererFlip = curPosX < previousPosX;
+        characterRenderer.IsRendererFlip = curPosX - previousPosX > 0;
         previousPosX = curPosX;
     }
 }

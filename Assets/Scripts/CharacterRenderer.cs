@@ -23,7 +23,6 @@ public class CharacterRenderer : NetworkBehaviour
 
     private void Update()
     {
-        bodyRenderer.flipX = isRendererFlip;
         animator.SetBool("FLIP_X", isRendererFlip);
     }
 

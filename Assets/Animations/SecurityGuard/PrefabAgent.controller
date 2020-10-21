@@ -87,13 +87,13 @@ AnimatorController:
   m_Name: PrefabAgent
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: MOVE
+  - m_Name: IDLE
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IDLE
+  - m_Name: MOVE
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

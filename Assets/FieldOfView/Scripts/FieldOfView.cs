@@ -129,7 +129,7 @@ public class FieldOfView : MonoBehaviour
     public bool IsObjectVisibleFromPlayer(GameObject player, GameObject target)
     {
         float distancePlayerTarget = Vector2.Distance(player.transform.position, target.transform.position);
-        if (distancePlayerTarget > viewRadius)
+        if (distancePlayerTarget > viewRadius || !IsRendererVisibleFromCameraView(target))
             return false;
         else
         {
@@ -148,6 +148,21 @@ public class FieldOfView : MonoBehaviour
             else
                 return true;
         }
+    }
+
+    private bool IsRendererVisibleFromCameraView(GameObject target)
+    {
+        if (target.GetComponentInChildren<SpriteRenderer>() != null)
+        {
+            if (!target.GetComponentInChildren<SpriteRenderer>().isVisible)
+                return false;
+        }
+        else if (target.GetComponentInChildren<Transform>().GetComponentInChildren<SpriteRenderer>() != null)
+        {
+            if (!target.GetComponentInChildren<Transform>().GetComponentInChildren<SpriteRenderer>().isVisible)
+                return false;
+        }
+        return true;
     }
 
 
