@@ -10,9 +10,12 @@ public class PNJManager : ObjectManager
     public Animator Animator { get; private set; }
     private CharacterRenderer characterRenderer;
 
+    private float previousPosX;
+
     private void Start()
     {
         characterRenderer = GetComponentInChildren<CharacterRenderer>();
+        previousPosX = transform.position.x;
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
@@ -40,9 +43,10 @@ public class PNJManager : ObjectManager
 
     private void UpdatePNJRotation()
     {
-        if (Agent.destination.x < transform.position.x)
-            characterRenderer.IsRendererFlip = true;
-        else if (Agent.destination.x > transform.position.x)
-            characterRenderer.IsRendererFlip = false;
+        float curPosX = transform.position.x;
+        if (curPosX == previousPosX)
+            return;
+        characterRenderer.IsRendererFlip = curPosX < previousPosX;
+        previousPosX = curPosX;
     }
 }
