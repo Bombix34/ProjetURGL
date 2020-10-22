@@ -124,6 +124,11 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
 
     void DrawPlayerReadyState()
     {
+        if(this.roomPlayerData == null)
+        {
+            return;
+        }
+
         GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
 
         GUILayout.Label(this.roomPlayerData.PlayerIndentifier);
