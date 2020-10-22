@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 7041686661203159777}
   - component: {fileID: 205668025060550566}
   - component: {fileID: 4297009561916211952}
+  - component: {fileID: 3290688449064213817}
+  - component: {fileID: 5621855913915159286}
   m_Layer: 0
   m_Name: PrefabVoleur
   m_TagString: Thief
@@ -277,6 +279,34 @@ MonoBehaviour:
   syncInterval: 0.1
   valuableItemPrefab: {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0,
     type: 3}
+--- !u!114 &3290688449064213817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3632e1be5b607d846bfe1b9c00f895c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagSelection: 1
+  activatable: {fileID: 5621855913915159286}
+--- !u!114 &5621855913915159286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996d0d8483b8c2f44b9b62533628034b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &3779559880287027469
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,12 +459,12 @@ SpriteRenderer:
   m_SortingLayerID: -1753474171
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2fe49dcc2a68efd438700c2590680f3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb12db88da08b0e42bf459a9f0fbf711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.66, y: 0.92}
+  m_Size: {x: 2.4545455, y: 2.4545455}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

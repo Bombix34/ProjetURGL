@@ -6,11 +6,13 @@ public abstract class BaseSwitch : MonoBehaviour
 {
 
     [SerializeField]
-    private Tags.TagSelection TagSelection = Tags.TagSelection.THIEF;
+    private Tags.TagSelection tagSelection = Tags.TagSelection.THIEF;
     [SerializeField]
     private BaseActivatable activatable;
 
     public BaseActivatable Activatable { get => activatable; set => activatable = value; }
+    public Tags.TagSelection TagSelection { get => tagSelection; }
+
     public virtual void OnActivate()
     {
         Activatable.CmdActivate();

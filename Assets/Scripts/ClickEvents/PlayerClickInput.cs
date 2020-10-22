@@ -42,6 +42,11 @@ public class PlayerClickInput : NetworkBehaviour
         RaycastUpdate();
     }
 
+    public void TryPerformInteraction()
+    {
+        CurrentObjectClicked?.PlayerInteract();
+    }
+
     private void DistanceTest()
     {
         if(CurrentObjectClicked!=null)

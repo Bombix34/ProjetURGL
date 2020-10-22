@@ -13,6 +13,8 @@ public class PlayerManager : ObjectManager, IPlayerManager
     public Animator Animator { get; private set; }
     private Inventory inventory;
 
+    private PlayerClickInput clickInteractionManager;
+
     protected void Start()
     {
         Renderer = GetComponentInChildren<CharacterRenderer>();
@@ -21,6 +23,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
         this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
+        clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
 
         cameraManager.Init(transform);
         cameraManager.StartIntro();
@@ -40,6 +43,10 @@ public class PlayerManager : ObjectManager, IPlayerManager
         if (Input.GetKeyDown(KeyCode.A))
         {
             this.CmdDropItem();
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            clickInteractionManager.TryPerformInteraction();
         }
     }
 

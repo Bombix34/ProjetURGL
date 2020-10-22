@@ -32,4 +32,21 @@ public static class Tags
                 throw new NotImplementedException($"No implementation for tag {tagSelection}");
         }
     }
+
+    public static bool IsTagValid(this GameObject gameObject, TagSelection tagSelection)
+    {
+        switch (tagSelection)
+        {
+            case TagSelection.THIEF:
+                return gameObject.CompareTag(THIEF_TAG);
+            case TagSelection.VIGIL:
+                return gameObject.CompareTag(VIGIL_TAG);
+            case TagSelection.PNJ:
+                return gameObject.CompareTag(PNJ_TAG);
+            case TagSelection.ITEM:
+                return gameObject.CompareTag(ITEM_TAG);
+            default:
+                throw new NotImplementedException($"No implementation for tag {tagSelection}");
+        }
+    }
 }
