@@ -41,7 +41,12 @@ public class ClickTrigger : MonoBehaviour
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
     }
 
-
+    /// <summary>
+    /// return true if player can interact with object
+    /// return false if placer can't interact
+    /// </summary>
+    /// <param name="currentPlayer"></param>
+    /// <returns></returns>
     public bool OnClickObject(PlayerManager currentPlayer)
     {
         if (PlayerCanInteract(currentPlayer))
@@ -61,6 +66,12 @@ public class ClickTrigger : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// return true if player can interact
+    /// return false if player can't
+    /// </summary>
+    /// <param name="currentPlayer"></param>
+    /// <returns></returns>
     public bool OnMouseOverTrigger(PlayerManager currentPlayer)
     {
         if(PlayerCanInteract(currentPlayer))

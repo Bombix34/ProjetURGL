@@ -8,7 +8,11 @@ public class PlayerClickInput : NetworkBehaviour
 {
     [SerializeField]
     private LayerMask clickLayer;
+    private ActionUI interactionUI;
+
     private PlayerManager manager;
+
+    private CursorManager cursor;
 
     public ClickTrigger CurrentObjectOver { get; private set; } = null;
     public ClickTrigger CurrentObjectClicked { get; private set; } = null;
@@ -20,6 +24,7 @@ public class PlayerClickInput : NetworkBehaviour
     private void Start()
     {
         manager = this.GetComponent<PlayerManager>();
+        cursor = Camera.main.GetComponent<CursorManager>();
     }
 
     private void Update()
@@ -50,11 +55,13 @@ public class PlayerClickInput : NetworkBehaviour
             if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectClicked.transform.parent.gameObject))
             {
                 CurrentObjectClicked.OnMouseExitTrigger();
+                ActivateUIFeedback(false);
                 CurrentObjectClicked = null;
             }
             else
             {
                 isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= 1.4f;
+                interactionUI.EnableButton(isObjectClickedInActionRange);
                 CurrentObjectClicked.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }
@@ -82,11 +89,19 @@ public class PlayerClickInput : NetworkBehaviour
                 CurrentObjectClicked = CurrentObjectOver;
                 CurrentObjectOver = null;
                 if (!CurrentObjectClicked.OnClickObject(manager))
+                {
                     CurrentObjectClicked = null;
+                    ActivateUIFeedback(false);
+                }
+                else
+                {
+                    ActivateUIFeedback(true);
+                }
             }
             else if(CurrentObjectClicked!=null)
             {
                 CurrentObjectClicked.OnMouseExitTrigger();
+                ActivateUIFeedback(false);
                 CurrentObjectClicked = null;
             }
         }
@@ -106,6 +121,8 @@ public class PlayerClickInput : NetworkBehaviour
                 {
                     if (!CurrentObjectOver.OnMouseOverTrigger(manager))
                         CurrentObjectOver = null;
+                    else
+                        cursor.SwitchCursor(CursorManager.CursorType.ON_INTERACT);
                 }
             }
             else
@@ -116,7 +133,22 @@ public class PlayerClickInput : NetworkBehaviour
                         CurrentObjectOver.OnMouseExitTrigger();
                 }
                 CurrentObjectOver = null;
+                cursor.SwitchCursor(CursorManager.CursorType.BASIC);
             }
+        }
+    }
+
+    private void ActivateUIFeedback(bool isActive)
+    {
+        if(isActive)
+        {
+            if (interactionUI == null)
+                interactionUI = Instantiate(Resources.Load<GameObject>("ToInstantiate/ActionCanvas")).GetComponent<ActionUI>();
+            interactionUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            interactionUI?.gameObject.SetActive(false);
         }
     }
 }

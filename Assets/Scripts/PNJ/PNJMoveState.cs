@@ -24,7 +24,6 @@ public class PNJMoveState : PNJState
     {
         manager.Agent.SetDestination(target);
         manager.Animator.SetTrigger("MOVE");
-        
     }
 
     public override void Execute()

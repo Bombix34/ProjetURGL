@@ -9,17 +9,21 @@ public class CharacterRenderer : NetworkBehaviour
     [SyncVar]
     private bool isRendererFlip = false;
 
+    private Animator animator;
+
     [SerializeField]
     private SpriteRenderer bodyRenderer;
 
     private bool IsVisible = true;
 
+    private void Awake()
+    {
+        animator = GetComponentInParent<Animator>();
+    }
+
     private void Update()
     {
-        if (isRendererFlip)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        else
-            transform.localScale = new Vector3(1f, 1f, 1f);
+        animator.SetBool("FLIP_X", isRendererFlip);
     }
 
     public bool IsRendererFlip
