@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerManager : ObjectManager
+public class PlayerManager : ObjectManager, IPlayerManager
 {
     public bool IsVigil = false;
     [SerializeField]
     protected PlayerSettings settings;
-    public CharacterRenderer Renderer{ get; private set; }
+    public CharacterRenderer Renderer { get; private set; }
     public Animator Animator { get; private set; }
     private Inventory inventory;
 
@@ -80,5 +80,10 @@ public class PlayerManager : ObjectManager
 
             return inputVector;
         }
+    }
+
+    public void GetCaught()
+    {
+        print("GETCAUGHT");
     }
 }

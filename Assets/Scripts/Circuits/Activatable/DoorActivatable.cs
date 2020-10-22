@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DoorActivatable : BaseActivatable
 {
-    public override void OnActivate()
+    internal override void OnActivate()
     {
         Debug.Log("open");
     }
 
-    public override void OnDeactivate()
+    internal override void OnDeactivate()
     {
         Debug.Log("close");
     }

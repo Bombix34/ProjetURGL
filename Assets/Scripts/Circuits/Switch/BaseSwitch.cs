@@ -6,7 +6,7 @@ public abstract class BaseSwitch : MonoBehaviour
 {
 
     [SerializeField]
-    private Tags.TagSelection TagSelection = Tags.TagSelection.THIEF_AND_VIGIL;
+    private Tags.TagSelection TagSelection = Tags.TagSelection.THIEF;
     [SerializeField]
     private BaseActivatable activatable;
 
@@ -30,7 +30,7 @@ public abstract class BaseSwitch : MonoBehaviour
         Gizmos.DrawLine(this.transform.position, this.Activatable.transform.position);
     }
 
-    internal bool IsTagValid(Collider2D collider2D)
+    protected internal bool IsTagValid(Collider2D collider2D)
     {
         return collider2D.IsTagValid(TagSelection);
     }

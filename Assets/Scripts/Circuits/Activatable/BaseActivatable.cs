@@ -19,11 +19,11 @@ public abstract class BaseActivatable : NetworkBehaviour
         this.RpcOnDeactivateClient();
     }
 
-    public abstract void OnActivate();
+    internal abstract void OnActivate();
+    internal abstract void OnDeactivate();
 
     [ClientRpc]
     public virtual void RpcOnActivateClient() { return; }
-    public abstract void OnDeactivate();
     [ClientRpc]
     public virtual void RpcOnDeactivateClient() { return; }
 }

@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PNJManager : ObjectManager
+public class PNJManager : ObjectManager, IPlayerManager
 {
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
@@ -48,5 +49,12 @@ public class PNJManager : ObjectManager
             return;
         characterRenderer.IsRendererFlip = curPosX - previousPosX > 0;
         previousPosX = curPosX;
+    }
+
+    [Server]
+    public void GetCaught()
+    {
+        print("GETCAUGHT");
+        Destroy(this.gameObject);
     }
 }
