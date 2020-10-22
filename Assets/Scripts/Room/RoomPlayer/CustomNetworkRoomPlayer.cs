@@ -183,8 +183,15 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
             }
             else
             {
-                if (GUILayout.Button("Ready"))
-                    CmdChangeReadyState(true);
+                if(VivoxVoiceManager.Instance.LoginState != VivoxUnity.LoginState.LoggedIn)
+                {
+                    GUILayout.Label("Loading");
+                }
+                else
+                {
+                    if (GUILayout.Button("Ready"))
+                        CmdChangeReadyState(true);
+                }
             }
 
             GUILayout.EndArea();
