@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6949273706321461565}
   - component: {fileID: 6949273706321461564}
   - component: {fileID: 6949273706321461567}
+  - component: {fileID: 1683101918}
   m_Layer: 0
   m_Name: CustomNetworkRoomManager
   m_TagString: Untagged
@@ -108,6 +109,7 @@ MonoBehaviour:
   - {fileID: 5610205019879058392, guid: 6f8c1c32501183145897264a2d9afe5d, type: 3}
   - {fileID: 1773344343124318752, guid: 9ff901264a66db8458c8e76e4fa7641a, type: 3}
   - {fileID: 1773344343124318752, guid: d68b92712825c5f41a62f400c9017081, type: 3}
+  - {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 3057842513603033846, guid: 378a1d2b8eb97bf469ad1b55e9d24e04,
@@ -130,5 +132,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGUI: 1
-  offsetX: 300
+  offsetX: 0
   offsetY: 0
+--- !u!114 &1683101918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949273706321462979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bc10b5274d25941adcb99f3460bec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
