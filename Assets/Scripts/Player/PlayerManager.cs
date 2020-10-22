@@ -92,5 +92,6 @@ public class PlayerManager : ObjectManager, IPlayerManager
     public void GetCaught()
     {
         print("GETCAUGHT");
+        this.gameObject.SetActive(false);
     }
 }

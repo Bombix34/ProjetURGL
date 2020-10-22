@@ -6,6 +6,9 @@ using DG.Tweening;
 
 public class CharacterRenderer : NetworkBehaviour
 {
+    public static string MOVE_TRIGGER = "MOVE";
+    public static string IDLE_TRIGGER = "IDLE";
+    public static string FLIP_BOOL = "FLIP_X";
     [SyncVar]
     private bool isRendererFlip = false;
 
@@ -23,7 +26,11 @@ public class CharacterRenderer : NetworkBehaviour
 
     private void Update()
     {
-        animator.SetBool("FLIP_X", isRendererFlip);
+        if(animator.GetBool(FLIP_BOOL) ==!isRendererFlip)
+        {
+            animator.SetBool(FLIP_BOOL, isRendererFlip);
+            //animator.SetTrigger(MOVE_TRIGGER);
+        }
     }
 
     public bool IsRendererFlip

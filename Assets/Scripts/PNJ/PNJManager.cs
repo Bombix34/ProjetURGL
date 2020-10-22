@@ -44,17 +44,16 @@ public class PNJManager : ObjectManager, IPlayerManager
 
     private void UpdatePNJRotation()
     {
-        float curPosX = transform.position.x;
-        if (curPosX == previousPosX)
+        if (Agent.velocity.x==0 || Mathf.Abs(Agent.velocity.x)<0.05f)
             return;
-        characterRenderer.IsRendererFlip = curPosX - previousPosX > 0;
-        previousPosX = curPosX;
+        characterRenderer.IsRendererFlip = Agent.velocity.x < 0;
+        Debug.Log(Agent.velocity.x);
     }
 
     [Server]
     public void GetCaught()
     {
         print("GETCAUGHT");
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }
