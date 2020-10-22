@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showPing: 1
-  position: {x: 0, y: 0}
-  fontSize: 12
+  position: {x: 5, y: 5}
+  fontSize: 14
   textColor: {r: 0.034264866, g: 0.6603774, b: 0.09307263, a: 1}
