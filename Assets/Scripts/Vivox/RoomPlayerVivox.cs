@@ -1,5 +1,7 @@
 ﻿using Mirror;
 using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using VivoxUnity;
@@ -67,13 +69,11 @@ public class RoomPlayerVivox : NetworkBehaviour
 
     private void JoinThiefChannel()
     {
-        print("JoinThiefChannel");
         this.JoinChannel(this.ThiefChannelName);
     }
 
     private void JoinVigilChannel()
     {
-        print("JoinVigilChannel");
         this.JoinChannel(this.VigilChannelName);
     }
 
@@ -86,19 +86,24 @@ public class RoomPlayerVivox : NetworkBehaviour
     {
         if(currentChannelSession != null)
         {
-            currentChannelSession.Disconnect();
+            StartCoroutine(this.DisconnectChannel(this.currentChannelSession));
         }
         currentChannelSession = vivoxVoiceManager.JoinChannel(channelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
     }
 
     public void OnReceiveTextMessage(string sender, IChannelTextMessage channelTextMessage)
     {
-        Debug.LogWarning(channelTextMessage.Message);
         channelTextMessageReceived?.Invoke($"{sender}: {channelTextMessage.Message}");
     }
 
     public void SendChatMessage(string message)
     {
         vivoxVoiceManager.SendTextMessage(message, vivoxVoiceManager.ActiveChannels.First().Key);
+    }
+
+    private IEnumerator DisconnectChannel(IChannelSession channelSession)
+    {
+        yield return new WaitUntil(() => channelSession.ChannelState == ConnectionState.Connected);
+        channelSession.Disconnect();
     }
 }
