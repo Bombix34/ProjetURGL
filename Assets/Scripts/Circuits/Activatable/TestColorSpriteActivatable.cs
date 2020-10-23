@@ -14,13 +14,13 @@ public class TestColorSpriteActivatable : BaseActivatable
     }
 
     [ClientRpc]
-    public override void RpcOnActivateClient()
+    public override void RpcActivateClient()
     {
         GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     [ClientRpc]
-    public override void RpcOnDeactivateClient()
+    public override void RpcDeactivateClient()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
     }

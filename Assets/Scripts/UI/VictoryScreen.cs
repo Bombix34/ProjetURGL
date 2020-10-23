@@ -1,17 +1,10 @@
 ﻿using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class VictoryScreen : Singleton<VictoryScreen>
 {
-    public enum VictoryType
-    {
-        THIEFS_VICTORY,
-        VIGILS_VICTORY
-    }
-    const string THIEFS_VICTORY = "Les voleurs ont gagnés";
+    const string THIEVES_VICTORY = "Les voleurs ont gagnés";
     const string VIGILS_VICTORY = "Les vigiles ont gagnés";
     [SerializeField]
     private GameObject panel = null;
@@ -22,8 +15,8 @@ public class VictoryScreen : Singleton<VictoryScreen>
     {
         switch (victoryType)
         {
-            case VictoryType.THIEFS_VICTORY:
-                this.textMeshProUGUI.text = THIEFS_VICTORY;
+            case VictoryType.THIEVES_VICTORY:
+                this.textMeshProUGUI.text = THIEVES_VICTORY;
                 break;
             case VictoryType.VIGILS_VICTORY:
                 this.textMeshProUGUI.text = VIGILS_VICTORY;

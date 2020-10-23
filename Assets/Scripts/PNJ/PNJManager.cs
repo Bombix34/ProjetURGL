@@ -47,13 +47,11 @@ public class PNJManager : ObjectManager, IPlayerManager
         if (Agent.velocity.x==0 || Mathf.Abs(Agent.velocity.x)<0.05f)
             return;
         characterRenderer.IsRendererFlip = Agent.velocity.x < 0;
-        Debug.Log(Agent.velocity.x);
     }
 
     [Server]
     public void GetCaught()
     {
-        print("GETCAUGHT");
         this.gameObject.SetActive(false);
     }
 }

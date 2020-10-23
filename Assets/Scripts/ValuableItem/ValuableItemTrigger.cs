@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ValuableItemTrigger : MonoBehaviour
+public class ValuableItemTrigger : NetworkBehaviour
 {
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.CompareTag(Tags.THIEF_TAG))
@@ -12,7 +14,7 @@ public class ValuableItemTrigger : MonoBehaviour
         }
         if (col.GetComponent<Inventory>().HasValuableItem)
         {
-            VictoryScreen.Instance.Init(VictoryScreen.VictoryType.THIEFS_VICTORY);
+            VictoryScreen.Instance.Init(VictoryType.THIEVES_VICTORY);
         }
     }
 }
