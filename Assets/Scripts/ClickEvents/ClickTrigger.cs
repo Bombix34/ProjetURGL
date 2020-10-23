@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TriggerTag))]
 public class ClickTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private ActionsData actionDatas;
-    private TriggerTag tagTrigger;
     [SerializeField]
     private SpriteRenderer[] spriteRenderers;
 
@@ -21,13 +17,14 @@ public class ClickTrigger : MonoBehaviour
 
     public float AreaRange { get; set; } = 1.4f;
 
+    private BaseSwitch currentInteractionAvailable;
+
 
     [SerializeField]
     private Material interactMaterial;
 
     private void Start()
     {
-        tagTrigger = GetComponent<TriggerTag>();
         feedbackRadiusContainer = GetComponentInChildren<SpriteRenderer>().gameObject;
         feedbackRadiusContainer.SetActive(false);
     }
@@ -41,7 +38,12 @@ public class ClickTrigger : MonoBehaviour
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
     }
 
-
+    /// <summary>
+    /// return true if player can interact with object
+    /// return false if placer can't interact
+    /// </summary>
+    /// <param name="currentPlayer"></param>
+    /// <returns></returns>
     public bool OnClickObject(PlayerManager currentPlayer)
     {
         if (PlayerCanInteract(currentPlayer))
@@ -61,6 +63,12 @@ public class ClickTrigger : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// return true if player can interact
+    /// return false if player can't
+    /// </summary>
+    /// <param name="currentPlayer"></param>
+    /// <returns></returns>
     public bool OnMouseOverTrigger(PlayerManager currentPlayer)
     {
         if(PlayerCanInteract(currentPlayer))
@@ -103,10 +111,25 @@ public class ClickTrigger : MonoBehaviour
         FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
         if (!fieldViewManager.IsObjectVisibleFromPlayer(currentPlayer.gameObject, this.transform.parent.gameObject))
             return false;
-        bool isPlayerVigil = currentPlayer.IsVigil;
-        TriggerTagType playerTag = isPlayerVigil ? TriggerTagType.VIGIL : TriggerTagType.THIEF;
-        bool result = actionDatas.IsActionValid(playerTag, tagTrigger.TagType);
+        bool result = false;
+        BaseSwitch[] allSwitch = transform.parent.GetComponents<BaseSwitch>();
+        foreach(var switchActiv in allSwitch)
+        {
+            if(currentPlayer.gameObject.IsTagValid(switchActiv.TagSelection))
+            {
+                currentInteractionAvailable = switchActiv;
+                result = true;
+            }
+        }
+        if (!result)
+            currentInteractionAvailable = null;
         return result;
+    }
+
+    public void PlayerInteract()
+    {
+        currentInteractionAvailable?.OnActivate();
+        currentInteractionAvailable = null;
     }
 
 

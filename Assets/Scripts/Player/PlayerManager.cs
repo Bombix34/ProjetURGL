@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerManager : ObjectManager
+public class PlayerManager : ObjectManager, IPlayerManager
 {
     public bool IsVigil = false;
     [SerializeField]
     protected PlayerSettings settings;
-    public CharacterRenderer Renderer{ get; private set; }
+    public CharacterRenderer Renderer { get; private set; }
     public Animator Animator { get; private set; }
     private Inventory inventory;
+
+    private PlayerClickInput clickInteractionManager;
 
     protected void Start()
     {
@@ -21,6 +23,7 @@ public class PlayerManager : ObjectManager
         this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
+        clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
 
         cameraManager.Init(transform);
         cameraManager.StartIntro();
@@ -40,6 +43,10 @@ public class PlayerManager : ObjectManager
         if (Input.GetKeyDown(KeyCode.A))
         {
             this.CmdDropItem();
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            clickInteractionManager.TryPerformInteraction();
         }
     }
 
@@ -79,6 +86,22 @@ public class PlayerManager : ObjectManager
             }
 
             return inputVector;
+        }
+    }
+
+    [Server]
+    public void GetCaught()
+    {
+        this.RpcDisable();
+    }
+
+    [ClientRpc]
+    private void RpcDisable()
+    {
+        this.gameObject.SetActive(false);
+        if (isLocalPlayer)
+        {
+            CameraManager.Instance.NextPlayer();
         }
     }
 }

@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PNJManager : ObjectManager
+public class PNJManager : ObjectManager, IPlayerManager
 {
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
     public Animator Animator { get; private set; }
     private CharacterRenderer characterRenderer;
 
+    private float previousPosX;
+
     private void Start()
     {
         characterRenderer = GetComponentInChildren<CharacterRenderer>();
+        previousPosX = transform.position.x;
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
@@ -40,9 +44,14 @@ public class PNJManager : ObjectManager
 
     private void UpdatePNJRotation()
     {
-        if (Agent.destination.x < transform.position.x)
-            characterRenderer.IsRendererFlip = true;
-        else if (Agent.destination.x > transform.position.x)
-            characterRenderer.IsRendererFlip = false;
+        if (Agent.velocity.x==0 || Mathf.Abs(Agent.velocity.x)<0.05f)
+            return;
+        characterRenderer.IsRendererFlip = Agent.velocity.x < 0;
+    }
+
+    [Server]
+    public void GetCaught()
+    {
+        this.gameObject.SetActive(false);
     }
 }

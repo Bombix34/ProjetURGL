@@ -90,7 +90,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5429174354143160614}
-  - component: {fileID: 6884958657415354176}
   - component: {fileID: 118763555876528439}
   - component: {fileID: 1592111003975103159}
   m_Layer: 8
@@ -115,19 +114,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6884958657415354176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846832351667000344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4cff9ef7a1b9c4cac6787815613a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagType: 0
 --- !u!114 &118763555876528439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfe06927ca1df546bb6c78a7b46771a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDatas: {fileID: 11400000, guid: 80d3f2dbfccc119419f636cdce7c30fc, type: 2}
   spriteRenderers: []
   highlightSettings: {fileID: 11400000, guid: d7d14598349f9c845983b8a717eabe79, type: 2}
   interactMaterial: {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}

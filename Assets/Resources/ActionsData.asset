@@ -16,3 +16,6 @@ MonoBehaviour:
   - tag1: 1
     tag2: 2
     concerningAction: 0
+  - tag1: 1
+    tag2: 0
+    concerningAction: 0

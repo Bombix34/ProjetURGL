@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class TestColorSpriteActivatable : BaseActivatable
 {
-    public override void OnActivate()
+    internal override void OnActivate()
     {
         GetComponent<SpriteRenderer>().color = Color.green;
     }
 
-    public override void OnDeactivate()
+    internal override void OnDeactivate()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     [ClientRpc]
-    public override void RpcOnActivateClient()
+    public override void RpcActivateClient()
     {
         GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     [ClientRpc]
-    public override void RpcOnDeactivateClient()
+    public override void RpcDeactivateClient()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
     }

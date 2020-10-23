@@ -24,9 +24,9 @@ public class PlayerAreaRenderer : NetworkBehaviour
     {
         if (!hasAuthority)
             return;
-        foreach(var obj in allObjects)
+        foreach (var obj in allObjects)
         {
-            if (obj.transform.parent == this.transform || obj.transform.parent == playerClickInput.CurrentObjectClicked || obj.transform.parent == playerClickInput.CurrentObjectOver)
+            if (!obj.transform.parent.gameObject.activeInHierarchy || obj.transform.parent == this.transform || obj.transform.parent == playerClickInput.CurrentObjectClicked || obj.transform.parent == playerClickInput.CurrentObjectOver)
                 continue;
             if (!fieldViewManager.IsObjectVisibleFromPlayer(this.transform.gameObject, obj))
                 obj.transform.parent.GetComponentInChildren<CharacterRenderer>().SwitchMaterial(behindMaskMaterial, false);

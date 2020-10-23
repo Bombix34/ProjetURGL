@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class DoorActivatable : BaseActivatable
 {
-    public override void OnActivate()
+    internal override void OnActivate()
     {
         Debug.Log("open");
     }
 
-    public override void OnDeactivate()
+    internal override void OnDeactivate()
     {
         Debug.Log("close");
     }
 
-    public override void RpcOnActivateClient()
+    public override void RpcActivateClient()
     {
         Debug.Log("open");
     }
 
-    public override void RpcOnDeactivateClient()
+    public override void RpcDeactivateClient()
     {
         Debug.Log("close");
     }

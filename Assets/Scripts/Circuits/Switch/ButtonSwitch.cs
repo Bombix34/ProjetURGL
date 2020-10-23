@@ -26,17 +26,4 @@ public class ButtonSwitch : BaseSwitch
         yield return new WaitForSeconds(this.activatedDurationSecond);
         this.OnDeactivate();
     }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (!this.IsTagValid(col))
-        {
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            this.OnActivate();
-        }
-    }
 }

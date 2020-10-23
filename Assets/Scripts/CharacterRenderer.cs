@@ -6,20 +6,31 @@ using DG.Tweening;
 
 public class CharacterRenderer : NetworkBehaviour
 {
+    public static string MOVE_TRIGGER = "MOVE";
+    public static string IDLE_TRIGGER = "IDLE";
+    public static string FLIP_BOOL = "FLIP_X";
     [SyncVar]
     private bool isRendererFlip = false;
+
+    private Animator animator;
 
     [SerializeField]
     private SpriteRenderer bodyRenderer;
 
     private bool IsVisible = true;
 
+    private void Awake()
+    {
+        animator = GetComponentInParent<Animator>();
+    }
+
     private void Update()
     {
-        if (isRendererFlip)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        else
-            transform.localScale = new Vector3(1f, 1f, 1f);
+        if(animator.GetBool(FLIP_BOOL) ==!isRendererFlip)
+        {
+            animator.SetBool(FLIP_BOOL, isRendererFlip);
+            //animator.SetTrigger(MOVE_TRIGGER);
+        }
     }
 
     public bool IsRendererFlip
