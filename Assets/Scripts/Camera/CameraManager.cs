@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public static CameraManager Instance;
     [SerializeField]
     private CameraConfigScriptableObject cameraConfig = null;
     private Transform playerTransform;
@@ -11,6 +12,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        CameraManager.Instance = this;
         this.cameraMovement = new InitialCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, cameraConfig.IntroStartPosition);
     }
 
@@ -40,5 +42,18 @@ public class CameraManager : MonoBehaviour
     public void StartGame()
     {
         this.cameraMovement = new GameCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, this.playerTransform);
+    }
+
+    public void NextPlayer()
+    {
+        switch (this.cameraMovement)
+        {
+            case GameCameraMovements gameCameraMovements:
+                gameCameraMovements.NextPlayer();
+                break;
+            default:
+                Debug.LogWarning("Wrong moment to switch player");
+                break;
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameCameraMovements : BaseCameraMovements
 {
-    private readonly Transform playerTransform;
+    private Transform playerTransform;
 
     public GameCameraMovements(Transform transform, float smoothness, float offsetZ, Transform playerTransform) : base(transform, smoothness, offsetZ)
     {
@@ -17,5 +17,11 @@ public class GameCameraMovements : BaseCameraMovements
         {
             this.MoveToPosition(playerTransform.position);
         }
+    }
+
+    public void NextPlayer()
+    {
+
+        this.playerTransform = GameManager.Instance.GetNextThief(this.playerTransform.gameObject).transform;
     }
 }
