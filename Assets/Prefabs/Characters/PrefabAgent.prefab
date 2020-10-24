@@ -245,6 +245,8 @@ MonoBehaviour:
   clickLayer:
     serializedVersion: 2
     m_Bits: 256
+  actionsConfiguration: {fileID: 11400000, guid: 6af88e3324f2256408696b3e75d8a143,
+    type: 2}
 --- !u!114 &5604195240973277278
 MonoBehaviour:
   m_ObjectHideFlags: 0

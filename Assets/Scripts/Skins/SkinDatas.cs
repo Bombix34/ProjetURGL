@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skins datas")]
+[CreateAssetMenu(menuName = "URGL/Skins datas")]
 public class SkinDatas : ScriptableObject
 {
     public List<Color> colors;

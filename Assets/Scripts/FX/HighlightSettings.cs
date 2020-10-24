@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Highlight Settings")]
+[CreateAssetMenu(menuName = "URGL/Highlight Settings")]
 public class HighlightSettings : ScriptableObject
 {
     public float size;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Item/Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "URGL/Item/Item")]
 public class ItemScriptableObject : ScriptableObject
 {
     [System.Serializable]

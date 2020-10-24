@@ -1,16 +1,7 @@
 ﻿using System;
 using UnityEngine;
-
 public static class Tags
 {
-    [Serializable]
-    public enum TagSelection
-    {
-        THIEF,
-        VIGIL,
-        PNJ,
-        ITEM
-    }
     public const string THIEF_TAG = "Thief";
     public const string VIGIL_TAG = "Vigil";
     public const string PNJ_TAG = "PNJ";

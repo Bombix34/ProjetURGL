@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New CameraConfig", menuName = "Camera/CameraConfig")]
+[CreateAssetMenu(fileName = "New CameraConfig", menuName = "URGL/Camera/CameraConfig")]
 public class CameraConfigScriptableObject : ScriptableObject
 {
     [SerializeField]

@@ -6,11 +6,15 @@ using UnityEngine.EventSystems;
 
 public class PlayerClickInput : NetworkBehaviour
 {
+    private const float CLICK_DISTANCE = 1.4f;
     [SerializeField]
     private LayerMask clickLayer;
+    [SerializeField]
+    private ActionsConfigurationScriptableObject actionsConfiguration = null;
     private ActionUI interactionUI;
 
     private PlayerManager manager;
+    private ClickTrigger managerClickTrigger;
 
     private CursorManager cursor;
 
@@ -24,6 +28,7 @@ public class PlayerClickInput : NetworkBehaviour
     private void Start()
     {
         manager = this.GetComponent<PlayerManager>();
+        this.managerClickTrigger = manager.GetComponentInChildren<ClickTrigger>();
         cursor = Camera.main.GetComponent<CursorManager>();
     }
 
@@ -44,15 +49,28 @@ public class PlayerClickInput : NetworkBehaviour
 
     public void TryPerformInteraction()
     {
-        CurrentObjectClicked?.PlayerInteract();
+        if(CurrentObjectClicked == null || this.CanDoAction() == false)
+        {
+            return;
+        }
+        this.CanDoAction();
+        StartCoroutine(this.actionsConfiguration.GetActionWaitCoroutine(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType).Wait());
+        CurrentObjectClicked.PlayerInteract();
+    }
+
+    private bool CanDoAction()
+    {
+        isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= CLICK_DISTANCE;
+        bool canDoAction = this.actionsConfiguration.CanDoAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
+        return isObjectClickedInActionRange && canDoAction;
     }
 
     private void DistanceTest()
     {
-        if(CurrentObjectClicked!=null)
+        if (CurrentObjectClicked != null)
         {
             if (CurrentObjectClicked == manager.GetComponentInChildren<ClickTrigger>())
-            { 
+            {
                 CurrentObjectClicked = null;
                 return;
             }
@@ -65,12 +83,11 @@ public class PlayerClickInput : NetworkBehaviour
             }
             else
             {
-                isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= 1.4f;
-                interactionUI.EnableButton(isObjectClickedInActionRange);
+                interactionUI.EnableButton(this.CanDoAction());
                 CurrentObjectClicked.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }
-        else if(CurrentObjectOver!=null)
+        else if (CurrentObjectOver != null)
         {
             FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
             if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectOver.transform.parent.gameObject))
@@ -83,34 +100,54 @@ public class PlayerClickInput : NetworkBehaviour
 
     private void ClickUpdate()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(CurrentObjectOver != null)
-            {
-                if (CurrentObjectOver == CurrentObjectClicked || CurrentObjectOver == manager.GetComponentInChildren<ClickTrigger>())
-                    return;
-                if(CurrentObjectClicked!=null)
-                    CurrentObjectClicked.OnMouseExitTrigger();
-                CurrentObjectClicked = CurrentObjectOver;
-                CurrentObjectOver = null;
-                if (!CurrentObjectClicked.OnClickObject(manager))
-                {
-                    CurrentObjectClicked = null;
-                    ActivateUIFeedback(false);
-                }
-                else
-                {
-                    ActivateUIFeedback(true);
-                }
-            }
-            else if(CurrentObjectClicked!=null)
-            {
-                CurrentObjectClicked.OnMouseExitTrigger();
-                ActivateUIFeedback(false);
-                CurrentObjectClicked = null;
-            }
+            this.OnMouseClick();
         }
     }
+
+    private void OnMouseClick()
+    {
+        if (CurrentObjectOver != null)
+        {
+            this.ClickHoverGameObject();
+        }
+        else if (CurrentObjectClicked != null)
+        {
+            CurrentObjectClicked.OnMouseExitTrigger();
+            ActivateUIFeedback(false);
+            CurrentObjectClicked = null;
+        }
+    }
+
+    private void ClickHoverGameObject()
+    {
+        if (CurrentObjectOver == CurrentObjectClicked || CurrentObjectOver == managerClickTrigger)
+        {
+            return;
+        }
+
+        if (CurrentObjectClicked != null)
+        {
+            CurrentObjectClicked.OnMouseExitTrigger();
+        }
+
+        CurrentObjectClicked = CurrentObjectOver;
+        CurrentObjectOver = null;
+
+        bool canInteract = CurrentObjectClicked.OnClickObject(manager);
+        if (canInteract)
+        {
+            ActivateUIFeedback(true);
+        }
+        else
+        {
+            CurrentObjectClicked = null;
+            ActivateUIFeedback(false);
+        }
+    }
+
+    #region RaycastUpdate
 
     private void RaycastUpdate()
     {
@@ -119,36 +156,66 @@ public class PlayerClickInput : NetworkBehaviour
         {
             if (hit)
             {
-                if(CurrentObjectOver != null && CurrentObjectOver.gameObject != hit.collider.gameObject)
-                    CurrentObjectOver.OnMouseExitTrigger();
-                CurrentObjectOver = hit.collider.gameObject.GetComponent<ClickTrigger>();
-                if(CurrentObjectClicked==null)
-                {
-                    if (!CurrentObjectOver.OnMouseOverTrigger(manager))
-                        CurrentObjectOver = null;
-                    else
-                        cursor.SwitchCursor(CursorManager.CursorType.ON_INTERACT);
-                }
+                OnRaycastHit(hit.collider.gameObject);
             }
             else
             {
-                if (CurrentObjectOver != null )
-                {
-                    if(CurrentObjectOver != CurrentObjectClicked)
-                        CurrentObjectOver.OnMouseExitTrigger();
-                }
-                CurrentObjectOver = null;
-                cursor.SwitchCursor(CursorManager.CursorType.BASIC);
+                OnRaycastNotHit();
             }
         }
     }
 
+    private void OnRaycastHit(GameObject hitGameObject)
+    {
+        CheckHitAnotherGameObject(hitGameObject);
+        CurrentObjectOver = hitGameObject.GetComponent<ClickTrigger>();
+
+        if (CurrentObjectClicked != null)
+        {
+            return;
+        }
+
+        if (!CurrentObjectOver.OnMouseOverTrigger(manager))
+        {
+            CurrentObjectOver = null;
+        }
+        else
+        {
+            cursor.SwitchCursor(CursorManager.CursorType.ON_INTERACT);
+        }
+    }
+
+    private void CheckHitAnotherGameObject(GameObject hitGameObject)
+    {
+        bool hasHitAnotherGameObject = CurrentObjectOver != null && CurrentObjectOver.gameObject != hitGameObject;
+        if (hasHitAnotherGameObject)
+        {
+            CurrentObjectOver.OnMouseExitTrigger();
+        }
+    }
+
+    private void OnRaycastNotHit()
+    {
+        if (CurrentObjectOver != null && CurrentObjectOver != CurrentObjectClicked)
+        {
+            CurrentObjectOver.OnMouseExitTrigger();
+        }
+        CurrentObjectOver = null;
+        cursor.SwitchCursor(CursorManager.CursorType.BASIC);
+    }
+
+    #endregion RaycastUpdate
+
     private void ActivateUIFeedback(bool isActive)
     {
-        if(isActive)
+        if (isActive)
         {
             if (interactionUI == null)
+            {
                 interactionUI = Instantiate(Resources.Load<GameObject>("ToInstantiate/ActionCanvas")).GetComponent<ActionUI>();
+                interactionUI.Init(this);
+            }
+
             interactionUI.gameObject.SetActive(true);
         }
         else

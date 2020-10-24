@@ -1,6 +1,10 @@
 ﻿
 public class CaughtThiefActivatable : BaseActivatable
 {
+    private void Start()
+    {
+        this.type = ActionTypes.ARREST_CHARACTER;
+    }
     internal override void OnActivate()
     {
         var playerManager = GetComponent<PlayerManager>();
