@@ -89,9 +89,19 @@ public class PlayerManager : ObjectManager, IPlayerManager
         }
     }
 
+    [Server]
     public void GetCaught()
     {
-        print("GETCAUGHT");
+        this.RpcDisable();
+    }
+
+    [ClientRpc]
+    private void RpcDisable()
+    {
         this.gameObject.SetActive(false);
+        if (isLocalPlayer)
+        {
+            CameraManager.Instance.NextPlayer();
+        }
     }
 }

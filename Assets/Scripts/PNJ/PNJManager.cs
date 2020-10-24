@@ -52,7 +52,6 @@ public class PNJManager : ObjectManager, IPlayerManager
     [Server]
     public void GetCaught()
     {
-        print("GETCAUGHT");
         this.gameObject.SetActive(false);
     }
 }

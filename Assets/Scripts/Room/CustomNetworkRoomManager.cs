@@ -22,6 +22,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     [SerializeField]
     private GameSettings settings = null;
     private bool quitting = false;
+
     #region Server Callbacks
 
     /// <summary>
@@ -102,6 +103,10 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         GameObject player = startPos != null
             ? Instantiate(prefabPlayer, startPos.position, startPos.rotation)
             : Instantiate(prefabPlayer);
+        if(roomPlayerData.PlayerType == PlayerType.THIEF)
+        {
+            GameManager.Instance.AddThief(player);
+        }
         NetworkServer.AddPlayerForConnection(conn, player);
         return player;
     }
