@@ -5,6 +5,10 @@ using UnityEngine;
 
 public abstract class BaseActivatable : NetworkBehaviour
 {
+    protected ActionTypes type = ActionTypes.NOT_SET;
+
+    public ActionTypes ActionType { get => type; }
+
     [Command(ignoreAuthority = true)]
     public virtual void CmdActivate()
     {

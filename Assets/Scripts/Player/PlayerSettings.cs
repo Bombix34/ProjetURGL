@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerSettings")]
+[CreateAssetMenu(menuName = "URGL/PlayerSettings")]
 public class PlayerSettings : ScriptableObject
 {
     [Header("PLAYER TYPE")]

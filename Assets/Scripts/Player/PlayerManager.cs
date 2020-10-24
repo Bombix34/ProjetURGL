@@ -14,6 +14,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
     private Inventory inventory;
 
     private PlayerClickInput clickInteractionManager;
+    private readonly WaitCoroutine _waitCoroutine = new WaitCoroutine(3);
 
     protected void Start()
     {
@@ -46,6 +47,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
+            StartCoroutine(this._waitCoroutine.Wait());
             clickInteractionManager.TryPerformInteraction();
         }
     }
