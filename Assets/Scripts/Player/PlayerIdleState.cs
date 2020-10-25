@@ -15,6 +15,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         manager.Animator.SetTrigger("IDLE");
+        manager.Body.velocity = Vector2.zero;
     }
 
     public override void Execute()

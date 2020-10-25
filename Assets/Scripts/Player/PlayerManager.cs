@@ -16,11 +16,14 @@ public class PlayerManager : ObjectManager, IPlayerManager
     private PlayerClickInput clickInteractionManager;
     private readonly WaitCoroutine _waitCoroutine = new WaitCoroutine(3);
 
+    public Rigidbody2D Body { get; private set; }
+
     protected void Start()
     {
         Renderer = GetComponentInChildren<CharacterRenderer>();
         if (!hasAuthority)
             return;
+        Body = GetComponent<Rigidbody2D>();
         this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
@@ -80,7 +83,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
             {
                 Renderer.IsRendererFlip = false;
             }
-            inputVector *= Time.deltaTime;
+            inputVector *= Time.fixedDeltaTime;
 
             if (this.inventory.HasValuableItem)
             {

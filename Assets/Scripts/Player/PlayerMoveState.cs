@@ -21,7 +21,8 @@ public class PlayerMoveState : PlayerState
     {
         if (manager.MovementInput != Vector2.zero)
         {
-            manager.transform.Translate(manager.MovementInput);
+           // manager.transform.Translate(manager.MovementInput);
+            manager.Body.velocity = manager.MovementInput;
         }
         else
         {
