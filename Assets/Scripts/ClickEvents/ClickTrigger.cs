@@ -114,7 +114,7 @@ public class ClickTrigger : MonoBehaviour
         BaseSwitch[] allSwitch = transform.parent.GetComponents<BaseSwitch>();
         foreach(var switchActiv in allSwitch)
         {
-            if(currentPlayer.gameObject.IsTagValid(switchActiv.TagSelection))
+            if(currentPlayer.gameObject.IsTagValid(switchActiv.TagSelections))
             {
                 CurrentInteractionAvailable = switchActiv;
                 result = true;

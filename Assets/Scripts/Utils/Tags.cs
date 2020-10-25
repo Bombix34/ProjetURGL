@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 public static class Tags
 {
@@ -22,6 +23,18 @@ public static class Tags
             default:
                 throw new NotImplementedException($"No implementation for tag {tagSelection}");
         }
+    }
+
+    public static bool IsTagValid(this GameObject gameObject, List<TagSelection> tagSelections)
+    {
+        foreach (var tagSelection in tagSelections)
+        {
+            if (gameObject.IsTagValid(tagSelection))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static bool IsTagValid(this GameObject gameObject, TagSelection tagSelection)
