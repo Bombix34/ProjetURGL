@@ -1,7 +1,12 @@
-﻿
+﻿using Mirror;
+
 public class CaughtThiefActivatable : BaseActivatable
 {
-    internal override void OnActivate()
+    private void Start()
+    {
+        this.type = ActionTypes.ARREST_CHARACTER;
+    }
+    internal override void OnActivate(NetworkConnectionToClient sender)
     {
         var playerManager = GetComponent<PlayerManager>();
         if (playerManager != null)
@@ -12,7 +17,7 @@ public class CaughtThiefActivatable : BaseActivatable
         GetComponent<IPlayerManager>().GetCaught();
     }
 
-    internal override void OnDeactivate()
+    internal override void OnDeactivate(NetworkConnectionToClient sender)
     {
         throw new System.NotImplementedException();
     }

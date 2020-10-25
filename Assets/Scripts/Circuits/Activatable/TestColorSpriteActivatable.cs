@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class TestColorSpriteActivatable : BaseActivatable
 {
-    internal override void OnActivate()
+    internal override void OnActivate(NetworkConnectionToClient sender)
     {
         GetComponent<SpriteRenderer>().color = Color.green;
     }
 
-    internal override void OnDeactivate()
+    internal override void OnDeactivate(NetworkConnectionToClient sender)
     {
         GetComponent<SpriteRenderer>().color = Color.red;
     }

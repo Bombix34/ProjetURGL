@@ -31,9 +31,3 @@ public class ActionPair
         return tag1 == tagCompar1 && tag2 == tagCompar2 || tag1 == tagCompar2 && tag2 == tagCompar1;
     }
 }
-
-public enum ActionTypes
-{
-    ARREST_CHARACTER,
-    PUT_OBJECT_IN_INVENTORY
-}

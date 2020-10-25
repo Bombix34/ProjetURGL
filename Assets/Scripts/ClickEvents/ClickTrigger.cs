@@ -16,8 +16,7 @@ public class ClickTrigger : MonoBehaviour
     public bool IsInRange { get; set; } = false;
 
     public float AreaRange { get; set; } = 1.4f;
-
-    private BaseSwitch currentInteractionAvailable;
+    public BaseSwitch CurrentInteractionAvailable { get; private set; }
 
 
     [SerializeField]
@@ -115,21 +114,21 @@ public class ClickTrigger : MonoBehaviour
         BaseSwitch[] allSwitch = transform.parent.GetComponents<BaseSwitch>();
         foreach(var switchActiv in allSwitch)
         {
-            if(currentPlayer.gameObject.IsTagValid(switchActiv.TagSelection))
+            if(currentPlayer.gameObject.IsTagValid(switchActiv.TagSelections))
             {
-                currentInteractionAvailable = switchActiv;
+                CurrentInteractionAvailable = switchActiv;
                 result = true;
             }
         }
         if (!result)
-            currentInteractionAvailable = null;
+            CurrentInteractionAvailable = null;
         return result;
     }
 
     public void PlayerInteract()
     {
-        currentInteractionAvailable?.OnActivate();
-        currentInteractionAvailable = null;
+        CurrentInteractionAvailable?.OnActivate();
+        CurrentInteractionAvailable = null;
     }
 
 

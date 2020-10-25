@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game Settings")]
+[CreateAssetMenu(menuName = "URGL/Game Settings")]
 public class GameSettings : ScriptableObject
 {
     [Header("REGLAGES PREFABS JOUEURS")]

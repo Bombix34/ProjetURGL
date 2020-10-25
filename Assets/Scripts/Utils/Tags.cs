@@ -1,16 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
 public static class Tags
 {
-    [Serializable]
-    public enum TagSelection
-    {
-        THIEF,
-        VIGIL,
-        PNJ,
-        ITEM
-    }
     public const string THIEF_TAG = "Thief";
     public const string VIGIL_TAG = "Vigil";
     public const string PNJ_TAG = "PNJ";
@@ -31,6 +23,18 @@ public static class Tags
             default:
                 throw new NotImplementedException($"No implementation for tag {tagSelection}");
         }
+    }
+
+    public static bool IsTagValid(this GameObject gameObject, List<TagSelection> tagSelections)
+    {
+        foreach (var tagSelection in tagSelections)
+        {
+            if (gameObject.IsTagValid(tagSelection))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static bool IsTagValid(this GameObject gameObject, TagSelection tagSelection)
