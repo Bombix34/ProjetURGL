@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017da8ac169fa34489ce17c8f9b2b269, type: 3}
   m_Name: ThiefActionsConfiguration
   m_EditorClassIdentifier: 
-  configurations: []
+  configurations:
+  - actionType: 2
+    cooldown: 0

@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
 using UnityEngine;
 
 public class DoorActivatable : BaseActivatable
 {
-    internal override void OnActivate()
+    internal override void OnActivate(NetworkConnectionToClient sender)
     {
         Debug.Log("open");
     }
 
-    internal override void OnDeactivate()
+    internal override void OnDeactivate(NetworkConnectionToClient sender)
     {
         Debug.Log("close");
     }

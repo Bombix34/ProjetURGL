@@ -10,21 +10,21 @@ public abstract class BaseActivatable : NetworkBehaviour
     public ActionTypes ActionType { get => type; }
 
     [Command(ignoreAuthority = true)]
-    public virtual void CmdActivate()
+    public virtual void CmdActivate(NetworkConnectionToClient sender = null)
     {
-        this.OnActivate();
+        this.OnActivate(sender);
         this.RpcActivateClient();
     }
 
     [Command(ignoreAuthority = true)]
-    public virtual void CmdDeactivate()
+    public virtual void CmdDeactivate(NetworkConnectionToClient sender = null)
     {
-        this.OnDeactivate();
+        this.OnDeactivate(sender);
         this.RpcDeactivateClient();
     }
 
-    internal abstract void OnActivate();
-    internal abstract void OnDeactivate();
+    internal abstract void OnActivate(NetworkConnectionToClient sender);
+    internal abstract void OnDeactivate(NetworkConnectionToClient sender);
 
     [ClientRpc]
     public virtual void RpcActivateClient() { return; }
