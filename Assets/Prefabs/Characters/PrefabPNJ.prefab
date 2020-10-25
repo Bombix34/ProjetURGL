@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3632e1be5b607d846bfe1b9c00f895c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagSelection: 2
+  tagSelections: 02000000
   activatable: {fileID: 3939514950178751926}
 --- !u!114 &3939514950178751926
 MonoBehaviour:
