@@ -60,6 +60,11 @@ public class PlayerClickInput : NetworkBehaviour
 
     private bool CanDoAction()
     {
+        if(CurrentObjectClicked.CurrentInteractionAvailable == null)
+        {
+            CurrentObjectClicked = null;
+            return false;
+        }
         isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= CLICK_DISTANCE;
         bool canDoAction = this.actionsConfiguration.CanDoAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
         return isObjectClickedInActionRange && canDoAction;
@@ -84,7 +89,7 @@ public class PlayerClickInput : NetworkBehaviour
             else
             {
                 interactionUI.EnableButton(this.CanDoAction());
-                CurrentObjectClicked.PlayerInActionRange(isObjectClickedInActionRange);
+                CurrentObjectClicked?.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }
         else if (CurrentObjectOver != null)

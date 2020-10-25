@@ -19,6 +19,10 @@ public class Inventory : NetworkBehaviour
     [Server]
     public bool AddItem(ItemScriptableObject item)
     {
+        if (items.Contains(item))
+        {
+            return false;
+        }
         if (item.IsValuableItem && this.HasValuableItem)
         {
             return false;
