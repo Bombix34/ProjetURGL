@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfe06927ca1df546bb6c78a7b46771a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderers: []
+  spriteRenderers:
+  - {fileID: 0}
   highlightSettings: {fileID: 11400000, guid: d7d14598349f9c845983b8a717eabe79, type: 2}
   interactMaterial: {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}
 --- !u!61 &1592111003975103159

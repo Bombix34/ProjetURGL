@@ -88,7 +88,7 @@ public class PlayerClickInput : NetworkBehaviour
             }
             else
             {
-                interactionUI.EnableButton(this.CanDoAction());
+                interactionUI?.EnableButton(this.CanDoAction());
                 CurrentObjectClicked?.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }

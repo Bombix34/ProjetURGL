@@ -8,7 +8,7 @@ public class ValuableItem : NetworkBehaviour
     private ItemScriptableObject item;
 
     public ItemScriptableObject Item { get => item; set => item = value; }
-
+    /*
     void OnTriggerStay2D(Collider2D col)
     {
         if (!col.CompareTag(Tags.THIEF_TAG))
@@ -30,4 +30,5 @@ public class ValuableItem : NetworkBehaviour
             Destroy(this.gameObject);
         }
     }
+    */
 }
