@@ -11,7 +11,7 @@ public class PlayerSettings : ScriptableObject
     public GameObject PlayerPrefab;
 
     [Header("MOVEMENT SETTINGS")]
-    [Range(0f, 15f)]
+    [Range(0f, 500f)]
     public float MovementSpeed;
 
     [Range(0f, 1f)]

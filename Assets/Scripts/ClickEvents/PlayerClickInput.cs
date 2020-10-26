@@ -213,6 +213,8 @@ public class PlayerClickInput : NetworkBehaviour
 
     private void ActivateUIFeedback(bool isActive)
     {
+        interactionUI?.gameObject.SetActive(false);
+        return;
         if (isActive)
         {
             if (interactionUI == null)

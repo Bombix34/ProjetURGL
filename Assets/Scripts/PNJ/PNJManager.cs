@@ -44,7 +44,7 @@ public class PNJManager : ObjectManager, IPlayerManager
 
     private void UpdatePNJRotation()
     {
-        if (Agent.velocity.x==0 || Mathf.Abs(Agent.velocity.x)<0.05f)
+        if (Agent.velocity.x==0 || Mathf.Abs(Agent.velocity.x) < 0.07f)
             return;
         characterRenderer.IsRendererFlip = Agent.velocity.x < 0;
     }

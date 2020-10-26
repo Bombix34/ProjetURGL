@@ -14,7 +14,7 @@ public class PlayerMoveState : PlayerState
 
     public override void Enter()
     {
-        manager.Animator.SetTrigger("MOVE");
+        manager.NetworkAnimator.SetTrigger("MOVE");
     }
 
     public override void Execute()
@@ -22,6 +22,7 @@ public class PlayerMoveState : PlayerState
         if (manager.MovementInput != Vector2.zero)
         {
             manager.transform.Translate(manager.MovementInput);
+           //je v manager.Body.velocity = manager.MovementInput;
         }
         else
         {

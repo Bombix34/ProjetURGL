@@ -24,21 +24,16 @@ public class CharacterRenderer : NetworkBehaviour
         animator = GetComponentInParent<Animator>();
     }
 
-    private void Update()
-    {
-        if(animator.GetBool(FLIP_BOOL) ==!isRendererFlip)
-        {
-            animator.SetBool(FLIP_BOOL, isRendererFlip);
-            //animator.SetTrigger(MOVE_TRIGGER);
-        }
-    }
-
     public bool IsRendererFlip
     {
         get => isRendererFlip;
         set
         {
             isRendererFlip = value;
+            if (animator?.GetBool(FLIP_BOOL) == !isRendererFlip)
+            {
+                animator.SetBool(FLIP_BOOL, isRendererFlip);
+            }
         }
     }
 
