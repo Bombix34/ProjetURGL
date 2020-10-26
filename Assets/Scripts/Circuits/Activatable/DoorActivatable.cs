@@ -3,23 +3,28 @@ using UnityEngine;
 
 public class DoorActivatable : BaseActivatable
 {
+    private const string animatorIsOpen = "IsOpen";
+    [SerializeField]
+    private Animator animator;
     internal override void OnActivate(NetworkConnectionToClient sender)
     {
-        Debug.Log("open");
+        this.animator.SetBool(animatorIsOpen, true);
     }
 
     internal override void OnDeactivate(NetworkConnectionToClient sender)
     {
-        Debug.Log("close");
+        this.animator.SetBool(animatorIsOpen, false);
     }
 
+    [ClientRpc]
     public override void RpcActivateClient()
     {
-        Debug.Log("open");
+        this.animator.SetBool(animatorIsOpen, true);
     }
 
+    [ClientRpc]
     public override void RpcDeactivateClient()
     {
-        Debug.Log("close");
+        this.animator.SetBool(animatorIsOpen, false);
     }
 }

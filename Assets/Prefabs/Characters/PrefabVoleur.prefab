@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3632e1be5b607d846bfe1b9c00f895c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagSelection: 2
+  tagSelections: 02000000
   activatable: {fileID: 5621855913915159286}
 --- !u!114 &5621855913915159286
 MonoBehaviour:
@@ -467,7 +467,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}
+  - {fileID: 2100000, guid: 97cd4b5ae9bdb5f44899ed2ebaff4a3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

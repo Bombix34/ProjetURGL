@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3632e1be5b607d846bfe1b9c00f895c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagSelection: 1
+  tagSelections: 01000000
   activatable: {fileID: 4990002892457590265}
 --- !u!114 &4990002892457590265
 MonoBehaviour:
