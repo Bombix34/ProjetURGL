@@ -11,6 +11,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
     protected PlayerSettings settings;
     public CharacterRenderer Renderer { get; private set; }
     public Animator Animator { get; private set; }
+    public NetworkAnimator NetworkAnimator { get; private set; }
     private Inventory inventory;
 
     private PlayerClickInput clickInteractionManager;
@@ -26,6 +27,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
         Body = GetComponent<Rigidbody2D>();
         this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
+        NetworkAnimator = GetComponent<NetworkAnimator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
         clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
 
