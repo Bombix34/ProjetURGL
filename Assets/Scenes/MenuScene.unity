@@ -260,8 +260,41 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
         type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
       propertyPath: GameplayScene
       value: Assets/Scenes/JeanScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 1773344343124318752, guid: 9ff901264a66db8458c8e76e4fa7641a,
+        type: 3}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4280388973731168915, guid: e80475702bbf12547a4cc1a6b3ea08b0,
+        type: 3}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1773344343124318752, guid: d68b92712825c5f41a62f400c9017081,
+        type: 3}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[3]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6949273706321461566, guid: c87706e8763ff5a40a88dee4f1fef57d,
         type: 3}
