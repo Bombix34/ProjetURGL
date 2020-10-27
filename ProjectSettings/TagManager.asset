@@ -55,3 +55,6 @@ TagManager:
   - name: FieldOfView
     uniqueID: 171317209
     locked: 0
+  - name: Wall
+    uniqueID: 2733325799
+    locked: 0
