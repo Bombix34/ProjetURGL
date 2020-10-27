@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JeanScene.unity
     guid: d3a47db8c6434014bae367921be44003
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: b7bb19a378bc5d640b225ae29d1a645c
   m_configObjects: {}

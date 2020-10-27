@@ -261,7 +261,7 @@ PrefabInstance:
     - target: {fileID: 6949273706321461564, guid: c87706e8763ff5a40a88dee4f1fef57d,
         type: 3}
       propertyPath: GameplayScene
-      value: Assets/Scenes/JeanScene.unity
+      value: Assets/Scenes/TestScene.unity
       objectReference: {fileID: 0}
     - target: {fileID: 6949273706321461566, guid: c87706e8763ff5a40a88dee4f1fef57d,
         type: 3}

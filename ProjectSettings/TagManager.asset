@@ -52,3 +52,6 @@ TagManager:
   - name: Object
     uniqueID: 2541493125
     locked: 0
+  - name: FieldOfView
+    uniqueID: 171317209
+    locked: 0
