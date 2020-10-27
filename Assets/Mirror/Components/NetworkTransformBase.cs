@@ -16,7 +16,6 @@
 // * Only way for smooth movement is to use a fixed movement speed during
 //   interpolation. interpolation over time is never that good.
 //
-using System.ComponentModel;
 using UnityEngine;
 
 namespace Mirror
@@ -73,7 +72,6 @@ namespace Mirror
 
         // serialization is needed by OnSerialize and by manual sending from authority
         // public only for tests
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SerializeIntoWriter(NetworkWriter writer, Vector3 position, Quaternion rotation, Vector3 scale)
         {
             // serialize position, rotation, scale
