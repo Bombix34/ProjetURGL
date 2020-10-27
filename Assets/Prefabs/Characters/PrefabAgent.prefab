@@ -263,7 +263,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   defaultMaterial: {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}
-  behindMaskMaterial: {fileID: 2100000, guid: 97cd4b5ae9bdb5f44899ed2ebaff4a3d, type: 2}
+  behindMaskMaterial: {fileID: 2100000, guid: dea38c7b2c3ff8c498f5568008ef9846, type: 2}
 --- !u!114 &2863798710047520211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4999ce9b200d55b4ca604f822c802ce9, type: 2}
+  - {fileID: 2100000, guid: dea38c7b2c3ff8c498f5568008ef9846, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -516,7 +516,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97cd4b5ae9bdb5f44899ed2ebaff4a3d, type: 2}
+  - {fileID: 2100000, guid: dea38c7b2c3ff8c498f5568008ef9846, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
