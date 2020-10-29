@@ -60,6 +60,8 @@ public class LightingSpriteRenderer2DEditor : Editor {
        
         GUIMeshMode.Draw(serializedObject, script.meshMode);
 
+        serializedObject.ApplyModifiedProperties();
+
         GUIGlowMode.Draw(script.glowMode);
 	
 		if (GUI.changed){

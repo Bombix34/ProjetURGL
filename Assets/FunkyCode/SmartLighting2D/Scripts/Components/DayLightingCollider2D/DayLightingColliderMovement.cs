@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DayLightingColliderTransform {
-	public bool moved = false;
+	public bool updateNeeded = false;
 
 	public Vector2 position = Vector2.zero;
 	public Vector2 scale = Vector3.zero;
@@ -43,7 +43,7 @@ public class DayLightingColliderTransform {
 
 		SpriteRenderer spriteRenderer = shape.spriteShape.GetSpriteRenderer();
 
-		moved = false;
+		updateNeeded = false;
 
 		if (position != position2D) {
 
@@ -55,37 +55,37 @@ public class DayLightingColliderTransform {
 		if (sunDirection != Lighting2D.dayLightingSettings.direction) {
 			sunDirection = Lighting2D.dayLightingSettings.direction;
 
-			moved = true;
+			updateNeeded = true;
 		}
 
 		if (sunHeight != Lighting2D.dayLightingSettings.height) {
 			sunHeight = Lighting2D.dayLightingSettings.height;
 
-			moved = true;
+			updateNeeded = true;
 		}
 
 		if (sunSoftness != Lighting2D.dayLightingSettings.softness.intensity) {
 			sunSoftness = Lighting2D.dayLightingSettings.softness.intensity;
 
-			moved = true;
+			updateNeeded = true;
 		}
 				
 		if (scale != scale2D) {
 			scale = scale2D;
 
-			moved = true;
+			updateNeeded = true;
 		}
 
 		if (rotation != rotation2D) {
 			rotation = rotation2D;
 
-			moved = true;
+			updateNeeded = true;
 		}
 
 		if (height != shape.height) {
 			height = shape.height;
 
-			moved = true;
+			updateNeeded = true;
 		}
 
 		// Unnecesary check
@@ -99,7 +99,7 @@ public class DayLightingColliderTransform {
 					flipX = spriteRenderer.flipX;
 					flipY = spriteRenderer.flipY;
 
-					moved = true;
+					updateNeeded = true;
 					
 					shape.ResetLocal(); // World
 				}

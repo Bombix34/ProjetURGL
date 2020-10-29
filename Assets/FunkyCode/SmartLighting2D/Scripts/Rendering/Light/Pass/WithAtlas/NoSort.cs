@@ -49,7 +49,7 @@ namespace Rendering.Light.WithAtlas {
 
                         }
 
-                        //if (pass.tilemapList[id].rectangle.colliderType == LightingTilemapCollider.Rectangle.ColliderType.Collider) {
+                        //if (pass.tilemapList[id].rectangle.shadowType == LightingTilemapCollider.Rectangle.shadowType.Collider) {
                             //Shadow.TilemapCollider.Draw(pass.buffer, pass.tilemapList[id], pass.lightSizeSquared, pass.z);
                         //}
 

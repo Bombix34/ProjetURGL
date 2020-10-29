@@ -64,14 +64,19 @@ namespace LightingSettings {
 	[System.Serializable]
 	public class FogOfWar {
 		public enum ShaderMode {Default, WithMask}
+		public enum Sorting {None, ZAxisLower, SortingOrder, SortingOrderAndLayer}
 		public bool enabled = false;
 
+		public bool useOnlyInPlay = false;
+
 		public int bufferID = 0;
+
+		public Sorting sorting = Sorting.None;
 
 		[Range(0, 1)]
 		public float resolution = 1;
 
-		public ShaderMode shaderMode = ShaderMode.Default;
+		//public ShaderMode shaderMode = ShaderMode.Default;
 
 		public SortingLayer sortingLayer = new SortingLayer();
 	}

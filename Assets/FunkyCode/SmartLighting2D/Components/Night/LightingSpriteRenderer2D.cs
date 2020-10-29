@@ -5,11 +5,11 @@ using LightingSettings;
 
 [ExecuteInEditMode]
 public class LightingSpriteRenderer2D : MonoBehaviour {
-	public enum Type {Particle, Mask};
+	public enum Type {Light, Mask};
 	public enum SpriteMode {Custom, SpriteRenderer};
 
 	public LightingLayer nightLayer = LightingLayer.Layer1;
-	public Type type = Type.Particle;
+	public Type type = Type.Light;
 	public SpriteMode spriteMode = SpriteMode.Custom;
 	public Sprite sprite = null;
 

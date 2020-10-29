@@ -9,10 +9,10 @@ namespace LightingTilemapCollider {
 
 	[System.Serializable]
     public class Rectangle : Base {
-		public enum ColliderType {None, Grid, SpriteCustomPhysicsShape, CompositeCollider};
+		public enum ShadowType {None, Grid, SpriteCustomPhysicsShape, CompositeCollider};
 		public enum MaskType {None, Grid, Sprite, BumpedSprite, SpriteCustomPhysicsShape};
 		
-		public ColliderType colliderType = ColliderType.Grid;
+		public ShadowType shadowType = ShadowType.Grid;
 		public MaskType maskType = MaskType.Sprite;
 
 		public List<Polygon2D> compositeColliders = new List<Polygon2D>();
@@ -33,7 +33,7 @@ namespace LightingTilemapCollider {
 				return(true);
 			}
 
-			if (colliderType == LightingTilemapCollider.Rectangle.ColliderType.SpriteCustomPhysicsShape) {
+			if (shadowType == LightingTilemapCollider.Rectangle.ShadowType.SpriteCustomPhysicsShape) {
 				return(true);
 			}
 			return(false);

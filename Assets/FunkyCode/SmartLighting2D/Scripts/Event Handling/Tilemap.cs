@@ -20,7 +20,7 @@ namespace EventHandling {
                 LightingTilemapCollider.Base tilemapCollider = id.GetCurrentTilemap();
     
                 foreach(LightingTile tile in id.GetTileList()) {
-                        switch(id.colliderTileType) {
+                        switch(id.shadowTileType) {
                             case ShadowTileType.AllTiles:
                             break;
 

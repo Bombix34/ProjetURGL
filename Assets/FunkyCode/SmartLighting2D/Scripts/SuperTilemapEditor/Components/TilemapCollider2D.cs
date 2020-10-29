@@ -9,10 +9,10 @@ using UnityEngine;
         [System.Serializable]
         public class TilemapCollider2D : Tilemap {
             
-            public enum ColliderType {None, Grid, Collider};
+            public enum ShadowType {None, Grid, Collider};
             public enum MaskType {None, Grid, Sprite};
 
-            public ColliderType colliderType = ColliderType.Grid;
+            public ShadowType shadowType = shadowType.Grid;
             public MaskType maskType = MaskType.Sprite;
         }
     }
@@ -24,10 +24,10 @@ using UnityEngine;
         [System.Serializable]
         public class TilemapCollider2D : LightingTilemapCollider.Base {
             
-            public enum ColliderType {None, Grid, Collider};
+            public enum ShadowType {None, Grid, Collider};
             public enum MaskType {None, Grid, Sprite};
 
-            public ColliderType colliderType = ColliderType.Grid;
+            public ShadowType shadowType = ShadowType.Grid;
             public MaskType maskType = MaskType.Sprite;
 
             public bool eventsInit;

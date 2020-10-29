@@ -16,7 +16,7 @@ MonoBehaviour:
     list:
     - name: Main
       sortingLayer:
-        name: Default
+        name: FieldOfView
         Order: 0
       darknessColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
       lightingResolution: 1
@@ -76,11 +76,12 @@ MonoBehaviour:
       strength: 1
   fogOfWar:
     enabled: 1
+    useOnlyInPlay: 1
     bufferID: 1
+    sorting: 2
     resolution: 1
-    shaderMode: 0
     sortingLayer:
-      name: Default
+      name: FieldOfView
       Order: 0
   layers:
     lightLayers:

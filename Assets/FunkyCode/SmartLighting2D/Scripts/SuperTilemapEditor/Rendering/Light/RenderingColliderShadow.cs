@@ -14,7 +14,7 @@ using LightingTilemapCollider;
                     return;
                 }
 
-                if (id.superTilemapEditor.colliderType != SuperTilemapEditorSupport.TilemapCollider2D.ColliderType.Grid) {
+                if (id.superTilemapEditor.shadowType != SuperTilemapEditorSupport.TilemapCollider2D.shadowType.Grid) {
                     return;
                 }
 
@@ -38,7 +38,7 @@ using LightingTilemapCollider;
                     return;
                 }
 
-                if (id.superTilemapEditor.colliderType != SuperTilemapEditorSupport.TilemapCollider2D.ColliderType.Collider) {
+                if (id.superTilemapEditor.shadowType != SuperTilemapEditorSupport.TilemapCollider2D.shadowType.Collider) {
                     return;
                 }
 

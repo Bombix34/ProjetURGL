@@ -9,10 +9,10 @@ namespace LightingTilemapCollider {
 
 	[System.Serializable]
     public class Isometric : Base {
-		public enum ColliderType {None, Grid, SpriteCustomPhysicsShape};
+		public enum ShadowType {None, Grid, SpriteCustomPhysicsShape};
 		public enum MaskType {None, Grid, Sprite, SpriteCustomPhysicsShape};
 		
-		public ColliderType colliderType = ColliderType.Grid;
+		public ShadowType shadowType = ShadowType.Grid;
 		public MaskType maskType = MaskType.Sprite;
 
 		public override MapType TilemapType() {

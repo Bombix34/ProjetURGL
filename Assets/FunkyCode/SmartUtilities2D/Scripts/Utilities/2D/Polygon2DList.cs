@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Polygon2DHelper  {
-	public enum ColliderType {Polygon, Box, Circle, Capsule, Edge, None}
+	public enum shadowType {Polygon, Box, Circle, Capsule, Edge, None}
 	public enum PolygonType {Rectangle, Circle, Pentagon, Hexagon, Octagon};
 	static public int defaultCircleVerticesCount = 25;
 
 
-	public static ColliderType GetColliderType(GameObject gameObject) {
+	public static shadowType GetshadowType(GameObject gameObject) {
 		EdgeCollider2D edgeCollider2D = gameObject.GetComponent<EdgeCollider2D> ();
 		if (edgeCollider2D != null) {
-			return(ColliderType.Edge);
+			return(shadowType.Edge);
 		}
 
 		PolygonCollider2D polygonCollider2D = gameObject.GetComponent<PolygonCollider2D> ();
 		if (polygonCollider2D != null) {
-			return(ColliderType.Polygon);
+			return(shadowType.Polygon);
 		}
 
 		BoxCollider2D boxCollider2D = gameObject.GetComponent<BoxCollider2D> ();
 		if (boxCollider2D != null) {
-			return(ColliderType.Box);
+			return(shadowType.Box);
 		}
 
 		CircleCollider2D circleCollider2D = gameObject.GetComponent<CircleCollider2D> ();
 		if (circleCollider2D != null) {
-			return(ColliderType.Circle);
+			return(shadowType.Circle);
 		}
 
 		CapsuleCollider2D capsuleCollider2D = gameObject.GetComponent<CapsuleCollider2D> ();
 		if (capsuleCollider2D != null) {
-			return(ColliderType.Capsule);
+			return(shadowType.Capsule);
 		}
 
-		return(ColliderType.None);
+		return(shadowType.None);
 	}
 
 	public static List<Polygon2D> CreateFromCompositeCollider(CompositeCollider2D compositeCollider) {

@@ -33,8 +33,10 @@ namespace Rendering.Light {
 
 				ShadowEngine.SetPass(light, layerSetting);
 
+				bool useAtlas = Lighting2D.atlasSettings.lightingSpriteAtlas && AtlasSystem.Manager.GetAtlasPage() != null;
+
 				if (layerSetting.sorting == LightingLayerSorting.None) {
-					if (Lighting2D.atlasSettings.lightingSpriteAtlas && AtlasSystem.Manager.GetAtlasPage() != null) {
+					if (useAtlas) {
 						WithAtlas.NoSort.Draw(pass);
 					} else {
 						WithoutAtlas.NoSort.Draw(pass);
@@ -42,7 +44,7 @@ namespace Rendering.Light {
 				} else {
 					pass.sortPass.SortObjects();
 
-					if (Lighting2D.atlasSettings.lightingSpriteAtlas && AtlasSystem.Manager.GetAtlasPage() != null) {
+					if (useAtlas) {
 						WithAtlas.Sorted.Draw(pass);
 					} else {
 						WithoutAtlas.Sorted.Draw(pass);

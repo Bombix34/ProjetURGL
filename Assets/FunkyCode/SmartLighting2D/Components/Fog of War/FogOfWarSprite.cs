@@ -13,8 +13,51 @@ public class FogOfWarSprite : MonoBehaviour {
     public SpriteMeshObject spriteMeshObject = new SpriteMeshObject();
 
     public Sprite GetSprite() {
-        spriteRenderer.enabled = false;
-        return(spriteRenderer.sprite);
+        SpriteRenderer spriteRenderer = GetSpriteRenderer();
+
+        if (spriteRenderer != null) {
+            return(spriteRenderer.sprite);
+        }
+
+        return(null);
+    }
+
+    public int GetSortingOrder() {
+        SpriteRenderer spriteRenderer = GetSpriteRenderer();
+
+        if (spriteRenderer != null) {
+            return(spriteRenderer.sortingOrder);
+        } else {
+            return(0);
+        }
+    }
+
+    public int GetSortingLayer() {
+        SpriteRenderer spriteRenderer = GetSpriteRenderer();
+
+        if (spriteRenderer != null) {
+            return(SortingLayer.GetLayerValueFromID(spriteRenderer.sortingLayerID));
+        } else {
+            return(0);
+        } 
+    }
+
+    public void Update() {
+        SpriteRenderer spriteRenderer = GetSpriteRenderer();
+
+        if (spriteRenderer == null) {
+            return;
+        }
+
+        if (Lighting2D.fogOfWar.useOnlyInPlay) {
+            if (Application.isPlaying) {
+                spriteRenderer.enabled = false;
+            } else {
+                spriteRenderer.enabled = true;
+            }
+        } else {
+            spriteRenderer.enabled = false;
+        }
     }
 
     public SpriteRenderer GetSpriteRenderer() {

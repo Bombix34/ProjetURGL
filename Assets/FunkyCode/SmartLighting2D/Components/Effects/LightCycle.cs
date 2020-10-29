@@ -71,6 +71,11 @@ public class LightCycle : MonoBehaviour {
             }
 
             LightCycleBuffer buffer = nightProperties[i];
+
+            if (buffer == null) {
+                continue;
+            }
+
             Color color = buffer.gradient.Evaluate(time);
 
             LightingSettings.BufferPreset bufferPreset = bufferPresets.list[i];

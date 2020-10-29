@@ -22,15 +22,15 @@ public class DayLightingTilemapCollider2DEditor : Editor {
 
         switch(script.tilemapType) {
 			case MapType.UnityRectangle:
-				script.rectangle.colliderType = (LightingTilemapCollider.Rectangle.ColliderType)EditorGUILayout.EnumPopup("Shadow Type", script.rectangle.colliderType);
+				script.rectangle.shadowType = (LightingTilemapCollider.Rectangle.ShadowType)EditorGUILayout.EnumPopup("Shadow Type", script.rectangle.shadowType);
 				
-				EditorGUI.BeginDisabledGroup(script.rectangle.colliderType == LightingTilemapCollider.Rectangle.ColliderType.None);
+				EditorGUI.BeginDisabledGroup(script.rectangle.shadowType == LightingTilemapCollider.Rectangle.ShadowType.None);
 
 				script.shadowLayer = (LightingLayer)EditorGUILayout.Popup("Shadow Layer (Light)", (int)script.shadowLayer, Lighting2D.Profile.layers.lightLayers.GetNames());
 				
-				switch(script.rectangle.colliderType) {
-					case LightingTilemapCollider.Rectangle.ColliderType.Grid:
-					case LightingTilemapCollider.Rectangle.ColliderType.SpriteCustomPhysicsShape:
+				switch(script.rectangle.shadowType) {
+					case LightingTilemapCollider.Rectangle.ShadowType.Grid:
+					case LightingTilemapCollider.Rectangle.ShadowType.SpriteCustomPhysicsShape:
 						script.shadowTileType = (ShadowTileType)EditorGUILayout.EnumPopup("Shadow Tile Type", script.shadowTileType);
 					break;
 				}

@@ -8,14 +8,6 @@ namespace Rendering.Light.Shadow {
     public class TilemapHexagon {
         
         static public void Draw(LightingSource2D light, LightingTilemapCollider2D id) {
-            if (id.mapType != MapType.UnityHexagon) {
-                return;
-            }
-
-            if (id.hexagon.colliderType == LightingTilemapCollider.Hexagon.ColliderType.None) {
-                return;
-            }
-
             Vector2 lightPosition = -light.transform.position;
             LightingTilemapCollider.Base tilemapCollider = id.GetCurrentTilemap();
  

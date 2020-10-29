@@ -9,14 +9,6 @@ namespace Rendering.Light.WithoutAtlas {
 		public static VirtualSpriteRenderer virtualSpriteRenderer = new VirtualSpriteRenderer();
         
         static public void MaskSprite(LightingSource2D light, LightingTilemapCollider2D id, Material material, float z) {
-			if (id.mapType != MapType.UnityIsometric) {
-				return;
-			}
-
-			if (id.isometric.maskType != LightingTilemapCollider.Isometric.MaskType.Sprite) {
-				return;
-			}
-
 			GL.Color(Color.white);
 			
 			Vector2 lightPosition = -light.transform.position;

@@ -80,8 +80,8 @@ public class LightingColliderShape {
 			case LightingCollider2D.ShadowType.CompositeCollider2D:
 				return(compositeShape.GetWorldRect());
 
-			// case LightingCollider2D.ColliderType.Mesh:
-            // case LightingCollider2D.ColliderType.SkinnedMesh:
+			// case LightingCollider2D.shadowType.Mesh:
+            // case LightingCollider2D.shadowType.SkinnedMesh:
 		}
 
 		switch(maskType) {
@@ -109,8 +109,8 @@ public class LightingColliderShape {
 			case LightingCollider2D.ShadowType.CompositeCollider2D:
 				return(compositeShape.GetRadius() * multiplier);
 
-			// case LightingCollider2D.ColliderType.Mesh:
-            // case LightingCollider2D.ColliderType.SkinnedMesh:
+			// case LightingCollider2D.shadowType.Mesh:
+            // case LightingCollider2D.shadowType.SkinnedMesh:
 		}
 
 		switch (maskType) {

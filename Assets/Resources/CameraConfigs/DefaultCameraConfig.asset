@@ -15,5 +15,5 @@ MonoBehaviour:
   offsetZ: -0.5
   smoothness: 0.3
   introSmoothness: 0.01
-  introStartPosition: {x: 42.5, y: 13}
+  introStartPosition: {x: -5, y: 0}
   introDurationOnValuableObject: 1

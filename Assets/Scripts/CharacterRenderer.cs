@@ -17,6 +17,7 @@ public class CharacterRenderer : NetworkBehaviour
     [SerializeField]
     private SpriteRenderer bodyRenderer;
 
+
     private bool IsVisible = true;
 
     private void Awake()
@@ -37,23 +38,32 @@ public class CharacterRenderer : NetworkBehaviour
         }
     }
 
-    public void SwitchMaterial(Material newMat, bool isVisible=true)
+    public void SwitchVisibility(bool isVisible)
     {
         //PASSAGE A LETAT INVISIBLE
         if(!isVisible && this.IsVisible)
         {
             Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
             bodyRenderer.DOColor(finalColor, 0.7f)
-                .OnComplete(()=> bodyRenderer.material = newMat);
+                .OnComplete(() =>
+                SetupFogShader(true)
+            );
             this.IsVisible = isVisible;
         }
         //PASSAGE A LETAT VISIBLE
         else if(isVisible && !this.IsVisible)
         {
+            SetupFogShader(false);
+            bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
             Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 1f);
             bodyRenderer.DOColor(finalColor, 0.7f);
             this.IsVisible = isVisible;
-            bodyRenderer.material = newMat;
         }
+    }
+
+    private void SetupFogShader(bool isFogShaderOn)
+    {
+        bodyRenderer.GetComponent<FogOfWarSprite>().enabled = isFogShaderOn;
+        bodyRenderer.enabled = !isFogShaderOn;
     }
 }

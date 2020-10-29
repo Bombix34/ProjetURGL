@@ -1,10 +1,17 @@
-﻿### Beta 1.1.9 - 26.10.2020
- [ADDED] Lighting Collider 2D: Serialization (undo + multi edit)
+﻿### Beta 1.2.0 - 28.10.2020
+ [ADDED] Shadow Effect: Soft Shadows (light presets)
+ [CHANGED] Day Lighting Collider 2D: Serialization improvements
+ [CHANGED] Fog of War (RT): Smoother sprites
+
+
+### Beta 1.1.9 - 26.10.2020
  [ADDED] Lighting Source 2D: Serialization (undo + multi edit)
+ [ADDED] Lighting Collider 2D: Serialization (undo + multi edit)
  [ADDED] Lighting Sprite 2D: Bound Gizmos
  [FIXED] Build errors related to tilemap features
  [CHANGED] Improved workflow: Internal lighting objects are not touchable
- [CHANGED] Shadow Engine: Optimiztion for large objects
+ [CHANGED] Shadow Engine: Optimization for large objects
+
 
 ### Beta 1.1.8 - 22.10.2020
  [ADDED] Light components now can display bounds

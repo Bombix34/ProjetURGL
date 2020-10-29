@@ -52,7 +52,11 @@ Shader "Light2D/Internal/AlphaMask" {
 
                 if (color.a > 0) {
                     
-                    float multiplier = (mask.r + mask.g + mask.b) * 3;
+                    float multiplier = (mask.r + mask.g + mask.b) / 3;
+
+                    if (multiplier > 1) {
+                        multiplier = 1;
+                    }
 
                     color.a *= multiplier;
 
@@ -60,6 +64,7 @@ Shader "Light2D/Internal/AlphaMask" {
                         color.a = 1;
                     }
                 }
+              
 
                 return(color);
             }

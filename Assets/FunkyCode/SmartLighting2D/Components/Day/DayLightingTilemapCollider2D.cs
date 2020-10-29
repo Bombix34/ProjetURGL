@@ -20,12 +20,12 @@ public class DayLightingTilemapCollider2D : MonoBehaviour {
 
 	public ShadowTileType shadowTileType = ShadowTileType.AllTiles;
 
-	public DayLightingTilemapColliderTransform transform2D = new DayLightingTilemapColliderTransform();
-
 	public float height = 1;
 
     public LightingLayer maskLayer = LightingLayer.Layer1;
 
+	public DayLightingTilemapColliderTransform transform2D = new DayLightingTilemapColliderTransform();
+	
     public static List<DayLightingTilemapCollider2D> list = new List<DayLightingTilemapCollider2D>();
 
     public Rectangle rectangle = new Rectangle();
@@ -96,8 +96,8 @@ public class DayLightingTilemapCollider2D : MonoBehaviour {
 		switch(tilemapType) {
 			case MapType.UnityRectangle:
 
-				switch(rectangle.colliderType) {
-					case LightingTilemapCollider.Rectangle.ColliderType.Grid:
+				switch(rectangle.shadowType) {
+					case LightingTilemapCollider.Rectangle.ShadowType.Grid:
 						foreach(LightingTile tile in GetTileList()) {
 							DayLightingTile dayTile = new DayLightingTile();
 							dayTile.shadowMesh = new DayLighting.TilemapShadowMesh();
@@ -112,7 +112,7 @@ public class DayLightingTilemapCollider2D : MonoBehaviour {
 
 					break;
 
-					case LightingTilemapCollider.Rectangle.ColliderType.CompositeCollider:
+					case LightingTilemapCollider.Rectangle.ShadowType.CompositeCollider:
 						foreach(Polygon2D polygon in rectangle.compositeColliders) {
 							DayLightingTile dayTile = new DayLightingTile();
 							dayTile.shadowMesh = new DayLighting.TilemapShadowMesh();

@@ -93,6 +93,17 @@ public class FogOfWarOnRenderMode : LightingMonoBehaviour {
             return;
 		}
 
+           #if UNITY_EDITOR
+            LightingManager2D manager = LightingManager2D.Get();
+
+            if (manager != null) { //  && mainBuffer.cameraSettings.cameraType != CameraSettings.CameraType.SceneView
+                gameObject.layer = Lighting2D.ProjectSettings.sceneView.layer;
+            } else {
+                gameObject.layer = 0;
+            }
+            
+		#endif
+
          if (Lighting2D.disable) {
             if (meshRenderer != null) {
 				meshRenderer.enabled = false;

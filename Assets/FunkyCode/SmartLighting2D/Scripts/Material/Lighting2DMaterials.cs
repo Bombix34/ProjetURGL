@@ -23,6 +23,8 @@ public class Lighting2DMaterials {
 	private LightingMaterial alphablend = null;
 
 	private LightingMaterial spriteMask = null;
+	private LightingMaterial softShadow = null;
+	
 
 
 
@@ -233,6 +235,15 @@ public class Lighting2DMaterials {
 		}
 		return(spriteMask.Get());
 	}
+
+	public Material GetSoftShadow() {
+		if (softShadow == null || softShadow.Get() == null) {
+			softShadow = LightingMaterial.Load("Light2D/Internal/SoftShadow");
+		}
+		return(softShadow.Get());
+	}
+
+	
 
 
 	public Material GetNormalMapSpritePixelToLight() {

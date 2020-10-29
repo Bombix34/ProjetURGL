@@ -9,14 +9,6 @@ namespace Rendering.Light.WithoutAtlas {
         public static VirtualSpriteRenderer virtualSpriteRenderer = new VirtualSpriteRenderer();
         
         static public void Sprite(LightingSource2D light, LightingTilemapCollider2D id, Material material, LayerSetting layerSetting, float z) {
-            if (id.mapType != MapType.UnityRectangle) {
-                return;
-            }
-
-            if (id.rectangle.maskType != LightingTilemapCollider.Rectangle.MaskType.Sprite) {
-                return;
-            }
-            
             Vector2 lightPosition = -light.transform.position;
             bool isGrid = false;
 
@@ -51,14 +43,6 @@ namespace Rendering.Light.WithoutAtlas {
         }
 
         static public void BumpedSprite(LightingSource2D light, LightingTilemapCollider2D id, Material material, float z) {
-            if (id.mapType != MapType.UnityRectangle) {
-                return;
-            }
-
-            if (id.rectangle.maskType != LightingTilemapCollider.Rectangle.MaskType.BumpedSprite) {
-                return;
-            }
- 
             Texture bumpTexture = id.bumpMapMode.GetBumpTexture();
 
             if (bumpTexture == null) {
@@ -98,14 +82,6 @@ namespace Rendering.Light.WithoutAtlas {
         }
 
         static public void MaskShape(LightingSource2D light, LightingTilemapCollider2D id, float z) {
-            if (id.mapType != MapType.UnityRectangle) {
-                return;
-            }
-            
-            if (false == (id.rectangle.maskType == LightingTilemapCollider.Rectangle.MaskType.SpriteCustomPhysicsShape || id.rectangle.maskType == LightingTilemapCollider.Rectangle.MaskType.Grid)) {
-                return;
-            }
-
             Vector2 lightPosition = -light.transform.position;
             bool isGrid = id.rectangle.maskType == LightingTilemapCollider.Rectangle.MaskType.Grid;
 
