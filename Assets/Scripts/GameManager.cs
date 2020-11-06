@@ -46,6 +46,12 @@ public class GameManager : NetworkBehaviour
         return this.aliveThieves.ElementAt(index);
     }
 
+    [ServerCallback]
+    public void EndGame(VictoryType victoryType)
+    {
+        this.RpcEndGame(victoryType);
+    }
+
     [ClientRpc]
     private void RpcEndGame(VictoryType victoryType)
     {

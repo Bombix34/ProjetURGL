@@ -21,7 +21,6 @@ public class GameCameraMovements : BaseCameraMovements
 
     public void NextPlayer()
     {
-
         this.playerTransform = GameManager.Instance.GetNextThief(this.playerTransform.gameObject).transform;
     }
 }
