@@ -11,12 +11,16 @@ public class ActionsConfigurationScriptableObject : ScriptableObject
 
     public List<ActionConfiguration> Configurations => configurations;
 
-    public WaitCoroutine GetActionWaitCoroutine(ActionTypes type)
-    {
-        return configurations.Single(q => q.ActionType == type && !q.WaitCoroutine.IsWaiting).WaitCoroutine;
-    }
     public bool CanDoAction(ActionTypes type)
     {
-        return configurations.Any(q => q.ActionType == type && !q.WaitCoroutine.IsWaiting);
+        return configurations.Any(q => q.ActionType == type && q.CanDoAction());
+    }
+    public void DoAction(ActionTypes type)
+    {
+        configurations.SingleOrDefault(q => q.ActionType == type && q.CanDoAction()).OnAction();
+    }
+    public ActionConfiguration GetAction(ActionTypes type)
+    {
+        return configurations.SingleOrDefault(q => q.ActionType == type);
     }
 }

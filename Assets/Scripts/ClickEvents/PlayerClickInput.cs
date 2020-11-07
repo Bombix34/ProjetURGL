@@ -56,8 +56,8 @@ public class PlayerClickInput : NetworkBehaviour
         {
             return;
         }
-        //this.CanDoAction();
-        StartCoroutine(this.actionsConfiguration.GetActionWaitCoroutine(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType).Wait());
+
+        this.actionsConfiguration.DoAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
         CurrentObjectClicked.PlayerInteract();
     }
 
@@ -70,6 +70,12 @@ public class PlayerClickInput : NetworkBehaviour
         }
         isObjectClickedInActionRange = CurrentObjectClicked.IsInRange;
         bool canDoAction = this.actionsConfiguration.CanDoAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
+        if (!canDoAction)
+        {
+            var action = this.actionsConfiguration.GetAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
+            //TODO HUGO, add visual timer
+            //print(action.TimeUntilNextAction);
+        }
         return isObjectClickedInActionRange && canDoAction;
     }
 
