@@ -6,11 +6,10 @@ public class Inventory : NetworkBehaviour
 {
     [SerializeField]
     private GameObject valuableItemPrefab = null;
-    private readonly SyncList<ItemScriptableObject> items = new SyncList<ItemScriptableObject>();
+    private readonly SyncList<ItemScriptableObject> _items = new SyncList<ItemScriptableObject>();
 
     public static Inventory Instance { get; private set; }
-    public SyncList<ItemScriptableObject> Items => items; 
-    public bool HasValuableItem => Items.Any(q => q.IsValuableItem);
+    public bool HasValuableItem => _items.Any(q => q.IsValuableItem);
     public override void OnStartClient()
     {
         Instance = this;
@@ -19,7 +18,7 @@ public class Inventory : NetworkBehaviour
     [Server]
     public bool AddItem(ItemScriptableObject item)
     {
-        if (items.Contains(item))
+        if (_items.Contains(item))
         {
             return false;
         }
@@ -28,14 +27,14 @@ public class Inventory : NetworkBehaviour
             return false;
         }
 
-        this.Items.Add(item);
+        this._items.Add(item);
         return true;
     }
 
     [Server]
     public void RemoveItem(ItemScriptableObject item)
     {
-        this.Items.Remove(item);
+        this._items.Remove(item);
     }
 
 
@@ -65,7 +64,12 @@ public class Inventory : NetworkBehaviour
 
     public bool HasItem(string ItemName)
     {
-        return this.Items.Any(item => item.ItemName == ItemName);
+        return this._items.Any(item => item.ItemName == ItemName);
+    }
+
+    public ItemScriptableObject GetValuableItem()
+    {
+        return this._items.SingleOrDefault(item => item.IsValuableItem);
     }
 
 }
