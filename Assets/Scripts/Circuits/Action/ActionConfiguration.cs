@@ -8,25 +8,47 @@ public class ActionConfiguration
     private ActionTypes actionType;
     [SerializeField]
     private float cooldown;
-    private WaitCoroutine _waitCoroutine;
 
     public ActionTypes ActionType => actionType;
     public float Cooldown => cooldown;
-
-    public WaitCoroutine WaitCoroutine
+    public bool Waiting
     {
         get
         {
-            if(_waitCoroutine == null)
+            if (lastActionTime is null)
             {
-                _waitCoroutine = new WaitCoroutine(this.cooldown);
+                return false;
             }
-            return _waitCoroutine;
+
+            return (lastActionTime + cooldown) < Time.time;
+        }
+    }
+    private float? lastActionTime;
+    public float TimeUntilNextAction
+    {
+        get
+        {
+            if (lastActionTime is null)
+            {
+                return 0;
+            }
+
+            var timeUntilNextAction = (lastActionTime.Value + cooldown) - Time.time;
+            if(timeUntilNextAction < 0)
+            {
+                timeUntilNextAction = 0;
+            }
+            return timeUntilNextAction;
         }
     }
 
     public bool CanDoAction()
     {
-        return this._waitCoroutine.IsWaiting == false;
+        return Waiting == false;
+    }
+
+    public void OnAction()
+    {
+        this.lastActionTime = Time.time;
     }
 }
