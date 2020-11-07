@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Mirror;
 using System;
+using System.Linq;
 
 /*
 	Documentation: https://mirror-networking.com/docs/Components/NetworkRoomManager.html
@@ -99,16 +100,29 @@ public class CustomNetworkRoomManager : NetworkRoomManager
                 throw new NotImplementedException($"The value {roomPlayerData.PlayerType} is not implemented");
         }
 
-        Transform startPos = GetStartPosition();
+        var startPos = GetStartPosition(roomPlayerData.PlayerType);
         GameObject player = startPos != null
-            ? Instantiate(prefabPlayer, startPos.position, startPos.rotation)
+            ? Instantiate(prefabPlayer, startPos, Quaternion.identity)
             : Instantiate(prefabPlayer);
         if(roomPlayerData.PlayerType == PlayerType.THIEF)
         {
             GameManager.Instance.AddThief(player);
         }
+        player.GetComponent<PlayerManager>().Init(roomPlayerData.PlayerIndentifier, roomPlayerData.PlayerType);
         NetworkServer.AddPlayerForConnection(conn, player);
         return player;
+    }
+
+    private Vector3 GetStartPosition(PlayerType playerType)
+    {
+        var a = FindObjectsOfType<StartPosition>();
+        var startPositions = FindObjectsOfType<StartPosition>().Where(q => q.PlayerType == playerType).ToArray();
+        if(startPositions.Length == 0)
+        {
+            Debug.LogError($"No start position for playerType : {playerType}");
+            return Vector3.zero;
+        }
+        return startPositions[UnityEngine.Random.Range(0, startPositions.Length)].Position;
     }
 
     /// <summary>

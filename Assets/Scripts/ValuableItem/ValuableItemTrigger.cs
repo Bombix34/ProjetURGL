@@ -1,6 +1,4 @@
 ﻿using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ValuableItemTrigger : NetworkBehaviour
@@ -14,7 +12,7 @@ public class ValuableItemTrigger : NetworkBehaviour
         }
         if (col.GetComponent<Inventory>().HasValuableItem)
         {
-            VictoryScreen.Instance.Init(VictoryType.THIEVES_VICTORY);
+            GameManager.Instance.EndGame(VictoryType.THIEVES_VICTORY);
         }
     }
 }

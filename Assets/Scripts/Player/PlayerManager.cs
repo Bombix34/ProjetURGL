@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class PlayerManager : ObjectManager, IPlayerManager
 {
-    public bool IsVigil = false;
+    [SyncVar]
+    private string playerName;
+    [SyncVar]
+    private PlayerType playerType;
     [SerializeField]
     protected PlayerSettings settings;
+    public static PlayerManager localPlayer;
     public CharacterRenderer Renderer { get; private set; }
     public Animator Animator { get; private set; }
     public NetworkAnimator NetworkAnimator { get; private set; }
@@ -19,12 +23,15 @@ public class PlayerManager : ObjectManager, IPlayerManager
     private readonly WaitCoroutine _waitCoroutine = new WaitCoroutine(3);
 
     public Rigidbody2D Body { get; private set; }
+    public string PlayerName { get => playerName; }
+    public PlayerType PlayerType { get => playerType; }
 
     protected void Start()
     {
         Renderer = GetComponentInChildren<CharacterRenderer>();
         if (!hasAuthority)
             return;
+        localPlayer = this;
         Body = GetComponent<Rigidbody2D>();
         this.inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
@@ -55,12 +62,18 @@ public class PlayerManager : ObjectManager, IPlayerManager
         {
             this.CmdDropItem();
         }
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(this._waitCoroutine.Wait());
             clickInteractionManager.TryPerformInteraction();
         }
         //----------------------
+    }
+
+    public void Init(string playerName, PlayerType playerType)
+    {
+        this.playerName = playerName;
+        this.playerType = playerType;
     }
 
     [Command]
