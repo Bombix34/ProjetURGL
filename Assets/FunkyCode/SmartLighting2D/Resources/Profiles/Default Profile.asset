@@ -16,9 +16,9 @@ MonoBehaviour:
     list:
     - name: Main
       sortingLayer:
-        name: Default
-        Order: 22
-      darknessColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+        name: My Lighting
+        Order: 64
+      darknessColor: {r: 0, g: 0, b: 0, a: 1}
       lightingResolution: 1
       dayLayers:
         list:
@@ -32,7 +32,7 @@ MonoBehaviour:
           sorting: 0
   lightPresets:
     list:
-    - name: 
+    - name: Default
       layerSetting:
         list:
         - layerID: 0
@@ -51,10 +51,10 @@ MonoBehaviour:
     managerInstance: 0
     managerInternal: 0
   dayLightingSettings:
-    enable: 0
-    alpha: 0.36
-    direction: 246.57631
-    height: 1
+    enable: 1
+    alpha: 1
+    direction: 138
+    height: 4.81
     softness:
       enable: 1
       intensity: 0.5
@@ -63,11 +63,12 @@ MonoBehaviour:
       strength: 1
   fogOfWar:
     enabled: 0
+    useOnlyInPlay: 1
     bufferID: 0
+    sorting: 3
     resolution: 1
-    shaderMode: 0
     sortingLayer:
-      name: Default
+      name: FieldOfView
       Order: 0
   layers:
     lightLayers:
@@ -81,4 +82,5 @@ MonoBehaviour:
     dayLayers:
       names:
       - Default
+      - Day Layer 1
   disable: 0

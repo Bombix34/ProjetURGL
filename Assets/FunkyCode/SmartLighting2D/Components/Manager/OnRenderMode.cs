@@ -46,8 +46,8 @@ public class OnRenderMode : LightingMonoBehaviour {
         return(onRenderMode);
     }
 
-    public void Initialize(LightingMainBuffer2D mainBuffer) {         
-        transform.parent = Buffers.Get().transform;
+    public void Initialize(LightingMainBuffer2D mainBuffer) {
+        gameObject.transform.parent = Buffers.Get().transform;
         
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = mainBuffer.GetMaterial();

@@ -13,7 +13,7 @@ public enum LightingLayerType {ShadowAndMask, ShadowOnly, MaskOnly}
 public enum LightingLayerSorting {None, DistanceToLight, YAxisDown, YAxisUp, ZAxisDown, ZAxisUp};
 public enum LightingLayerSortingIgnore {None, IgnoreAbove};
 
-public enum LightingLayerShadowEffect {Default, Projected, Soft};
+public enum LightingLayerShadowEffect {Default, Projected, SoftObjects, SoftVertex};
 
 public enum LightingLayerMaskEffect {AlwaysLit, AboveLit, NeverLit};
 

@@ -41,6 +41,9 @@ using UnityEngine;
     }
 
     public Mesh Export() {
+        if (mesh == null) {
+            return(null);
+        }
         mesh.triangles = null;
         mesh.vertices = null;
         mesh.uv = null;

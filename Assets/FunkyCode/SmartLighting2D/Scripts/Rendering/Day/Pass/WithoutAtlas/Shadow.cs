@@ -51,11 +51,11 @@ namespace Rendering.Day.WithoutAtlas {
 
 
           static public void DrawTilemap(DayLightingTilemapCollider2D id, Vector2 position, float z) {
-            //if (id.mainShape.colliderType == DayLightingCollider2D.ColliderType.None) {
+            //if (id.mainShape.shadowType == DayLightingCollider2D.shadowType.None) {
             //    return;
             //}
 
-           // if (id.mainShape.colliderType == DayLightingCollider2D.ColliderType.Sprite) {
+           // if (id.mainShape.shadowType == DayLightingCollider2D.shadowType.Sprite) {
             //    return;
             //}
 

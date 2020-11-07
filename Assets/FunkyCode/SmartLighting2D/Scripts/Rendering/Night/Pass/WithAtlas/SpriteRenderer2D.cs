@@ -31,7 +31,7 @@ namespace Rendering.Night.WithAtlas {
                     continue;
                 }
 
-                if (id.type != LightingSpriteRenderer2D.Type.Particle) {
+                if (id.type != LightingSpriteRenderer2D.Type.Light) {
                     continue;
                 }
 
@@ -73,7 +73,7 @@ namespace Rendering.Night.WithAtlas {
             for(int i = 0; i < spriteRendererList.Count; i++) {
                 LightingSpriteRenderer2D id = spriteRendererList[i];
 
-                if (id.type == LightingSpriteRenderer2D.Type.Particle) {
+                if (id.type == LightingSpriteRenderer2D.Type.Light) {
                     continue;
                 }
 

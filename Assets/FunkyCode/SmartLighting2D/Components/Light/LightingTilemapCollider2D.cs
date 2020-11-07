@@ -19,7 +19,7 @@ using LightingTilemapCollider;
 		public int shadowLayer = 0;
 		public int maskLayer = 0;
 
-		public ShadowTileType colliderTileType = ShadowTileType.AllTiles;
+		public ShadowTileType shadowTileType = ShadowTileType.AllTiles;
 
 		public BumpMapMode bumpMapMode = new BumpMapMode();
 

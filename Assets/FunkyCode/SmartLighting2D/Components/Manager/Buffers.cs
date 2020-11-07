@@ -19,11 +19,11 @@ public class Buffers : MonoBehaviour {
 
 		LightingBuffer2D.Clear();
 
-		if (Lighting2D.Profile.qualitySettings.managerInternal == LightingSettings.QualitySettings.ManagerInternal.HideInHierarchy) {
-			gameObject.hideFlags = HideFlags.HideInHierarchy;
-		} else {
-			gameObject.hideFlags = HideFlags.None;
-		}
+		UpdateFlags();
+	}
+
+	private void OnDestroy() {
+		instance = null;
 	}
 
     static public Buffers Get() {
@@ -37,8 +37,10 @@ public class Buffers : MonoBehaviour {
 
 		foreach(Buffers root in Object.FindObjectsOfType(typeof(Buffers))) {
 			instance = root;
+
 			return(instance);
 		}
+
 
 		LightingManager2D manager = LightingManager2D.Get();
 
@@ -46,16 +48,19 @@ public class Buffers : MonoBehaviour {
 		gameObject.transform.parent = manager.transform;
 		gameObject.name = "Buffers";
 
+		instance = gameObject.AddComponent<Buffers> ();
+		instance.GetCamera();
+		instance.UpdateFlags();
+
+		return(instance);
+	}
+
+	void UpdateFlags() {
 		if (Lighting2D.Profile.qualitySettings.managerInternal == LightingSettings.QualitySettings.ManagerInternal.HideInHierarchy) {
 			gameObject.hideFlags = HideFlags.HideInHierarchy;
 		} else {
 			gameObject.hideFlags = HideFlags.None;
 		}
-
-		instance = gameObject.AddComponent<Buffers> ();
-		instance.GetCamera();
-
-		return(instance);
 	}
 
 	private Camera lightingCamera = null;
@@ -127,18 +132,18 @@ public class Buffers : MonoBehaviour {
 		if (lightingCamera == null) {
 			return;
 		}
-		
+
 		lightingCamera.clearFlags = CameraClearFlags.Nothing;
 		lightingCamera.backgroundColor = Color.white;
 		lightingCamera.cameraType = CameraType.Game;
 		lightingCamera.orthographic = true;
-		lightingCamera.farClipPlane = -0.01f;
+		lightingCamera.farClipPlane = 0.01f;
 		lightingCamera.nearClipPlane = -0.01f;
 		lightingCamera.allowHDR = false;
 		lightingCamera.allowMSAA = false;
 		lightingCamera.enabled = false;
-		lightingCamera.depth = -100;
-		lightingCamera.orthographicSize = 0.1f;
+		lightingCamera.depth = -50;
+		lightingCamera.orthographicSize = Camera.main.orthographicSize;
 	}
 
 

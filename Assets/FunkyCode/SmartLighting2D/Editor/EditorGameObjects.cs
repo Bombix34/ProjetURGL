@@ -36,7 +36,7 @@ public class EditorGameObjects : MonoBehaviour
 		return(pos);
 	}
 
-	[MenuItem("GameObject/2D Light/Light", false, 4)]
+	[MenuItem("GameObject/2D Light/Light/Light Source", false, 4)]
     static void CreateLightSource() {	
 		GameObject newGameObject = new GameObject("2D Light Source");
 
@@ -45,7 +45,16 @@ public class EditorGameObjects : MonoBehaviour
 		newGameObject.transform.position = GetCameraPoint();
 	}
 
-	[MenuItem("GameObject/2D Light/Light Collider", false, 4)]
+	[MenuItem("GameObject/2D Light/Light/Light Mesh", false, 4)]
+    static void CreateLightMesh() {	
+		GameObject newGameObject = new GameObject("2D Light Mesh");
+
+		newGameObject.AddComponent<LightMesh2D>();
+
+		newGameObject.transform.position = GetCameraPoint();
+	}
+
+	[MenuItem("GameObject/2D Light/Collider/Light Collider", false, 4)]
     static void CreateLightCollider() {
 		GameObject newGameObject = new GameObject("2D Light Collider");
 
@@ -53,13 +62,14 @@ public class EditorGameObjects : MonoBehaviour
 		LightingCollider2D collider = newGameObject.AddComponent<LightingCollider2D>();
         collider.maskType = LightingCollider2D.MaskType.Collider2D;
         collider.shadowType = LightingCollider2D.ShadowType.Collider2D;
+		collider.Initialize();
 
 		newGameObject.transform.position = GetCameraPoint();
     }
 
 	#if UNITY_2017_4_OR_NEWER
 
-	[MenuItem("GameObject/2D Light/Light Tilemap Collider", false, 4)]
+	[MenuItem("GameObject/2D Light/Collider/Light Tilemap Collider", false, 4)]
     static void CreateLightTilemapCollider() {
 		GameObject newGrid = new GameObject("2D Light Grid");
 		newGrid.AddComponent<Grid>();
@@ -73,7 +83,7 @@ public class EditorGameObjects : MonoBehaviour
 
 	#endif
 
-	[MenuItem("GameObject/2D Light/Light Sprite", false, 4)]
+	[MenuItem("GameObject/2D Light/Light/Light Sprite", false, 4)]
     static void CreateLightSpriteRenderer() {
 		GameObject newGameObject = new GameObject("2D Light Sprite Renderer");
 		
@@ -83,7 +93,7 @@ public class EditorGameObjects : MonoBehaviour
 		newGameObject.transform.position = GetCameraPoint();
     }
 
-	[MenuItem("GameObject/2D Light/Light Texture", false, 4)]
+	[MenuItem("GameObject/2D Light/Light/Light Texture", false, 4)]
     static void CreateLightTextureRenderer() {
 		GameObject newGameObject = new GameObject("2D Light Texture Renderer");
 		
@@ -93,7 +103,7 @@ public class EditorGameObjects : MonoBehaviour
 		newGameObject.transform.position = GetCameraPoint();
     }
 
-	[MenuItem("GameObject/2D Light/Day Light Collider", false, 4)]
+	[MenuItem("GameObject/2D Light/Collider/Day Light Collider", false, 4)]
     static void CreateDayLightCollider() {
 		GameObject newGameObject = new GameObject("2D Light Day Collider");
 
@@ -108,7 +118,7 @@ public class EditorGameObjects : MonoBehaviour
 
 	#if UNITY_2017_4_OR_NEWER
 
-	[MenuItem("GameObject/2D Light/Day Light Tilemap Collider", false, 4)]
+	[MenuItem("GameObject/2D Light/Collider/Day Light Tilemap Collider", false, 4)]
     static void CreateDayLightTilemapCollider() {
 		GameObject newGrid = new GameObject("2D Light Grid");
 		newGrid.AddComponent<Grid>();
@@ -123,7 +133,7 @@ public class EditorGameObjects : MonoBehaviour
 	#endif
 
 	
-	[MenuItem("GameObject/2D Light/Light Room", false, 4)]
+	[MenuItem("GameObject/2D Light/Room/Light Room", false, 4)]
     static void CreateLightRoom() {
 		GameObject newGameObject = new GameObject("2D Light Room");
 
@@ -135,7 +145,7 @@ public class EditorGameObjects : MonoBehaviour
 
 	#if UNITY_2017_4_OR_NEWER
 
-	[MenuItem("GameObject/2D Light/Light Tilemap Room", false, 4)]
+	[MenuItem("GameObject/2D Light/Room/Light Tilemap Room", false, 4)]
     static void CreateLightTilemapRoom() {
 		GameObject newGrid = new GameObject("2D Light Grid");
 		newGrid.AddComponent<Grid>();
@@ -149,7 +159,7 @@ public class EditorGameObjects : MonoBehaviour
 
 	#endif
 
-	[MenuItem("GameObject/2D Light/Light Occlusion", false, 4)]
+	[MenuItem("GameObject/2D Light/Occlusion/Light Occlusion", false, 4)]
     static void CreateLightOcclusion() {
 		GameObject newGameObject = new GameObject("2D Light Occlusion");
 
@@ -161,7 +171,7 @@ public class EditorGameObjects : MonoBehaviour
 
 	#if UNITY_2017_4_OR_NEWER
 
-	[MenuItem("GameObject/2D Light/Light Tilemap Occlusion", false, 4)]
+	[MenuItem("GameObject/2D Light/Occlusion/Light Tilemap Occlusion", false, 4)]
     static void CreateLightTilemapOcclusion() {
 		GameObject newGrid = new GameObject("2D Light Grid");
 		newGrid.AddComponent<Grid>();
@@ -179,4 +189,14 @@ public class EditorGameObjects : MonoBehaviour
     static void CreateLightManager(){
 		LightingManager2D.Get();
     }
+
+	[MenuItem("GameObject/2D Light/Light Cycle", false, 4)]
+    static void CreateLightCycle() {	
+		GameObject newGameObject = new GameObject("2D Light Cycle");
+
+		newGameObject.AddComponent<LightCycle>();
+
+		newGameObject.transform.position = GetCameraPoint();
+	}
+
 }

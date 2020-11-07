@@ -33,11 +33,26 @@ namespace Rendering.Light.WithoutAtlas {
 
             if (collider.shadowLayer == pass.layerID && pass.drawShadows) {	
 
-                Lighting2D.materials.GetAtlasMaterial().SetPass(0);
-                GL.Begin(GL.TRIANGLES);
-                    Light.Shadow.Shape.Draw(pass.light, collider);
-                GL.End();
-                
+                if (collider.mainShape.shadowType != LightingCollider2D.ShadowType.None) {
+
+                    if (ShadowEngine.softShadow) {
+                        Material material = Lighting2D.materials.GetSoftShadow();
+                        material.SetFloat("_CoreSize", pass.light.coreSize);
+                        material.SetPass(0);
+                    } else {
+                        Lighting2D.materials.GetAtlasMaterial().SetPass(0);
+                    }
+
+
+                    GL.Begin(GL.TRIANGLES);
+
+                        Light.Shadow.Shape.Draw(pass.light, collider);
+        
+                    GL.End();
+
+                   
+                }
+
             }
 
             // Masking
@@ -99,11 +114,22 @@ namespace Rendering.Light.WithoutAtlas {
                 LightingTilemapCollider2D tilemap = pass.sortPass.sortObject.tilemap;
 
                 if (pass.sortPass.sortObject.tilemap.shadowLayer == pass.layerID && pass.drawShadows) {
-                    Lighting2D.materials.GetAtlasMaterial().SetPass(0);
-                                        
-                    GL.Begin(GL.TRIANGLES); 
+
+                    if (ShadowEngine.softShadow) {
+                        Material material = Lighting2D.materials.GetSoftShadow();
+                        material.SetFloat("_CoreSize", pass.light.coreSize);
+                        material.SetPass(0);
+                    } else {
+                        Lighting2D.materials.GetAtlasMaterial().SetPass(0);
+                    }
+
+                    GL.Begin(GL.TRIANGLES);
+
                         Light.Shadow.Tile.Draw(pass.light, tile, tilemap);
-                    GL.End();  
+        
+                    GL.End();
+
+                    
                 }
 
                 // sprite mask - but what about shape mask?
@@ -120,34 +146,67 @@ namespace Rendering.Light.WithoutAtlas {
                 LightingTilemapCollider2D tilemap = pass.sortPass.sortObject.tilemap;
                
                 if (tilemap.shadowLayer == pass.layerID && pass.drawShadows) {	
-                                 
-                    Lighting2D.materials.GetAtlasMaterial().SetPass(0);
+
+
+                    if (ShadowEngine.softShadow) {
+                        Material material = Lighting2D.materials.GetSoftShadow();
+                        material.SetFloat("_CoreSize", pass.light.coreSize);
+                        material.SetPass(0);
+                    } else {
+                        Lighting2D.materials.GetAtlasMaterial().SetPass(0);
+                    }
+
+    
                                         
                     GL.Begin(GL.TRIANGLES);
 
                      switch(tilemap.mapType) {
                         case MapType.UnityRectangle:
-                            Light.Shadow.TilemapRectangle.Draw(pass.light, tilemap, pass.lightSizeSquared, pass.z);
-                            Light.Shadow.TilemapCollider.Rectangle.Draw(pass.light, tilemap);
+
+                            switch(tilemap.rectangle.shadowType) {
+                                case Rectangle.ShadowType.Grid:
+                                case Rectangle.ShadowType.SpriteCustomPhysicsShape:
+                                    Light.Shadow.TilemapRectangle.Draw(pass.light, tilemap, pass.lightSizeSquared, pass.z);
+                                break;
+
+                                case Rectangle.ShadowType.CompositeCollider:
+                                    Light.Shadow.TilemapCollider.Rectangle.Draw(pass.light, tilemap);
+                                break;
+                            }
+                            
                         break;
 
                         case MapType.UnityIsometric:
-                            Light.Shadow.TilemapIsometric.Draw(pass.light, tilemap);
+
+                            switch(tilemap.isometric.shadowType) {
+                                case Isometric.ShadowType.Grid:
+                                case Isometric.ShadowType.SpriteCustomPhysicsShape:
+                                     Light.Shadow.TilemapIsometric.Draw(pass.light, tilemap);
+                                break;
+                            }
+                           
                         break;
 
                         case MapType.UnityHexagon:
-                            Light.Shadow.TilemapHexagon.Draw(pass.light, tilemap);
+
+                            switch(tilemap.hexagon.shadowType) {
+                                case Hexagon.ShadowType.Grid:
+                                case Hexagon.ShadowType.SpriteCustomPhysicsShape:
+                                     Light.Shadow.TilemapHexagon.Draw(pass.light, tilemap);
+                                break;
+                            }
+                            
                         break;
 
                         case MapType.SuperTilemapEditor:
 
-                            switch(tilemap.superTilemapEditor.colliderType) {
+                            switch(tilemap.superTilemapEditor.shadowType) {
 
-                                case SuperTilemapEditorSupport.TilemapCollider2D.ColliderType.Grid:
+                                case SuperTilemapEditorSupport.TilemapCollider2D.ShadowType.Grid:
                                         SuperTilemapEditorSupport.RenderingColliderShadow.Grid(pass.light, tilemap);
                                     break;
                                     
-                                case SuperTilemapEditorSupport.TilemapCollider2D.ColliderType.Collider:
+                                case SuperTilemapEditorSupport.TilemapCollider2D.ShadowType.Collider:
                                         SuperTilemapEditorSupport.RenderingColliderShadow.Collider(pass.light, tilemap);
                                     break;
                                 }
@@ -161,6 +220,7 @@ namespace Rendering.Light.WithoutAtlas {
                 if (pass.sortPass.sortObject.tilemap.maskLayer == pass.layerID && pass.drawMask) {
                     switch(tilemap.mapType) {
                         case MapType.UnityRectangle:
+
                             switch(tilemap.rectangle.maskType) {
                                 case LightingTilemapCollider.Rectangle.MaskType.Sprite:
                                     TilemapRectangle.Sprite(pass.light, tilemap, pass.materialWhite, pass.layer, pass.z);
@@ -175,17 +235,29 @@ namespace Rendering.Light.WithoutAtlas {
                         break;
 
                         case MapType.UnityIsometric:
-                            TilemapIsometric.MaskSprite(pass.light, tilemap, pass.materialWhite, pass.z);
+
+                            switch(tilemap.isometric.maskType) {
+                                case Isometric.MaskType.Sprite:
+                                    TilemapIsometric.MaskSprite(pass.light, tilemap, pass.materialWhite, pass.z);
+                                break;
+                            }
                             
                         break;
 
-                            case MapType.UnityHexagon:
-                            //TilemapHexagon.MaskSprite(pass.buffer, tilemap, pass.materialWhite, pass.z);
+                        case MapType.UnityHexagon:
+
+                            switch(tilemap.hexagon.maskType) {
+                                case Hexagon.MaskType.Sprite:
+                                //    TilemapHexagon.MaskSprite(pass.buffer, tilemap, pass.materialWhite, pass.z);
+                                break;
+                            }
                             
                         break;
 
                         case MapType.SuperTilemapEditor:
+
                             SuperTilemapEditorSupport.RenderingColliderMask.WithoutAtlas.Sprite(pass.light, tilemap, pass.materialWhite);
+                            
                         break;
                     }   
                 }    

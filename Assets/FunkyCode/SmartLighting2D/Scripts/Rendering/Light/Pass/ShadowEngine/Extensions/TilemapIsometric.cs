@@ -8,14 +8,6 @@ namespace Rendering.Light.Shadow {
     public class TilemapIsometric {
         
         static public void Draw(LightingSource2D light, LightingTilemapCollider2D id) {
-            if (id.mapType != MapType.UnityIsometric) {
-                return;
-            }
-
-            if (id.isometric.colliderType == LightingTilemapCollider.Isometric.ColliderType.None) {
-                return;
-            }
-
             Vector2 lightPosition = -light.transform.position;
             LightingTilemapCollider.Base tilemapCollider = id.GetCurrentTilemap();
 

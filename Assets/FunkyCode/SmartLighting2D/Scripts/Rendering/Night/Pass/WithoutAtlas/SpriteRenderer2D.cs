@@ -31,7 +31,7 @@ namespace Rendering.Night.WithoutAtlas {
 			}
 
 			switch(id.type) {
-				case LightingSpriteRenderer2D.Type.Particle: 
+				case LightingSpriteRenderer2D.Type.Light: 
 
 					Color color = id.color;
 

@@ -58,6 +58,8 @@ public class LightMesh2DEditor : Editor {
         
         GUIMeshMode.Draw(serializedObject, script.meshMode);
 
+        serializedObject.ApplyModifiedProperties();
+
         if (GUI.changed){
 			script.UpdateLoop();
 

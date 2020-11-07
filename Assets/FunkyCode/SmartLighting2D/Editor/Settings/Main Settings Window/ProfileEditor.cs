@@ -409,9 +409,14 @@ public class ProfileEditor {
 
 				profile.fogOfWar.enabled = EditorGUILayout.Toggle("Enable", profile.fogOfWar.enabled);
 
+				profile.fogOfWar.useOnlyInPlay = EditorGUILayout.Toggle("Use Only in Play", profile.fogOfWar.useOnlyInPlay);
+
+
 				profile.fogOfWar.bufferID = EditorGUILayout.Popup("Main Buffer", (int)profile.fogOfWar.bufferID, profile.bufferPresets.GetBufferLayers());
 				
-				profile.fogOfWar.shaderMode = (LightingSettings.FogOfWar.ShaderMode) EditorGUILayout.EnumPopup("Shader Mode", profile.fogOfWar.shaderMode);
+				profile.fogOfWar.sorting = (LightingSettings.FogOfWar.Sorting) EditorGUILayout.EnumPopup("Sorting", profile.fogOfWar.sorting);
+
+				//profile.fogOfWar.shaderMode = (LightingSettings.FogOfWar.ShaderMode) EditorGUILayout.EnumPopup("Shader Mode", profile.fogOfWar.shaderMode);
 				
 				SortingLayer(profile.fogOfWar.sortingLayer);			
 

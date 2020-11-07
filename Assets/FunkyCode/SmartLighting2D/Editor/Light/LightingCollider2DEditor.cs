@@ -125,8 +125,11 @@ public class LightingCollider2DEditor : Editor {
 
 				if (EditorApplication.isPlaying == false) {
 					EditorUtility.SetDirty(target);
-					EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 				}
+			}
+
+			if (EditorApplication.isPlaying == false) {
+				EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 			}
 
 			LightingManager2D.ForceUpdate();

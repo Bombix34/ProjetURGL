@@ -19,6 +19,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
     private Inventory inventory;
 
     private PlayerClickInput clickInteractionManager;
+    private InteractionZone interactionTriggerZone;
     private readonly WaitCoroutine _waitCoroutine = new WaitCoroutine(3);
 
     public Rigidbody2D Body { get; private set; }
@@ -37,9 +38,12 @@ public class PlayerManager : ObjectManager, IPlayerManager
         NetworkAnimator = GetComponent<NetworkAnimator>();
         var cameraManager = Camera.main.GetComponent<CameraManager>();
         clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
-
-        cameraManager.Init(transform);
-        cameraManager.StartIntro();
+        interactionTriggerZone = Camera.main.GetComponentInChildren<InteractionZone>();
+        interactionTriggerZone.PlayerController = this.gameObject;
+        Renderer.InitPlayerCharacterRenderer();
+        cameraManager?.Init(transform);
+        cameraManager?.StartIntro();
+        ChangeFieldOfViewSize();
         ChangeState(new PlayerIdleState(this));
         RoomPlayerVivox.Instance.StartGame(settings.PlayerType);
     }
@@ -52,7 +56,8 @@ public class PlayerManager : ObjectManager, IPlayerManager
             return;
         currentState.Execute();
 
-        //temporaire
+        //temporaire------------
+        ChangeFieldOfViewSize();
         if (Input.GetKeyDown(KeyCode.A))
         {
             this.CmdDropItem();
@@ -62,6 +67,7 @@ public class PlayerManager : ObjectManager, IPlayerManager
             StartCoroutine(this._waitCoroutine.Wait());
             clickInteractionManager.TryPerformInteraction();
         }
+        //----------------------
     }
 
     public void Init(string playerName, PlayerType playerType)
@@ -104,9 +110,20 @@ public class PlayerManager : ObjectManager, IPlayerManager
             {
                 inputVector *= this.settings.MovementSpeedWithValuableItemMultiplier;
             }
-
             return inputVector;
         }
+    }
+
+    /// <summary>
+    /// change la taille du field of view pour correspondre aux settings
+    /// : sur le field of view pour le rendu
+    /// : sur area renderer pour le trigger
+    /// </summary>
+    private void ChangeFieldOfViewSize()
+    {
+        var cameraManager = Camera.main.GetComponent<CameraManager>();
+        cameraManager.FieldOfViewManager.ViewSize = settings.FogOfWarSize;
+        interactionTriggerZone.ColliderRadius = settings.FogOfWarSize*0.95f;
     }
 
     [Server]

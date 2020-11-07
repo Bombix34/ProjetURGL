@@ -49,6 +49,7 @@ public class LightMeshGeometry {
             }
         }
 
+        /*
         foreach(LightingTilemapCollider2D tilemap in LightingTilemapCollider2D.GetList()) {
             //if (tilemap.IsNotInRange()) {
 
@@ -69,9 +70,7 @@ public class LightMeshGeometry {
                     worldPolygons.Add(polygon);
                 } 
             }
-
-            
-        }
+        }*/
     }
 
     void UpdateRayCastPoints() {

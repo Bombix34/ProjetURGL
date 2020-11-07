@@ -8,23 +8,11 @@ namespace Rendering.Light.Shadow {
     public class TilemapRectangle {
 
         static public void Draw(LightingSource2D light, LightingTilemapCollider2D id, float lightSizeSquared, float z) {
-            if (id.mapType != MapType.UnityRectangle) {
-                return;
-            }
-
-            if (id.rectangle.colliderType == LightingTilemapCollider.Rectangle.ColliderType.None) {
-                return;
-            }
-
-            if (id.rectangle.colliderType == LightingTilemapCollider.Rectangle.ColliderType.CompositeCollider) {
-                return;
-            }
-
             Vector2 lightPosition = -light.transform.position;
             LightingTilemapCollider.Base tilemapCollider = id.GetCurrentTilemap();
 
             foreach(LightingTile tile in id.rectangle.mapTiles) {
-                switch(id.colliderTileType) {
+                switch(id.shadowTileType) {
                     case ShadowTileType.AllTiles:
                     break;
 

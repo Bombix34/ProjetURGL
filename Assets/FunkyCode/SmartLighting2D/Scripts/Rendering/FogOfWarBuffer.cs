@@ -85,10 +85,13 @@ namespace Rendering {
 				return;
 			}
 
-			float z = 0;
-			Material material = null;
+			bool draw = true;
 
-			Vector2 objectPosition = new Vector2();
+			if (Lighting2D.fogOfWar.useOnlyInPlay) {
+            	if (Application.isPlaying == false) {
+					draw = false;
+				}
+			}
 
 			float sizeY = camera.orthographicSize;
 			float sizeX = sizeY * ( (float)camera.pixelWidth / camera.pixelHeight );
@@ -96,24 +99,12 @@ namespace Rendering {
 			GL.PushMatrix();
 			GL.LoadPixelMatrix( -sizeX, sizeX, -sizeY, sizeY );
 
-			foreach(FogOfWarSprite sprite in FogOfWarSprite.GetList()) {
-				objectPosition.x = sprite.transform.position.x - camera.transform.position.x;
-				objectPosition.y = sprite.transform.position.y - camera.transform.position.y;
-
-				SpriteRenderer spriteRenderer = sprite.GetSpriteRenderer();
-
-				if (spriteRenderer == null || sprite.GetSprite() == null) {
-					continue;
+			if (draw) {
+				if (Lighting2D.Profile.fogOfWar.sorting == LightingSettings.FogOfWar.Sorting.None) {
+					FogOfWar.NoSort.Draw(camera);
+				} else {
+					FogOfWar.Sorted.Draw(camera);
 				}
-
-				material = spriteRenderer.sharedMaterial;
-				material.mainTexture = sprite.GetSprite().texture;
-
-				material.color = spriteRenderer.color;
-
-				Rendering.Universal.WithoutAtlas.Sprite.FullRect.Simple.Draw(sprite.spriteMeshObject, material, sprite.GetSpriteRenderer(), objectPosition, sprite.transform.lossyScale, sprite.transform.rotation.eulerAngles.z, z);			
-			
-				material.color = Color.white;
 			}
 
 			GL.PopMatrix();

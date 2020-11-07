@@ -101,11 +101,15 @@ public class LightingSource2DEditor : Editor {
 
 
 		size.floatValue = EditorGUILayout.Slider("Size", size.floatValue, 0.1f, 100);
+
+		light2D.coreSize = EditorGUILayout.Slider("Core Size", light2D.coreSize, 0.1f, 10f);
 	
 		spotAngle.floatValue = EditorGUILayout.Slider("Spot Angle", spotAngle.floatValue, 0, 360);
 
 		// Only Legacy Shadow
 		outerAngle.floatValue = EditorGUILayout.Slider("Outer Angle", outerAngle.floatValue, 0, 60);
+
+		
 
 		EditorGUILayout.Space();
 
@@ -158,15 +162,10 @@ public class LightingSource2DEditor : Editor {
 	
 
 
-		serializedObject.ApplyModifiedProperties();
-	
-	
-
-
 
 		
 
-		
+		// NOT Serialized properly yet!
 
 		EditorGUILayout.Space();
 
@@ -205,6 +204,9 @@ public class LightingSource2DEditor : Editor {
 		light2D.whenInsideCollider = (LightingSource2D.WhenInsideCollider)EditorGUILayout.EnumPopup("When Inside Collider", light2D.whenInsideCollider);
 
 	
+		serializedObject.ApplyModifiedProperties();	
+
+	
 		if (GUI.changed){
 			foreach(Object target in targets) {
 				LightingSource2D light2D = target as LightingSource2D;
@@ -212,8 +214,11 @@ public class LightingSource2DEditor : Editor {
 
 				if (EditorApplication.isPlaying == false) {
 					EditorUtility.SetDirty(target);
-					EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 				}
+			}
+
+			if (EditorApplication.isPlaying == false) {
+				EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 			}
 		}
 	}

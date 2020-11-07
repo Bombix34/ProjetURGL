@@ -11,6 +11,11 @@ public class DayLightingCollider2D : MonoBehaviour {
 
 	public int shadowLayer = 0;
 	public int maskLayer = 0;
+
+	public ShadowType shadowType = ShadowType.SpriteCustomPhysicsShape;
+	public MaskType maskType = MaskType.Sprite;
+
+	public float shadowDistance = 1;
 	
 	public DayLightingColliderShape mainShape = new DayLightingColliderShape();
 	public List<DayLightingColliderShape> shapes = new List<DayLightingColliderShape>();
@@ -61,13 +66,28 @@ public class DayLightingCollider2D : MonoBehaviour {
 		return(list);
 	}
 
+	public static void ForceUpdateAll() {
+		foreach(DayLightingCollider2D collider in DayLightingCollider2D.GetList()) {
+			collider.ForceUpdate();
+		}
+	}
+
+	public void ForceUpdate() {
+		Initialize();
+
+		foreach(DayLightingColliderShape shape in shapes) {
+			shape.transform2D.updateNeeded = true;
+		}	
+	}
+
     public void UpdateLoop() {
 		foreach(DayLightingColliderShape shape in shapes) {
 			shape.height = mainShape.height;
 			
 			shape.transform2D.Update();
 
-			if (shape.transform2D.moved) {
+			if (shape.transform2D.updateNeeded) {
+				shape.transform2D.updateNeeded = false;
 				shape.shadowMesh.Generate(shape);
 			}
 		}	
@@ -75,6 +95,10 @@ public class DayLightingCollider2D : MonoBehaviour {
 
 	public void Initialize() {
 		shapes.Clear();
+
+		mainShape.shadowType = shadowType;
+		mainShape.maskType = maskType;
+		mainShape.height = shadowDistance;
 
 		mainShape.SetTransform(transform);
 		mainShape.ResetLocal();

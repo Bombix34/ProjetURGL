@@ -18,7 +18,6 @@ namespace Rendering.Light {
         }
     }
 
-        
     public static class ShadowEngine {
         public static LightingSource2D light;
         public static Vector2 lightOffset = Vector2.zero;
@@ -37,6 +36,10 @@ namespace Rendering.Light {
         public static float shadowZ = 0;
 
         public static int drawMode = 0;
+
+        public static bool softShadow = false;
+
+        public static bool softShadowObjects;
         
         public static void Draw(List<Polygon2D> polygons, float height) {
             switch(ShadowEngine.drawMode) {
@@ -65,13 +68,17 @@ namespace Rendering.Light {
             objectOffset = Vector2.zero;
 
             effectPolygons.Clear();
+
+            softShadowObjects = layer.shadowEffect == LightingLayerShadowEffect.SoftObjects;
+
+            softShadow = softShadowObjects || layer.shadowEffect == LightingLayerShadowEffect.SoftVertex;
                 
             if (layer.shadowEffect == LightingLayerShadowEffect.Projected) {
                 drawMode = 2;
 
                 GenerateEffectLayers();
 
-            } else if (layer.shadowEffect == LightingLayerShadowEffect.Soft) {
+            } else if (softShadow) {
                 drawMode = 1;
                 
             } else {

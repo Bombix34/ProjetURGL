@@ -4,8 +4,8 @@ using UnityEngine;
 using LightingSettings;
 
 public class Lighting2D {
-	public const int VERSION = 119;
-	public const string VERSION_STRING = "1.1.9";
+	public const int VERSION = 120;
+	public const string VERSION_STRING = "1.2.0";
 
 	static public Lighting2DMaterials materials = new Lighting2DMaterials();
 
@@ -30,7 +30,7 @@ public class Lighting2D {
 	}
 
 	// Fog of War
-	static public FogOfWar fogOfWar {
+	static public LightingSettings.FogOfWar fogOfWar {
 		get => Profile.fogOfWar;
 	}
 

@@ -34,7 +34,7 @@ public class LightMesh2D : MonoBehaviour {
 
 	void UpdateCollidersInside() {
 		foreach(LightingCollider2D collider in collidersInside) {
-			if (collider?.InLightMesh(this) == false) {
+			if (collider.InLightMesh(this) == false) {
 				collidersInsideRemove.Add(collider);
 			}
 		}

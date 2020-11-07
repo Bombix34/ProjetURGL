@@ -6,16 +6,13 @@ using System.Linq;
 static public class Math2D {
 
 	static public Vector2 ClosestPointOnLine(Vector2 vPoint, Vector2 vA, Vector2 vB) {
-		float ax = (vB.x - vA.x);
-		float ay = (vB.y - vA.y);
+		Vector2 v;
+		v.x = (vB.x - vA.x);
+		v.y = (vB.y - vA.y);
     
-		float distance = Mathf.Sqrt(ax * ax + ay * ay);
-		ax = ax / distance;
-		ay = ay / distance;
-
-        Vector2 v;
-		v.x = ax;
-		v.y = ay;
+		float distance = Mathf.Sqrt(v.x * v.x + v.y * v.y);
+		v.x = v.x / distance;
+		v.y = v.y / distance;
 
 		Vector2 v1;
 		v1.x = vPoint.x - vA.x;
@@ -328,6 +325,36 @@ static public class Math2D {
 
 		return(new Vector2 ((float)(a_a.x + r * bx_ax),  (float)(a_a.y + r * by_ay)));
 	}
+
+	public static bool GetPointLineIntersectLine4(Vector2 a_a, Vector2 a_b, Vector2 b_a, Vector2 b_b) {
+		double dx_cx = b_b.x - b_a.x;
+		double dy_cy = b_b.y - b_a.y;
+		double bx_ax = a_b.x - a_a.x;
+		double by_ay = a_b.y - a_a.y;
+		double de = bx_ax * dy_cy - by_ay * dx_cx;
+
+		if (System.Math.Abs(de) < 0.0001d) {
+			return(false);
+		}	
+
+		if (de > - tor && de < tor) {
+			return(false);
+		}
+
+		double ax_cx = a_a.x - b_a.x;
+		double ay_cy = a_a.y - b_a.y;
+
+		double r = (ay_cy * dx_cx - ax_cx * dy_cy) / de;
+		double s = (ay_cy * bx_ax - ax_cx * by_ay) / de;
+
+		if ((r < 0) || (r > 1) || (s < 0)|| (s > 1)) {
+			return(false);
+		}
+
+		return(true);
+	}
+
+
 
 
 

@@ -9,9 +9,11 @@ public class CameraManager : MonoBehaviour
     private CameraConfigScriptableObject cameraConfig = null;
     private Transform playerTransform;
     private BaseCameraMovements cameraMovement;
+    public FieldOfView FieldOfViewManager { get; private set; }
 
     private void Start()
     {
+        FieldOfViewManager = GetComponentInChildren<FieldOfView>();
         CameraManager.Instance = this;
         this.cameraMovement = new InitialCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, cameraConfig.IntroStartPosition);
     }

@@ -16,4 +16,8 @@ public class PlayerSettings : ScriptableObject
 
     [Range(0f, 1f)]
     public float MovementSpeedWithValuableItemMultiplier;
+
+    [Header("FOG OF WAR SETTINGS")]
+    [Range(0f, 50f)]
+    public float FogOfWarSize;
 }
