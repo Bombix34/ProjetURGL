@@ -6,7 +6,8 @@ using UnityEngine;
 public class FloorTilingEditor : MonoBehaviour
 {
     [SerializeField]
-    private GameObject floorPrefab;
+    [NotNull]
+    private GameObject floorPrefab = null;
 
     private List<GameObject> currentTiles = new List<GameObject>();
 

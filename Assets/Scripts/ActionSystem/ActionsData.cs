@@ -6,7 +6,8 @@ using UnityEngine;
 public class ActionsData : ScriptableObject
 {
     [SerializeField]
-    private List<ActionPair> actionsData;
+    [NotNull]
+    private List<ActionPair> actionsData = null;
 
     public bool IsActionValid(TriggerTagType tag1, TriggerTagType tag2)
     {

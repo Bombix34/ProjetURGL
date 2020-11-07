@@ -5,13 +5,15 @@ using UnityEngine;
 public class ClickTrigger : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer[] spriteRenderers;
+    [NotNull]
+    private SpriteRenderer[] spriteRenderers = null;
 
     [SerializeField]
-    private HighlightSettings highlightSettings;
+    [NotNull]
+    private HighlightSettings highlightSettings = null;
 
     private GameObject feedbackRadiusContainer;
-    private float lineWidth=0.03f;
+    //private float lineWidth=0.03f;
 
     public bool IsInRange { get; set; } = false;
 
@@ -23,7 +25,8 @@ public class ClickTrigger : MonoBehaviour
 
 
     [SerializeField]
-    private Material interactMaterial;
+    [NotNull]
+    private Material interactMaterial = null;
 
     private void Start()
     {
