@@ -18,6 +18,9 @@ public class ClickTrigger : MonoBehaviour
     public float AreaRange { get; set; } = 1.4f;
     public BaseSwitch CurrentInteractionAvailable { get; private set; }
 
+    private ObjectInteractionTrigger objectInteractionTrigger;
+    public GameObject CurrentPlayerInteract { get; set; }
+
 
     [SerializeField]
     private Material interactMaterial;
@@ -25,6 +28,7 @@ public class ClickTrigger : MonoBehaviour
     private void Start()
     {
         feedbackRadiusContainer = GetComponentInChildren<SpriteRenderer>().gameObject;
+        objectInteractionTrigger = feedbackRadiusContainer.GetComponent<ObjectInteractionTrigger>();
         feedbackRadiusContainer.SetActive(false);
     }
 
@@ -33,8 +37,9 @@ public class ClickTrigger : MonoBehaviour
         if (feedbackRadiusContainer == null || !feedbackRadiusContainer.activeInHierarchy)
             return;
         SpriteRenderer rend = feedbackRadiusContainer.GetComponent<SpriteRenderer>();
-        float alpha = Mathf.PingPong(Time.time*0.8f, 0.6f);
+        float alpha =0.4f+ Mathf.PingPong(Time.time*0.8f, 0.6f);
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
+        PlayerInActionRange();
     }
 
     /// <summary>
@@ -47,6 +52,7 @@ public class ClickTrigger : MonoBehaviour
     {
         if (PlayerCanInteract(currentPlayer))
         {
+            CurrentPlayerInteract = currentPlayer.gameObject;
             if(spriteRenderers[0].material!=interactMaterial)
             {
                 for (int i = 0; i < spriteRenderers.Length; ++i)
@@ -54,13 +60,14 @@ public class ClickTrigger : MonoBehaviour
                     spriteRenderers[i].material = interactMaterial;
                 }
             }
-            spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.size);
+            spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.OutlineWidth);
             spriteRenderers[0].material.SetColor("_SolidOutline", highlightSettings.onMouseClickColor);
             DrawFeedbackRadius(highlightSettings.onMouseClickColor);
             return true;
         }
         return false;
     }
+
 
     /// <summary>
     /// return true if player can interact
@@ -76,7 +83,7 @@ public class ClickTrigger : MonoBehaviour
             {
                 spriteRenderers[i].material = interactMaterial;
             }
-            spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.size);
+            spriteRenderers[0].material.SetFloat("_Thickness", highlightSettings.OutlineWidth);
             spriteRenderers[0].material.SetColor("_SolidOutline", highlightSettings.onMouseOverColor);
             return true;
         }
@@ -85,6 +92,7 @@ public class ClickTrigger : MonoBehaviour
 
     public void OnMouseExitTrigger()
     {
+        CurrentPlayerInteract = null;
         spriteRenderers[0].material.SetFloat("_Thickness", 0f);
         spriteRenderers[0].material.SetFloat("_OutlineMode", 0);
         spriteRenderers[0].material.SetFloat("_Angle", 0f);
@@ -92,8 +100,9 @@ public class ClickTrigger : MonoBehaviour
         feedbackRadiusContainer.SetActive(false);
     }
 
-    public void PlayerInActionRange(bool isInRange)
+    public void PlayerInActionRange()
     {
+        bool isInRange = objectInteractionTrigger.PlayerIsInRange;
         if(isInRange && !this.IsInRange || !isInRange && this.IsInRange)
         {
             this.IsInRange = isInRange;
@@ -107,9 +116,6 @@ public class ClickTrigger : MonoBehaviour
 
     private bool PlayerCanInteract(PlayerManager currentPlayer)
     {
-        FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
-        if (!fieldViewManager.IsObjectVisibleFromPlayer(currentPlayer.gameObject, this.transform.parent.gameObject))
-            return false;
         bool result = false;
         BaseSwitch[] allSwitch = transform.parent.GetComponents<BaseSwitch>();
         foreach(var switchActiv in allSwitch)
@@ -139,6 +145,11 @@ public class ClickTrigger : MonoBehaviour
         feedbackRadiusContainer.transform.localScale = new Vector2(AreaRange, AreaRange);
         Color finalColor = new Color(color.r, color.g, color.b, 0f);
         rendererFeedback.color = finalColor;
+    }
+
+    public bool PlayerInRange
+    {
+        get => objectInteractionTrigger.PlayerIsInRange;
     }
 
 }

@@ -18,11 +18,21 @@ public class CharacterRenderer : NetworkBehaviour
     private SpriteRenderer bodyRenderer;
 
 
-    private bool IsVisible = true;
+    private bool IsVisible = false;
 
     private void Awake()
     {
         animator = GetComponentInParent<Animator>();
+    }
+
+    public void InitPlayerCharacterRenderer()
+    {
+        FogOfWarSprite[] fogofwarSprites = GetComponentsInChildren<FogOfWarSprite>();
+        foreach(var fog in fogofwarSprites)
+        {
+            fog.enabled = false;
+            fog.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 
     public bool IsRendererFlip
@@ -53,6 +63,11 @@ public class CharacterRenderer : NetworkBehaviour
         //PASSAGE A LETAT VISIBLE
         else if(isVisible && !this.IsVisible)
         {
+            if(bodyRenderer.enabled)
+            {
+                SetupFogShader(true);
+                bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
+            }
             SetupFogShader(false);
             bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
             Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 1f);

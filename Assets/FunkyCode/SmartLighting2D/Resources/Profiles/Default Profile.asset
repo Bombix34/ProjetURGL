@@ -63,7 +63,7 @@ MonoBehaviour:
       strength: 1
   fogOfWar:
     enabled: 0
-    useOnlyInPlay: 0
+    useOnlyInPlay: 1
     bufferID: 0
     sorting: 3
     resolution: 1

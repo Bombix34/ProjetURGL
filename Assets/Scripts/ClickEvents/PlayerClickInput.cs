@@ -16,6 +16,8 @@ public class PlayerClickInput : NetworkBehaviour
     private PlayerManager manager;
     private ClickTrigger managerClickTrigger;
 
+    private InteractionZone playerTriggerArea;
+
     private CursorManager cursor;
 
     public ClickTrigger CurrentObjectOver { get; private set; } = null;
@@ -29,6 +31,7 @@ public class PlayerClickInput : NetworkBehaviour
     {
         manager = this.GetComponent<PlayerManager>();
         this.managerClickTrigger = manager.GetComponentInChildren<ClickTrigger>();
+        playerTriggerArea = Camera.main.GetComponentInChildren<InteractionZone>();
         cursor = Camera.main.GetComponent<CursorManager>();
     }
 
@@ -53,7 +56,7 @@ public class PlayerClickInput : NetworkBehaviour
         {
             return;
         }
-        this.CanDoAction();
+        //this.CanDoAction();
         StartCoroutine(this.actionsConfiguration.GetActionWaitCoroutine(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType).Wait());
         CurrentObjectClicked.PlayerInteract();
     }
@@ -65,7 +68,7 @@ public class PlayerClickInput : NetworkBehaviour
             CurrentObjectClicked = null;
             return false;
         }
-        isObjectClickedInActionRange = Vector2.Distance(manager.transform.position, CurrentObjectClicked.transform.parent.position) <= CLICK_DISTANCE;
+        isObjectClickedInActionRange = CurrentObjectClicked.IsInRange;
         bool canDoAction = this.actionsConfiguration.CanDoAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
         return isObjectClickedInActionRange && canDoAction;
     }
@@ -79,8 +82,7 @@ public class PlayerClickInput : NetworkBehaviour
                 CurrentObjectClicked = null;
                 return;
             }
-            FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
-            if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectClicked.transform.parent.gameObject))
+            if(!playerTriggerArea.IsObjectVisible(CurrentObjectClicked.transform.parent.gameObject))
             {
                 CurrentObjectClicked.OnMouseExitTrigger();
                 ActivateUIFeedback(false);
@@ -89,13 +91,11 @@ public class PlayerClickInput : NetworkBehaviour
             else
             {
                 interactionUI?.EnableButton(this.CanDoAction());
-                CurrentObjectClicked?.PlayerInActionRange(isObjectClickedInActionRange);
             }
         }
         else if (CurrentObjectOver != null)
         {
-            FieldOfView fieldViewManager = Camera.main.GetComponent<CameraManager>().FieldOfView;
-            if (!fieldViewManager.IsObjectVisibleFromPlayer(manager.gameObject, CurrentObjectOver.transform.parent.gameObject))
+            if (!playerTriggerArea.IsObjectVisible(CurrentObjectOver.transform.parent.gameObject))
             {
                 CurrentObjectOver.OnMouseExitTrigger();
                 CurrentObjectOver = null;
@@ -177,6 +177,7 @@ public class PlayerClickInput : NetworkBehaviour
 
         if (CurrentObjectClicked != null)
         {
+            CurrentObjectOver = null;
             return;
         }
 
