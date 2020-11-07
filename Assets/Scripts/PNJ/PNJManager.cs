@@ -7,7 +7,8 @@ using UnityEngine.AI;
 public class PNJManager : ObjectManager, IPlayerManager
 {
     [SerializeField]
-    private PlayerSettings Settings;
+    [NotNull] 
+    private PlayerSettings Settings = null;
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
     public Animator Animator { get; private set; }
