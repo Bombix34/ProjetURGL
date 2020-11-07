@@ -5,7 +5,8 @@ public class DoorActivatable : BaseActivatable
 {
     private const string animatorIsOpen = "IsOpen";
     [SerializeField]
-    private Animator animator;
+    [NotNull]
+    private Animator animator = null;
     internal override void OnActivate(NetworkConnectionToClient sender)
     {
         this.animator.SetBool(animatorIsOpen, true);

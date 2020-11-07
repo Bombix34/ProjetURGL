@@ -5,9 +5,9 @@ using UnityEngine;
 public class ActionConfiguration
 {
     [SerializeField]
-    private ActionTypes actionType;
+    private ActionTypes actionType = ActionTypes.NOT_SET;
     [SerializeField]
-    private float cooldown;
+    private float cooldown = 0;
 
     public ActionTypes ActionType => actionType;
     public float Cooldown => cooldown;

@@ -10,12 +10,14 @@ public class SkinDisplay : NetworkBehaviour
     [SyncVar]
     private int animatorID;
     [SerializeField]
+    [NotNull]
     private SkinDatas datas = null;
-
     [SerializeField]
+    [NotNull]
     private SpriteRenderer bodySprite = null;
     [SerializeField]
-    private Animator animator;
+    [NotNull]
+    private Animator animator = null;
 
     public override void OnStartClient()
     {

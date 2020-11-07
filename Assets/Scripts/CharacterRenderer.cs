@@ -15,7 +15,8 @@ public class CharacterRenderer : NetworkBehaviour
     private Animator animator;
 
     [SerializeField]
-    private SpriteRenderer bodyRenderer;
+    [NotNull]
+    private SpriteRenderer bodyRenderer = null;
 
 
     private bool IsVisible = false;

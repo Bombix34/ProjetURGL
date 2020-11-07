@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class PlayerNameUI : MonoBehaviour
 {
     [SerializeField]
-    private Text textUi;
+    [NotNull]
+    private Text textUi = null;
     // Start is called before the first frame update
     void Start()
     {

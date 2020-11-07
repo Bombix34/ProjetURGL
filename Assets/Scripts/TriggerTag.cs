@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerTag : MonoBehaviour
 {
     [SerializeField]
-    private TriggerTagType tagType;
+    private TriggerTagType tagType = TriggerTagType.THIEF;
 
     public bool IsTagCorresponding(TriggerTagType tag)
     {

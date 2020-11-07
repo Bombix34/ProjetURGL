@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
     [SerializeField]
-    private Texture2D cursorBase, cursorOnInteract;
+    [NotNull]
+    private Texture2D cursorBase = null;
+    [SerializeField]
+    [NotNull]
+    private Texture2D cursorOnInteract = null;
 
     private void Awake()
     {

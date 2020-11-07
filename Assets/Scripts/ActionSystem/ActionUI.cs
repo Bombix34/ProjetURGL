@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class ActionUI : MonoBehaviour
 {
     [SerializeField]
-    private Button actionButton;
+    [NotNull]
+    private Button actionButton = null;
 
     public void EnableButton(bool isEnable)
     {

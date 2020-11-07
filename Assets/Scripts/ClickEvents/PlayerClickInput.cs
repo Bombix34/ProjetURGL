@@ -8,10 +8,12 @@ public class PlayerClickInput : NetworkBehaviour
 {
     private const float CLICK_DISTANCE = 1.4f;
     [SerializeField]
-    private LayerMask clickLayer;
+    [NotNull]
+    private LayerMask clickLayer = default;
     [SerializeField]
+    [NotNull]
     private ActionsConfigurationScriptableObject actionsConfiguration = null;
-    private ActionUI interactionUI;
+    private ActionUI interactionUI = null;
 
     private PlayerManager manager;
     private ClickTrigger managerClickTrigger;
@@ -221,20 +223,19 @@ public class PlayerClickInput : NetworkBehaviour
     private void ActivateUIFeedback(bool isActive)
     {
         interactionUI?.gameObject.SetActive(false);
-        return;
-        if (isActive)
-        {
-            if (interactionUI == null)
-            {
-                interactionUI = Instantiate(Resources.Load<GameObject>("ToInstantiate/ActionCanvas")).GetComponent<ActionUI>();
-                interactionUI.Init(this);
-            }
+        //if (isActive)
+        //{
+        //    if (interactionUI == null)
+        //    {
+        //        interactionUI = Instantiate(Resources.Load<GameObject>("ToInstantiate/ActionCanvas")).GetComponent<ActionUI>();
+        //        interactionUI.Init(this);
+        //    }
 
-            interactionUI.gameObject.SetActive(true);
-        }
-        else
-        {
-            interactionUI?.gameObject.SetActive(false);
-        }
+        //    interactionUI.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    interactionUI?.gameObject.SetActive(false);
+        //}
     }
 }
