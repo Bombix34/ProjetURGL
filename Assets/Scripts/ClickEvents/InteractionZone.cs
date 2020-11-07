@@ -57,6 +57,7 @@ public class InteractionZone : MonoBehaviour
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
             visibleObjects.Add(obj);
+            obj.GetComponentInChildren<ClickTrigger>().SetupFogShader(false);
         }
         else if (obj.CompareTag("PNJ") || obj.CompareTag("Thief"))
         {
@@ -79,16 +80,19 @@ public class InteractionZone : MonoBehaviour
         if (obj.CompareTag("Item"))
         {
             visibleObjects.Remove(obj);
+            obj.GetComponentInChildren<ClickTrigger>().SetupFogShader(true);
         }
         else if (obj.CompareTag("PNJ") || obj.CompareTag("Thief"))
         {
             visibleObjects.Remove(obj);
-            obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
+            if(obj.GetComponentInChildren<CharacterRenderer>()!=null)
+                obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
         }
         else if (obj.CompareTag("Vigil"))
         {
             visibleObjects.Remove(obj);
-            obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
+            if (obj.GetComponentInChildren<CharacterRenderer>() != null)
+                obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
         }
     }
 

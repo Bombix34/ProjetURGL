@@ -13,9 +13,13 @@ public class PlayerSettings : ScriptableObject
     [Header("MOVEMENT SETTINGS")]
     [Range(0f, 500f)]
     public float MovementSpeed;
-
     [Range(0f, 1f)]
     public float MovementSpeedWithValuableItemMultiplier;
+
+    [Header("MOVEMENT PNJ SETTINGS")]
+    [Range(1f, 500f)]
+    public float pnjSpeedMultiplicator;
+
 
     [Header("FOG OF WAR SETTINGS")]
     [Range(0f, 50f)]

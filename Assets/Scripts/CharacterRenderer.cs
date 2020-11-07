@@ -54,7 +54,7 @@ public class CharacterRenderer : NetworkBehaviour
         if(!isVisible && this.IsVisible)
         {
             Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
-            bodyRenderer.DOColor(finalColor, 0.7f)
+            bodyRenderer.DOColor(finalColor, 0.4f)
                 .OnComplete(() =>
                 SetupFogShader(true)
             );
@@ -71,7 +71,7 @@ public class CharacterRenderer : NetworkBehaviour
             SetupFogShader(false);
             bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
             Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 1f);
-            bodyRenderer.DOColor(finalColor, 0.7f);
+            bodyRenderer.DOColor(finalColor, 0.4f);
             this.IsVisible = isVisible;
         }
     }

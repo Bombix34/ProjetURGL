@@ -152,6 +152,15 @@ public class ClickTrigger : MonoBehaviour
         get => objectInteractionTrigger.PlayerIsInRange;
     }
 
+    public void SetupFogShader(bool isFogShaderOn)
+    {
+        foreach(var sprite in spriteRenderers)
+        {
+            if(sprite.GetComponent<FogOfWarSprite>()!=null)
+                sprite.GetComponent<FogOfWarSprite>().enabled = isFogShaderOn;
+            sprite.enabled = !isFogShaderOn;
+        }
+    }
 }
 
 public enum TriggerClickType
