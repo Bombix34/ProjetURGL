@@ -5,9 +5,7 @@ using UnityEngine;
 
 public abstract class BaseActivatable : NetworkBehaviour
 {
-    protected ActionTypes type = ActionTypes.NOT_SET;
-
-    public ActionTypes ActionType { get => type; }
+    public virtual ActionTypes ActionType => ActionTypes.NOT_SET;
 
     [Command(ignoreAuthority = true)]
     public virtual void CmdActivate(NetworkConnectionToClient sender = null)

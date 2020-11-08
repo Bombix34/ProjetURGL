@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class TakeInInventoryActivatable : BaseActivatable, IItemContainer
 {
+    public override ActionTypes ActionType => ActionTypes.TAKE_ITEM;
+
     [SerializeField]
     [NotNull]
     private ItemScriptableObject item;
 
     public ItemScriptableObject Item { get => item; set => item = value; }
 
-    private void Start()
-    {
-        this.type = ActionTypes.TAKE_ITEM;
-    }
     internal override void OnActivate(NetworkConnectionToClient sender)
     {
         var inventory = sender.identity.GetComponent<Inventory>();
