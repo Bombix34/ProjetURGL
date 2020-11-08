@@ -35,6 +35,7 @@ public class PNJManager : ObjectManager, ICaughtable
     {
         if (!isServer)
             return;
+        Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
         UpdatePNJRotation();
         if (currentState == null)
             return;

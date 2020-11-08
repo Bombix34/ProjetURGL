@@ -17,7 +17,7 @@ public class PlayerSettings : ScriptableObject
     public float MovementSpeedWithValuableItemMultiplier;
 
     [Header("MOVEMENT PNJ SETTINGS")]
-    [Range(1f, 500f)]
+    [Range(0f, 50f)]
     public float pnjSpeedMultiplicator;
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultCameraConfig
   m_EditorClassIdentifier: 
   offsetZ: -0.5
-  smoothness: 0.3
+  smoothness: 0.1
   introSmoothness: 0.01
   introStartPosition: {x: 0, y: 0}
   introDurationOnValuableObject: 1
