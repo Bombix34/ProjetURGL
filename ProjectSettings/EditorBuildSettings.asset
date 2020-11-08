@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene/TestScene-ValuableItem.unity
     guid: 751e0d8bc547f044c8d4811ccc50edc9
+  - enabled: 1
+    path: Assets/Scenes/TestScene/TestScene-Pnj.unity
+    guid: ecbc860ceb984b3479b47804d0c90a6f
   m_configObjects: {}

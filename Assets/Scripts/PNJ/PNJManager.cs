@@ -57,6 +57,6 @@ public class PNJManager : ObjectManager, ICaughtable
     [Server]
     public void GetCaught()
     {
-        this.gameObject.SetActive(false);
+        NetworkServer.Destroy(gameObject);
     }
 }

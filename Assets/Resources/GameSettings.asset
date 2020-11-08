@@ -17,4 +17,5 @@ MonoBehaviour:
   GameScenes:
   - TestScene
   - TestScene-General
+  - TestScene-Pnj
   - TestScene-ValuableItem
