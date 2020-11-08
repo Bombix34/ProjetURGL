@@ -15,12 +15,7 @@ public class ActionConfiguration
     {
         get
         {
-            if (lastActionTime is null)
-            {
-                return false;
-            }
-
-            return (lastActionTime + cooldown) < Time.time;
+            return TimeUntilNextAction != 0;
         }
     }
     private float? lastActionTime;

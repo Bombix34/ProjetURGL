@@ -2,6 +2,7 @@
 using Mirror;
 using System;
 using System.Linq;
+using System.IO;
 
 /*
 	Documentation: https://mirror-networking.com/docs/Components/NetworkRoomManager.html
@@ -21,8 +22,10 @@ using System.Linq;
 public class CustomNetworkRoomManager : NetworkRoomManager
 {
     [SerializeField]
+    [NotNull]
     private GameSettings settings = null;
     private bool quitting = false;
+
 
     #region Server Callbacks
 
@@ -234,6 +237,20 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     public override void OnGUI()
     {
         base.OnGUI();
+
+        GUILayout.BeginArea(new Rect(Screen.width - 210f, 40f, 200f, 30f));
+        var sceneName = Path.GetFileNameWithoutExtension(GameplayScene);
+        if (GUILayout.Button(sceneName))
+        {
+            var index = this.settings.GameScenes.IndexOf(GameplayScene) + 1;
+            if (index >= this.settings.GameScenes.Count)
+            {
+                index = 0;
+            }
+
+            this.GameplayScene = this.settings.GameScenes[index];
+        }
+        GUILayout.EndArea();
     }
 
     #endregion

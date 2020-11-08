@@ -24,9 +24,9 @@ public class IntroCameraMovements : BaseCameraMovements
     public IntroCameraMovements(Transform transform, float smoothness, float offsetZ, IEnumerable<Vector2> targetsPositions, float waitingDuration, Action onFinish) : base(transform, smoothness, offsetZ)
     {
         this._targetsPositions = new Stack<Vector2>(targetsPositions);
-        this.NextTarget();
         _waitingDuration = waitingDuration;
         _onFinish = onFinish;
+        this.NextTarget();
     }
 
     public override void Move()

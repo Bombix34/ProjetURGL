@@ -20,7 +20,6 @@ public class PlayerManager : ObjectManager, IPlayerManager
 
     private PlayerClickInput clickInteractionManager;
     private InteractionZone interactionTriggerZone;
-    private readonly WaitCoroutine _waitCoroutine = new WaitCoroutine(3);
 
     public Rigidbody2D Body { get; private set; }
     public string PlayerName { get => playerName; }
@@ -64,7 +63,6 @@ public class PlayerManager : ObjectManager, IPlayerManager
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(this._waitCoroutine.Wait());
             clickInteractionManager.TryPerformInteraction();
         }
         //----------------------
@@ -79,9 +77,11 @@ public class PlayerManager : ObjectManager, IPlayerManager
     [Command]
     private void CmdDropItem()
     {
-        //to change
-        var inventory = GetComponent<Inventory>();
-        var item = inventory.Items.First();
+        var item = inventory.GetValuableItem();
+        if(item is null)
+        {
+            return;
+        }
         inventory.DropItem(item);
     }
 
