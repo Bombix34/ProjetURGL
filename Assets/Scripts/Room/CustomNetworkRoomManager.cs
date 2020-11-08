@@ -242,7 +242,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         var sceneName = Path.GetFileNameWithoutExtension(GameplayScene);
         if (GUILayout.Button(sceneName))
         {
-            var index = this.settings.GameScenes.IndexOf(GameplayScene) + 1;
+            var index = this.settings.GameScenes.IndexOf(sceneName) + 1;
             if (index >= this.settings.GameScenes.Count)
             {
                 index = 0;
