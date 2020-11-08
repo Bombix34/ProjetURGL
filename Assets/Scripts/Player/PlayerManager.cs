@@ -119,5 +119,5 @@ public abstract class PlayerManager : ObjectManager
         interactionTriggerZone.ColliderRadius = settings.FogOfWarSize * FOG_OF_WAR_SIZE_COLLIDER_MULTIPLIER;
     }
 
-    public virtual void OnPressAlternateActionButton() { }
+    protected virtual void OnPressAlternateActionButton() { }
 }

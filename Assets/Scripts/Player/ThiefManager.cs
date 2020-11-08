@@ -22,7 +22,7 @@ public class ThiefManager : PlayerManager, ICaughtable
         }
     }
 
-    public override void OnPressAlternateActionButton()
+    protected override void OnPressAlternateActionButton()
     {
         this.CmdDropValuableItem();
     }
