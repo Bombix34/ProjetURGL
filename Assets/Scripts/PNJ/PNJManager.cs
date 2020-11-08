@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PNJManager : ObjectManager, IPlayerManager
+public class PNJManager : ObjectManager, ICaughtable
 {
     [SerializeField]
     [NotNull] 

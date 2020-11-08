@@ -111,7 +111,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         {
             GameManager.Instance.AddThief(player);
         }
-        player.GetComponent<PlayerManager>().Init(roomPlayerData.PlayerIndentifier, roomPlayerData.PlayerType);
+        player.GetComponent<PlayerManager>().Init(roomPlayerData.PlayerIndentifier);
         NetworkServer.AddPlayerForConnection(conn, player);
         return player;
     }

@@ -4,86 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerManager : ObjectManager, IPlayerManager
+public abstract class PlayerManager : ObjectManager
 {
+    private const float FOG_OF_WAR_SIZE_COLLIDER_MULTIPLIER = 0.95f;
+    [SerializeField]
+    [NotNull]
+    protected PlayerSettings settings;
+
     [SyncVar]
     private string playerName;
-    [SyncVar]
-    private PlayerType playerType;
-    [SerializeField]
-    protected PlayerSettings settings;
+
     public static PlayerManager localPlayer;
     public CharacterRenderer Renderer { get; private set; }
     public Animator Animator { get; private set; }
     public NetworkAnimator NetworkAnimator { get; private set; }
-    private Inventory inventory;
+    protected Inventory inventory;
 
     private PlayerClickInput clickInteractionManager;
     private InteractionZone interactionTriggerZone;
+    private CameraManager cameraManager;
 
     public Rigidbody2D Body { get; private set; }
     public string PlayerName { get => playerName; }
-    public PlayerType PlayerType { get => playerType; }
-
-    protected void Start()
-    {
-        Renderer = GetComponentInChildren<CharacterRenderer>();
-        if (!hasAuthority)
-            return;
-        localPlayer = this;
-        Body = GetComponent<Rigidbody2D>();
-        this.inventory = GetComponent<Inventory>();
-        Animator = GetComponent<Animator>();
-        NetworkAnimator = GetComponent<NetworkAnimator>();
-        var cameraManager = Camera.main.GetComponent<CameraManager>();
-        clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
-        interactionTriggerZone = Camera.main.GetComponentInChildren<InteractionZone>();
-        interactionTriggerZone.PlayerController = this.gameObject;
-        Renderer.InitPlayerCharacterRenderer();
-        cameraManager?.Init(transform);
-        cameraManager?.StartIntro();
-        ChangeFieldOfViewSize();
-        ChangeState(new PlayerIdleState(this));
-        RoomPlayerVivox.Instance.StartGame(settings.PlayerType);
-    }
-
-    protected override void Update()
-    {
-        if (!hasAuthority)
-            return;
-        if (currentState == null)
-            return;
-        currentState.Execute();
-
-        //temporaire------------
-        ChangeFieldOfViewSize();
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            this.CmdDropItem();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            clickInteractionManager.TryPerformInteraction();
-        }
-        //----------------------
-    }
-
-    public void Init(string playerName, PlayerType playerType)
-    {
-        this.playerName = playerName;
-        this.playerType = playerType;
-    }
-
-    [Command]
-    private void CmdDropItem()
-    {
-        var item = inventory.GetValuableItem();
-        if(item is null)
-        {
-            return;
-        }
-        inventory.DropItem(item);
-    }
+    public PlayerType PlayerType { get => settings.PlayerType; }
 
     public Vector2 MovementInput
     {
@@ -114,6 +57,57 @@ public class PlayerManager : ObjectManager, IPlayerManager
         }
     }
 
+    public void Init(string playerName)
+    {
+        this.playerName = playerName;
+    }
+
+    protected abstract void OnStart();
+
+    protected void Start()
+    {
+        Renderer = GetComponentInChildren<CharacterRenderer>();
+        this.OnStart();
+        if (!hasAuthority)
+            return;
+        localPlayer = this;
+        Body = GetComponent<Rigidbody2D>();
+        inventory = GetComponent<Inventory>();
+        Animator = GetComponent<Animator>();
+        NetworkAnimator = GetComponent<NetworkAnimator>();
+        cameraManager = Camera.main.GetComponent<CameraManager>();
+        clickInteractionManager = GetComponentInChildren<PlayerClickInput>();
+        interactionTriggerZone = Camera.main.GetComponentInChildren<InteractionZone>();
+        interactionTriggerZone.PlayerController = this.gameObject;
+        Renderer.InitPlayerCharacterRenderer();
+        cameraManager.Init(transform);
+        cameraManager.StartIntro();
+        ChangeFieldOfViewSize();
+        ChangeState(new PlayerIdleState(this));
+        RoomPlayerVivox.Instance.StartGame(settings.PlayerType);
+    }
+
+    protected override void Update()
+    {
+        if (!hasAuthority)
+            return;
+        if (currentState == null)
+            return;
+        currentState.Execute();
+
+        //temporaire------------
+        ChangeFieldOfViewSize();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.OnPressAlternateActionButton();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            clickInteractionManager.TryPerformInteraction();
+        }
+        //----------------------
+    }
+
     /// <summary>
     /// change la taille du field of view pour correspondre aux settings
     /// : sur le field of view pour le rendu
@@ -121,24 +115,9 @@ public class PlayerManager : ObjectManager, IPlayerManager
     /// </summary>
     private void ChangeFieldOfViewSize()
     {
-        var cameraManager = Camera.main.GetComponent<CameraManager>();
         cameraManager.FieldOfViewManager.ViewSize = settings.FogOfWarSize;
-        interactionTriggerZone.ColliderRadius = settings.FogOfWarSize*0.95f;
+        interactionTriggerZone.ColliderRadius = settings.FogOfWarSize * FOG_OF_WAR_SIZE_COLLIDER_MULTIPLIER;
     }
 
-    [Server]
-    public void GetCaught()
-    {
-        this.RpcDisable();
-    }
-
-    [ClientRpc]
-    private void RpcDisable()
-    {
-        this.gameObject.SetActive(false);
-        if (isLocalPlayer)
-        {
-            CameraManager.Instance.NextPlayer();
-        }
-    }
+    public virtual void OnPressAlternateActionButton() { }
 }
