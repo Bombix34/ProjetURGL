@@ -9,6 +9,7 @@ public abstract class BaseSwitch : MonoBehaviour
     [SerializeField]
     private List<TagSelection> tagSelections = new List<TagSelection>();
     [SerializeField]
+    [NotNull]
     private BaseActivatable activatable = null;
 
     public BaseActivatable Activatable { get => activatable; }

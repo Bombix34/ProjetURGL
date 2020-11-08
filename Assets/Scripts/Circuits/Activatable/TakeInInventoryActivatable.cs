@@ -1,9 +1,10 @@
 ﻿using Mirror;
 using UnityEngine;
 
-public class TakeInInventoryActivatable : BaseActivatable
+public class TakeInInventoryActivatable : BaseActivatable, IItemContainer
 {
     [SerializeField]
+    [NotNull]
     private ItemScriptableObject item;
 
     public ItemScriptableObject Item { get => item; set => item = value; }

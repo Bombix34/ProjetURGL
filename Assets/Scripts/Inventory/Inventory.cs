@@ -58,7 +58,7 @@ public class Inventory : NetworkBehaviour
     public void InstantiateValuableItem(ItemScriptableObject item)
     {
         var itemGameObject = Instantiate(valuableItemPrefab, transform.position, transform.rotation);
-        itemGameObject.GetComponent<ValuableItem>().Item = item;
+        itemGameObject.GetComponent<IItemContainer>().Item = item;
         NetworkServer.Spawn(itemGameObject);
     }
 
