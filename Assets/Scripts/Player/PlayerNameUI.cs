@@ -17,7 +17,7 @@ public class PlayerNameUI : MonoBehaviour
     {
         var playerManager = GetComponent<PlayerManager>();
         yield return new WaitUntil(() => PlayerManager.localPlayer != null);
-        if (playerManager.PlayerType == PlayerType.THIEF && PlayerManager.localPlayer.PlayerType == PlayerType.VIGIL)
+        if (PlayerManager.localPlayer.PlayerType != playerManager.PlayerType)
         {
             yield break;
         }
