@@ -14,7 +14,7 @@ public class CaughtThiefActivatable : BaseActivatable
             GameManager.Instance.RemoveThief(gameObject);
         }
 
-        GetComponent<IPlayerManager>().GetCaught();
+        GetComponent<ICaughtable>().GetCaught();
     }
 
     internal override void OnDeactivate(NetworkConnectionToClient sender)
