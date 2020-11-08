@@ -49,10 +49,11 @@ public abstract class PlayerManager : ObjectManager
             }
             inputVector *= Time.fixedDeltaTime;
 
-            if (this.inventory.HasValuableItem)
-            {
-                inputVector *= this.settings.MovementSpeedWithValuableItemMultiplier;
-            }
+            //TO DO REMOVE?
+            //if (this.inventory.HasValuableItem)
+            //{
+            //    inputVector *= this.settings.MovementSpeedWithValuableItemMultiplier;
+            //}
             return inputVector;
         }
     }
