@@ -67,12 +67,12 @@ public abstract class PlayerManager : ObjectManager
     protected void Start()
     {
         Renderer = GetComponentInChildren<CharacterRenderer>();
+        inventory = GetComponent<Inventory>();
         this.OnStart();
         if (!hasAuthority)
             return;
         localPlayer = this;
         Body = GetComponent<Rigidbody2D>();
-        inventory = GetComponent<Inventory>();
         Animator = GetComponent<Animator>();
         NetworkAnimator = GetComponent<NetworkAnimator>();
         cameraManager = Camera.main.GetComponent<CameraManager>();
