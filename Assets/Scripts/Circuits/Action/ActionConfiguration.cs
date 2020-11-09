@@ -7,43 +7,21 @@ public class ActionConfiguration
     [SerializeField]
     private ActionTypes actionType = ActionTypes.NOT_SET;
     [SerializeField]
-    private float cooldown = 0;
+    private WaitingActionConfigurationParameter waitingActionConfigurationParameter = null;
+    [SerializeField]
+    private ChargeActionConfigurationParameter chargeActionConfigurationParameter = null;
 
     public ActionTypes ActionType => actionType;
-    public float Cooldown => cooldown;
-    public bool Waiting
-    {
-        get
-        {
-            return TimeUntilNextAction != 0;
-        }
-    }
-    private float? lastActionTime;
-    public float TimeUntilNextAction
-    {
-        get
-        {
-            if (lastActionTime is null)
-            {
-                return 0;
-            }
-
-            var timeUntilNextAction = (lastActionTime.Value + cooldown) - Time.time;
-            if(timeUntilNextAction < 0)
-            {
-                timeUntilNextAction = 0;
-            }
-            return timeUntilNextAction;
-        }
-    }
 
     public bool CanDoAction()
     {
-        return Waiting == false;
+        return this.waitingActionConfigurationParameter.CanDoAction() 
+            && this.chargeActionConfigurationParameter.CanDoAction();
     }
 
     public void OnAction()
     {
-        this.lastActionTime = Time.time;
+        this.waitingActionConfigurationParameter.OnAction();
+        this.chargeActionConfigurationParameter.OnAction();
     }
 }
