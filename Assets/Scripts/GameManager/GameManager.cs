@@ -5,8 +5,21 @@ using UnityEngine;
 public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
+    [SyncVar]
+    private GameState gameState;
+
+    public GameState GameState { get => gameState; set => gameState = value; }
 
     private readonly SyncList<GameObject> aliveThieves = new SyncList<GameObject>();
+
+    public bool AllowMovements
+    {
+        get
+        {
+            return this.gameState == GameState.PLAYING;
+        }
+    }
+
 
     private void Awake()
     {
@@ -24,7 +37,7 @@ public class GameManager : NetworkBehaviour
     {
         aliveThieves.Remove(player);
 
-        if(aliveThieves.Count == 0)
+        if (aliveThieves.Count == 0)
         {
             this.RpcEndGame(VictoryType.VIGILS_VICTORY);
         }
@@ -32,14 +45,14 @@ public class GameManager : NetworkBehaviour
 
     public GameObject GetNextThief(GameObject previousThief)
     {
-        if(this.aliveThieves.Count == 0)
+        if (this.aliveThieves.Count == 0)
         {
             return null;
         }
 
         var index = this.aliveThieves.IndexOf(previousThief);
         index++;
-        if(index >= this.aliveThieves.Count)
+        if (index >= this.aliveThieves.Count)
         {
             index = 0;
         }
@@ -49,6 +62,7 @@ public class GameManager : NetworkBehaviour
     [ServerCallback]
     public void EndGame(VictoryType victoryType)
     {
+        this.gameState = GameState.END_GAME;
         this.RpcEndGame(victoryType);
     }
 

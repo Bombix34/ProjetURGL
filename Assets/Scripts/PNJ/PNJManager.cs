@@ -28,17 +28,24 @@ public class PNJManager : ObjectManager, ICaughtable
         Agent.speed = Settings.MovementSpeed*Settings.pnjSpeedMultiplicator;
         Animator = GetComponent<Animator>();
         PositionDatas = FindObjectOfType<PNJPositionDatas>();
-        ChangeState(new PNJMoveState(this, PositionDatas.GetPosition()));
     }
 
     protected override void Update()
     {
+        if (!GameManager.Instance.AllowMovements)
+        {
+            ChangeState(new PNJWaitState(this));
+            return;
+        }
+
         if (!isServer)
             return;
         Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
         UpdatePNJRotation();
         if (currentState == null)
-            return;
+        {
+            ChangeState(new PNJMoveState(this, PositionDatas.GetPosition()));
+        }
         currentState.Execute();
     }
 

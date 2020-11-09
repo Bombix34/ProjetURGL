@@ -19,6 +19,7 @@ public class PNJWaitState : PNJState
         manager.Animator.SetTrigger("IDLE");
         manager.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         waitTime = Random.Range(2f, 6f);
+        manager.Agent.ResetPath();
     }
 
     public override void Execute()

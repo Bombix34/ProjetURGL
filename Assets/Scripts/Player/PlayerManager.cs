@@ -90,6 +90,15 @@ public abstract class PlayerManager : ObjectManager
 
     protected override void Update()
     {
+        if(!GameManager.Instance.AllowMovements)
+        {
+            if(currentState != null)
+            {
+                ChangeState(new PlayerIdleState(this));
+            }
+            return;
+        }
+
         if (!hasAuthority)
             return;
         if (currentState == null)

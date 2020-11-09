@@ -42,6 +42,7 @@ public class CameraManager : MonoBehaviour
 
     public void StartGame()
     {
+        GameManager.Instance.GameState = GameState.PLAYING;
         this.cameraMovement = new GameCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, this.playerTransform);
     }
 
