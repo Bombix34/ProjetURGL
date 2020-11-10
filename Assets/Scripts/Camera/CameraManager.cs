@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -23,8 +24,7 @@ public class CameraManager : MonoBehaviour
     {
         FieldOfView = GetComponentInChildren<FieldOfView>();
     }
-
-    private void Update()
+    private void FixedUpdate()
     {
         cameraMovement.Move();
     }
@@ -34,15 +34,14 @@ public class CameraManager : MonoBehaviour
         this.playerTransform = transform;
     }
 
-    public void StartIntro()
+    public void StartIntro(Action callback)
     {
-        var valuableItemsPositions = FindObjectsOfType<ValuableItem>().Select(q => (Vector2)q.transform.position).ToList();
-        this.cameraMovement = new IntroCameraMovements(transform, cameraConfig.IntroSmoothness, cameraConfig.OffsetZ, valuableItemsPositions, cameraConfig.IntroDurationOnValuableObject, this.StartGame);
+        var valuableItemsPositions = FindObjectsOfType<ValuableItem>().OrderBy(q => q.name).Select(q => (Vector2)q.transform.position).ToList();
+        this.cameraMovement = new IntroCameraMovements(transform, cameraConfig.IntroSmoothness, cameraConfig.OffsetZ, valuableItemsPositions, cameraConfig.IntroDurationOnValuableObject, callback);
     }
 
-    public void StartGame()
+    public void StartPlaying()
     {
-        GameManager.Instance.GameState = GameState.PLAYING;
         this.cameraMovement = new GameCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, this.playerTransform);
     }
 

@@ -3,6 +3,7 @@ using Mirror;
 using System;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 /*
 	Documentation: https://mirror-networking.com/docs/Components/NetworkRoomManager.html
@@ -61,11 +62,26 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <param name="conn">The connection that disconnected.</param>
     public override void OnRoomServerDisconnect(NetworkConnection conn) { }
 
+    public override void OnServerChangeScene(string newSceneName)
+    {
+        if(newSceneName == this.GameplayScene)
+        {
+            LoadingManager.Instance.Enable();
+        }
+        base.OnServerChangeScene(newSceneName);
+    }
+
     /// <summary>
     /// This is called on the server when a networked scene finishes loading.
     /// </summary>
     /// <param name="sceneName">Name of the new scene.</param>
-    public override void OnRoomServerSceneChanged(string sceneName) { }
+    public override void OnRoomServerSceneChanged(string sceneName)
+    {
+        if (sceneName == this.onlineScene)
+        {
+            LoadingManager.Instance?.ResetPlayerLoadedCounter();
+        }
+    }
 
     /// <summary>
     /// This allows customization of the creation of the room-player object on the server.
@@ -107,7 +123,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         GameObject player = startPos != null
             ? Instantiate(prefabPlayer, startPos, Quaternion.identity)
             : Instantiate(prefabPlayer);
-        if(roomPlayerData.PlayerType == PlayerType.THIEF)
+        if (roomPlayerData.PlayerType == PlayerType.THIEF)
         {
             GameManager.Instance.AddThief(player);
         }
@@ -120,7 +136,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     {
         var a = FindObjectsOfType<StartPosition>();
         var startPositions = FindObjectsOfType<StartPosition>().Where(q => q.PlayerType == playerType).ToArray();
-        if(startPositions.Length == 0)
+        if (startPositions.Length == 0)
         {
             Debug.LogError($"No start position for playerType : {playerType}");
             return Vector3.zero;
@@ -218,11 +234,26 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         base.OnApplicationQuit();
     }
 
+    public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
+    {
+        if (newSceneName == this.GameplayScene)
+        {
+            LoadingManager.Instance.Enable();
+        }
+        base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
+    }
+
     /// <summary>
     /// This is called on the client when the client is finished loading a new networked scene.
     /// </summary>
     /// <param name="conn">The connection that finished loading a new networked scene.</param>
-    public override void OnRoomClientSceneChanged(NetworkConnection conn) { }
+    public override void OnRoomClientSceneChanged(NetworkConnection conn)
+    {
+        if (SceneManager.GetActiveScene().path == this.GameplayScene)
+        {
+            LoadingManager.Instance.CmdPlayerReady();
+        }
+    }
 
     /// <summary>
     /// Called on the client when adding a player to the room fails.
@@ -252,6 +283,5 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         }
         GUILayout.EndArea();
     }
-
     #endregion
 }
