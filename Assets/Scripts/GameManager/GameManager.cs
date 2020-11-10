@@ -6,7 +6,7 @@ public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
     [SyncVar]
-    private GameState gameState;
+    private GameState gameState = GameState.LOADING;
 
     public GameState GameState { get => gameState; set => gameState = value; }
 
@@ -24,6 +24,26 @@ public class GameManager : NetworkBehaviour
     private void Awake()
     {
         GameManager.Instance = this;
+    }
+
+    [ClientRpc]
+    public void RpcStartIntroduction()
+    {
+        this.GameState = GameState.INTRODUCTION;
+        CameraManager.Instance.StartIntro(OnEndIntroduction);
+    }
+
+    [ServerCallback]
+    public void OnEndIntroduction()
+    {
+        this.RpcStartPlaying();
+    }
+    
+    [ClientRpc]
+    public void RpcStartPlaying()
+    {
+        this.GameState = GameState.PLAYING;
+        CameraManager.Instance.StartPlaying();
     }
 
     [Server]

@@ -82,7 +82,6 @@ public abstract class PlayerManager : ObjectManager
         interactionTriggerZone.PlayerController = this.gameObject;
         Renderer.InitPlayerCharacterRenderer();
         cameraManager.Init(transform);
-        cameraManager.StartIntro();
         ChangeFieldOfViewSize();
         ChangeState(new PlayerIdleState(this));
         RoomPlayerVivox.Instance.StartGame(settings.PlayerType);

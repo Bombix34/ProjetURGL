@@ -32,14 +32,15 @@ public class PNJManager : ObjectManager, ICaughtable
 
     protected override void Update()
     {
+        if (!isServer)
+            return;
+
         if (!GameManager.Instance.AllowMovements)
         {
             ChangeState(new PNJWaitState(this));
             return;
         }
 
-        if (!isServer)
-            return;
         Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
         UpdatePNJRotation();
         if (currentState == null)
