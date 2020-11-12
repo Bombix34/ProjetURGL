@@ -9,6 +9,7 @@ TagManager:
   - PositionTrigger
   - PNJ
   - Item
+  - Door
   layers:
   - Default
   - TransparentFX
