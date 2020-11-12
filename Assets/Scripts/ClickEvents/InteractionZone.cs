@@ -26,8 +26,8 @@ public class InteractionZone : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (obj == PlayerController)
             return;
-        UpdateVisibleObjects();
         TriggerEnterZone(obj);
+        UpdateVisibleObjects();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -35,8 +35,8 @@ public class InteractionZone : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (obj == PlayerController || visibleObjects.Contains(obj))
             return;
-        UpdateVisibleObjects();
         TriggerEnterZone(obj);
+        UpdateVisibleObjects();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -44,14 +44,15 @@ public class InteractionZone : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (obj == PlayerController)
             return;
-        UpdateVisibleObjects();
         TriggerExitZone(obj);
+        UpdateVisibleObjects();
     }
 
     #endregion
 
     private void TriggerEnterZone(GameObject obj)
     {
+        Debug.Log(obj.tag);
         if (obj.CompareTag("Item"))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
@@ -73,6 +74,14 @@ public class InteractionZone : MonoBehaviour
             visibleObjects.Add(obj);
             obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
         }
+        else if(obj.CompareTag("Door"))
+        {
+            Debug.Log("door: " + obj.gameObject);
+            if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
+                return;
+            visibleObjects.Add(obj);
+            obj.GetComponentInParent<FogVisibilityRenderer>().SwitchVisibility(true);
+        }
     }
 
     private void TriggerExitZone(GameObject obj)
@@ -85,7 +94,7 @@ public class InteractionZone : MonoBehaviour
         else if (obj.CompareTag("PNJ") || obj.CompareTag("Thief"))
         {
             visibleObjects.Remove(obj);
-            if(obj.GetComponentInChildren<CharacterRenderer>()!=null)
+            if (obj.GetComponentInChildren<CharacterRenderer>() != null)
                 obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
         }
         else if (obj.CompareTag("Vigil"))
@@ -93,6 +102,11 @@ public class InteractionZone : MonoBehaviour
             visibleObjects.Remove(obj);
             if (obj.GetComponentInChildren<CharacterRenderer>() != null)
                 obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
+        }
+        else if (obj.CompareTag("Door"))
+        {
+            visibleObjects.Remove(obj);
+            obj.GetComponentInParent<FogVisibilityRenderer>().SwitchVisibility(false);
         }
     }
 

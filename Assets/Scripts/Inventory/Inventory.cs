@@ -1,10 +1,15 @@
 ﻿using Mirror;
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class Inventory : NetworkBehaviour
 {
     [SerializeField]
+    [NotNull]
+    private GameObject normalItemPrefab = null;
+    [SerializeField]
+    [NotNull]
     private GameObject valuableItemPrefab = null;
     private readonly SyncList<ItemScriptableObject> _items = new SyncList<ItemScriptableObject>();
 
@@ -37,27 +42,49 @@ public class Inventory : NetworkBehaviour
         this._items.Remove(item);
     }
 
-
-    [Server]
-    public void DropItem(ItemScriptableObject item)
+    public void DropAllItems(bool deathDrop = false)
     {
-        switch (item.Type)
+        var itemListCopy = _items.ToList();
+        foreach (var item in itemListCopy)
         {
-            case ItemScriptableObject.ItemType.NORMAL_ITEM:
-                break;
-            case ItemScriptableObject.ItemType.VALUABLE_ITEM:
-                this.InstantiateValuableItem(item);
-                this.RemoveItem(item);
-                break;
-            default:
-                break;
+            this.DropItem(item, deathDrop);
         }
     }
 
+
     [Server]
-    public void InstantiateValuableItem(ItemScriptableObject item)
+    public void DropItem(ItemScriptableObject item, bool deathDrop)
     {
-        var itemGameObject = Instantiate(valuableItemPrefab, transform.position, transform.rotation);
+        if (item.CanBeDrop == false)
+        {
+            return;
+        }
+        GameObject prefabToInstantiate;
+        switch (item.Type)
+        {
+            case ItemType.NORMAL_ITEM:
+                prefabToInstantiate = normalItemPrefab;
+                break;
+            case ItemType.VALUABLE_ITEM:
+                prefabToInstantiate = valuableItemPrefab;
+                break;
+            default:
+                throw new NotImplementedException($"The item type {item.Type} is not implemented");
+        }
+
+        this.InstantiateItem(prefabToInstantiate, item, deathDrop);
+        this.RemoveItem(item);
+    }
+
+    private void InstantiateItem(GameObject prefabToInstantiate, ItemScriptableObject item, bool deathDrop)
+    {
+        Vector3 position = transform.position;
+        if (deathDrop)
+        {
+            position = item.InitialPosition.Value;
+        }
+
+        var itemGameObject = Instantiate(prefabToInstantiate, position, transform.rotation);
         itemGameObject.GetComponent<IItemContainer>().Item = item;
         NetworkServer.Spawn(itemGameObject);
     }
