@@ -84,12 +84,12 @@ MonoBehaviour:
     shadowType: 2
     maskType: 1
     shadowDistance: 0
-    transform: {fileID: 8838879969694344038}
+    transform: {fileID: 1912538092484009799}
   shapes:
   - shadowType: 2
     maskType: 1
     shadowDistance: 0
-    transform: {fileID: 8838879969694344038}
+    transform: {fileID: 1912538092484009799}
   bumpMapMode:
     type: 0
     textureType: 0

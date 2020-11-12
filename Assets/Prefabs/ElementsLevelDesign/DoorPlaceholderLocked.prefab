@@ -27,6 +27,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorPlaceholderLocked
       objectReference: {fileID: 0}
+    - target: {fileID: 3262422244410940795, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262422244410940795, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262422244410940795, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3470626512202925927, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
         type: 3}
       propertyPath: m_AssetId
@@ -50,6 +65,21 @@ PrefabInstance:
     - target: {fileID: 5425505222538879127, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902485784130154810, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902485784130154810, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902485784130154810, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
+        type: 3}
+      propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7622361104869045954, guid: 8f2c8da0dc5fb194a9fd952cabc569d6,
