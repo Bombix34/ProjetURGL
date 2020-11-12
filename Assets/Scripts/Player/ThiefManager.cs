@@ -9,6 +9,7 @@ public class ThiefManager : PlayerManager, ICaughtable
     [Server]
     public void GetCaught()
     {
+        this.inventory.DropAllItems(true);
         this.RpcDisable();
     }
 
@@ -35,6 +36,6 @@ public class ThiefManager : PlayerManager, ICaughtable
         {
             return;
         }
-        inventory.DropItem(item);
+        inventory.DropItem(item, false);
     }
 }

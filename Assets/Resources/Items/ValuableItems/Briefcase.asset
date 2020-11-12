@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07cbc3cd7f733c94c8d48210117d50b8, type: 3}
-  m_Name: KeyCard
+  m_Name: Briefcase
   m_EditorClassIdentifier: 
-  ItemName: KeyCard
-  Type: 0
+  itemName: Briefcase
+  type: 1
+  sprite: {fileID: 21300000, guid: fa7dc8276bde7f84eadc8f5997fc6f8e, type: 3}
