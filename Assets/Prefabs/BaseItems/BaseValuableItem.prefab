@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2d766b57b82049a90dd3bb99c602f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  item: {fileID: 11400000, guid: 26f0e62435d15ef44a15b73e398dd06c, type: 2}
+  spriteRenderer: {fileID: 281342736317944180}
 --- !u!1001 &3633168171304723328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,11 +115,18 @@ PrefabInstance:
       propertyPath: itemType
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5088270304937581335, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
 --- !u!1 &652287626893680915 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4280388973731168915, guid: a7242af9023042544bec4cd31e31c4f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3633168171304723328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &281342736317944180 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3570259982312125172, guid: a7242af9023042544bec4cd31e31c4f7,
     type: 3}
   m_PrefabInstance: {fileID: 3633168171304723328}
   m_PrefabAsset: {fileID: 0}

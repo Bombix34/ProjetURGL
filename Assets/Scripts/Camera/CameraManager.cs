@@ -36,7 +36,7 @@ public class CameraManager : MonoBehaviour
 
     public void StartIntro(Action callback)
     {
-        var valuableItemsPositions = FindObjectsOfType<ValuableItem>().OrderBy(q => q.name).Select(q => (Vector2)q.transform.position).ToList();
+        var valuableItemsPositions = FindObjectsOfType<NetworkValuableItem>().OrderBy(q => q.name).Select(q => (Vector2)q.transform.position).ToList();
         this.cameraMovement = new IntroCameraMovements(transform, cameraConfig.IntroSmoothness, cameraConfig.OffsetZ, valuableItemsPositions, cameraConfig.IntroDurationOnValuableObject, callback);
     }
 
