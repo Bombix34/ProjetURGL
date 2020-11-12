@@ -52,7 +52,6 @@ public class InteractionZone : MonoBehaviour
 
     private void TriggerEnterZone(GameObject obj)
     {
-        Debug.Log(obj.tag);
         if (obj.CompareTag("Item"))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
@@ -76,7 +75,6 @@ public class InteractionZone : MonoBehaviour
         }
         else if(obj.CompareTag("Door"))
         {
-            Debug.Log("door: " + obj.gameObject);
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
             visibleObjects.Add(obj);

@@ -10,7 +10,7 @@ public class TakeInInventoryActivatable : BaseActivatable, IItemContainer
     [NotNull]
     private ItemScriptableObject item;
     [SerializeField]
-    private ItemType itemType;
+    private ItemType itemType = ItemType.NORMAL_ITEM;
     [SyncVar(hook = nameof(ChangeItem))]
     private string itemName;
 

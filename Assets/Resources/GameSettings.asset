@@ -15,7 +15,8 @@ MonoBehaviour:
   VoleurSettings: {fileID: 11400000, guid: 87e6025d34527d44e96a1414168e937f, type: 2}
   AgentSettings: {fileID: 11400000, guid: c8860cc24ffe31643a553c93ef5f3578, type: 2}
   GameScenes:
-  - TestScene
+  - GameScene-02
+  - GameScene-03
   - TestScene-General
   - TestScene-Pnj
   - TestScene-ValuableItem
