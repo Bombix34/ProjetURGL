@@ -64,7 +64,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
 
     public override void OnServerChangeScene(string newSceneName)
     {
-        if(newSceneName == this.GameplayScene)
+        if (SceneComparer.Compare(newSceneName, this.GameplayScene))
         {
             LoadingManager.Instance.Enable();
         }
@@ -77,7 +77,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <param name="sceneName">Name of the new scene.</param>
     public override void OnRoomServerSceneChanged(string sceneName)
     {
-        if (sceneName == this.onlineScene)
+        if (SceneComparer.Compare(sceneName, this.onlineScene))
         {
             LoadingManager.Instance?.ResetPlayerLoadedCounter();
         }
@@ -236,7 +236,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
 
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
     {
-        if (newSceneName == this.GameplayScene)
+        if (IsClientGameScene(newSceneName))
         {
             LoadingManager.Instance.Enable();
         }
@@ -249,10 +249,16 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <param name="conn">The connection that finished loading a new networked scene.</param>
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
     {
-        if (SceneManager.GetActiveScene().path == this.GameplayScene)
+        var newSceneName = SceneManager.GetActiveScene().name;
+        if (IsClientGameScene(newSceneName))
         {
             LoadingManager.Instance.CmdPlayerReady();
         }
+    }
+
+    private bool IsClientGameScene(string newSceneName)
+    {
+        return !SceneComparer.Compare(newSceneName, this.offlineScene) && !SceneComparer.Compare(newSceneName, this.onlineScene);
     }
 
     /// <summary>

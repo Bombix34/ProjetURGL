@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07cbc3cd7f733c94c8d48210117d50b8, type: 3}
-  m_Name: TestValuableItem
+  m_Name: Computer
   m_EditorClassIdentifier: 
-  ItemName: TestValuableItem
-  Type: 1
+  itemName: Computer
+  type: 1
+  sprite: {fileID: 21300000, guid: c66814d9a81b1e849b7eb2831db97141, type: 3}
