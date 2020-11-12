@@ -1,19 +1,38 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "URGL/Item/Item")]
+[System.Serializable]
 public class ItemScriptableObject : ScriptableObject
 {
-    [System.Serializable]
-    public enum ItemType
-    {
-        NORMAL_ITEM,
-        VALUABLE_ITEM
-    }
+    [SerializeField]
+    private string itemName = null;
+    [SerializeField]
+    private ItemType type = ItemType.NORMAL_ITEM;
+    [SerializeField]
+    [NotNull]
+    private Sprite sprite = null;
+    private Vector2? initialPosition = null;
 
-    public string ItemName = "ItemName";
-    public ItemType Type = ItemType.NORMAL_ITEM;
+    public Vector2? InitialPosition
+    {
+        get
+        {
+            return initialPosition;
+        }
+        set
+        {
+            if(initialPosition != null)
+            {
+                return;
+            }
+            initialPosition = value;
+        }
+    }
+    public string ItemName { get => itemName; }
+    public ItemType Type { get => type; }
+    public Sprite Sprite { get => sprite; }
     public bool IsValuableItem => this.Type == ItemType.VALUABLE_ITEM;
+    public bool CanBeDrop => this.initialPosition != null;
 
     public override bool Equals(object obj)
     {
