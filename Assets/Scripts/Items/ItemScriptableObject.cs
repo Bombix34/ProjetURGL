@@ -11,28 +11,14 @@ public class ItemScriptableObject : ScriptableObject
     [SerializeField]
     [NotNull]
     private Sprite sprite = null;
-    private Vector2? initialPosition = null;
+    private Pedestal pedestal;
 
-    public Vector2? InitialPosition
-    {
-        get
-        {
-            return initialPosition;
-        }
-        set
-        {
-            if(initialPosition != null)
-            {
-                return;
-            }
-            initialPosition = value;
-        }
-    }
     public string ItemName { get => itemName; }
     public ItemType Type { get => type; }
     public Sprite Sprite { get => sprite; }
     public bool IsValuableItem => this.Type == ItemType.VALUABLE_ITEM;
-    public bool CanBeDrop => this.initialPosition != null;
+    public bool CanBeDrop => this.Pedestal != null;
+    public Pedestal Pedestal { get => pedestal; set => pedestal = value; }
 
     public override bool Equals(object obj)
     {
