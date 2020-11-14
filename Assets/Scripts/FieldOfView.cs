@@ -18,6 +18,8 @@ public class FieldOfView : MonoBehaviour
 
     public bool IsObjectVisibleFromPlayer(GameObject player, GameObject target)
     {
+       // if (!IsRendererVisibleFromCameraView(target))
+        //    return false;
         float distancePlayerTarget = Vector2.Distance(player.transform.position, target.transform.position);
         Vector2 dir = (target.transform.position - player.transform.position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, dir, viewSize, obstacleMask);
