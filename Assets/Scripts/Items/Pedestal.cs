@@ -21,12 +21,12 @@ public class Pedestal : NetworkBehaviour
         private set
         {
             stolen = value;
-            StolenStateChanged?.Invoke();
+            StolenStateChanged?.Invoke(stolen);
         }
     }
 
     public ItemScriptableObject Item { get; private set; }
-    public Action StolenStateChanged;
+    public Action<bool> StolenStateChanged;
     private bool stolen;
 
     public override void OnStartServer()
