@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,22 +8,39 @@ public class PlayerNameUI : MonoBehaviour
     [SerializeField]
     [NotNull]
     private Text textUi = null;
-    // Start is called before the first frame update
+
+    private bool canBeActivated;
+
     void Start()
     {
-        StartCoroutine(nameof(SetName));
+
+        var playerManager = GetComponent<PlayerManager>();
+        textUi.text = playerManager.PlayerName;
+
+        switch (RoomPlayerData.LocalPlayer.PlayerType)
+        {
+            case PlayerType.THIEF:
+            case PlayerType.SPECTATOR:
+                canBeActivated = true;
+                break;
+            case PlayerType.VIGIL:
+                canBeActivated = playerManager.PlayerType == PlayerType.VIGIL;
+                break;
+            default:
+                throw new NotImplementedException($"The value {RoomPlayerData.LocalPlayer.PlayerType} is not implemented");
+        }
+
+        this.DisplayName(true);
     }
 
-    IEnumerator SetName()
+
+    public void DisplayName(bool active)
     {
-        var playerManager = GetComponent<PlayerManager>();
-        yield return new WaitUntil(() => PlayerManager.localPlayer != null);
-        if (PlayerManager.localPlayer.PlayerType != playerManager.PlayerType)
+        if (!canBeActivated)
         {
-            yield break;
+            return;
         }
-        textUi.gameObject.SetActive(true);
-        textUi.text = playerManager.PlayerName;
+        textUi.gameObject.SetActive(active);
     }
 
 }
