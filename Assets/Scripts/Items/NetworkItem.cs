@@ -1,9 +1,12 @@
 ﻿using Mirror;
 using System;
+using System.IO;
 using UnityEngine;
 
 public class NetworkItem : NetworkBehaviour, IItemContainer
 {
+    private const string RESOURCE_NORMAL_ITEM_PATH = "Items/NormalItems/";
+    private const string RESOURCE_VALUABLE_ITEM_PATH = "Items/ValuableItems/";
     [SerializeField]
     [NotNull]
     protected ItemScriptableObject item;
@@ -12,7 +15,7 @@ public class NetworkItem : NetworkBehaviour, IItemContainer
     private string itemName;
     [SerializeField]
     [NotNull]
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer = null;
     public ItemScriptableObject Item
     {
         get => item;
@@ -23,6 +26,11 @@ public class NetworkItem : NetworkBehaviour, IItemContainer
         }
     }
     public virtual ItemType ItemType => ItemType.NORMAL_ITEM;
+
+    public override void OnStartServer()
+    {
+        item.Pedestal?.SetNetworkItem(this);
+    }
 
     private void ChangeItem(string oldValue, string newValue)
     {
@@ -38,10 +46,10 @@ public class NetworkItem : NetworkBehaviour, IItemContainer
         switch (this.ItemType)
         {
             case ItemType.NORMAL_ITEM:
-                path = $"Items/NormalItems/{newValue}";
+                path = Path.Combine(RESOURCE_NORMAL_ITEM_PATH, newValue);
                 break;
             case ItemType.VALUABLE_ITEM:
-                path = $"Items/ValuableItems/{newValue}";
+                path = Path.Combine(RESOURCE_VALUABLE_ITEM_PATH, newValue);
                 break;
             default:
                 throw new NotImplementedException($"The item type {ItemType} is not implemented");
@@ -59,7 +67,4 @@ public class NetworkItem : NetworkBehaviour, IItemContainer
     {
         spriteRenderer.sprite = item.Sprite;
     }
-
-
-
 }

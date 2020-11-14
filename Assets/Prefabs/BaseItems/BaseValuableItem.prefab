@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8414990906310323090
+--- !u!114 &4515539232625564923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,6 +23,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 801120216770140890, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974260024706041959, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570259982312125172, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c66814d9a81b1e849b7eb2831db97141,
+        type: 3}
     - target: {fileID: 4280388973731168912, guid: a7242af9023042544bec4cd31e31c4f7,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -115,8 +131,30 @@ PrefabInstance:
       propertyPath: itemType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6235618270970770898, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620993625311888041, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: networkItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433618984225255661, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433618984225255661, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.36
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5088270304937581335, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
+    - {fileID: 6516253474353045518, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
+    - {fileID: 7460039446549360974, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
 --- !u!1 &652287626893680915 stripped
 GameObject:

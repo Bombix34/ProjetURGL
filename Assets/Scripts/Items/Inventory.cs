@@ -81,7 +81,7 @@ public class Inventory : NetworkBehaviour
         Vector3 position = transform.position;
         if (deathDrop)
         {
-            position = item.InitialPosition.Value;
+            position = item.Pedestal.ItemInitialPosition;
         }
 
         var itemGameObject = Instantiate(prefabToInstantiate, position, transform.rotation);
