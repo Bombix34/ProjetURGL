@@ -20,6 +20,10 @@ public class Pedestal : NetworkBehaviour
         get => stolen;
         private set
         {
+            if(stolen == value)
+            {
+                return;
+            }
             stolen = value;
             StolenStateChanged?.Invoke(stolen);
         }

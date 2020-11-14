@@ -17,12 +17,19 @@ public class RoomPlayerData : NetworkBehaviour
     public string PlayerIndentifier => this.playerIdentifier;
 
     public PlayerType PlayerType { get => playerType; }
+    public static RoomPlayerData LocalPlayer { get; private set; }
 
     public override void OnStartServer()
     {
         base.OnStartServer();
         this.playerIdentifier = $"Tombeur {Random.Range(1000, 9999)}";
         this.playerType = PlayerType.THIEF;
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        LocalPlayer = this;
     }
 
     [Command]
