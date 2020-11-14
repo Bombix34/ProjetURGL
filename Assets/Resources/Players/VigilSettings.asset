@@ -18,4 +18,4 @@ MonoBehaviour:
   MovementSpeed: 182
   MovementSpeedWithValuableItemMultiplier: 1
   pnjSpeedMultiplicator: 0
-  FogOfWarSize: 10
+  FogOfWarSize: 11

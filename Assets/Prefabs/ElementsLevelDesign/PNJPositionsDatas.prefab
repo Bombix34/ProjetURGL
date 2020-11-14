@@ -94,12 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74940d2cab505aa4c838332d022d95d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectangleSize:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 5.23
-    height: 4.48
+  ZoneType: 0
+  rectangleSize: {x: 0, y: 0}
+  circleRadius: 0
 --- !u!1 &7747453971852719310
 GameObject:
   m_ObjectHideFlags: 0

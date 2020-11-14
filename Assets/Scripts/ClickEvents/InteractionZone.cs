@@ -127,6 +127,42 @@ public class InteractionZone : MonoBehaviour
         {
             TriggerExitZone(old);
         }
+        UpdateThiefWithValuableItemInRange();
+    }
+
+    //detection si le joueur est un vigile qu'un voleur qui a volé est visible
+    private void UpdateThiefWithValuableItemInRange()
+    {
+        if (!PlayerController.CompareTag("Vigil"))
+            return;
+        VigilManager vigilManager = PlayerController.GetComponent<VigilManager>();
+        foreach (var obj in visibleObjects)
+        {
+            if(obj.CompareTag("Thief"))
+            {
+                Inventory thiefInventory = obj.GetComponent<Inventory>();
+                //voleur en vue
+                if (thiefInventory != null && thiefInventory.HasValuableItem)
+                {
+                    //verification de si le voleur était en vue aussi a la frame précédente
+                    if (vigilManager.WarningFeedback == null)
+                    {
+                        GameObject feedback = Instantiate(Resources.Load("FX/WarningFeedback", typeof(GameObject)) as GameObject, PlayerController.transform);
+                        feedback.transform.parent = PlayerController.transform;
+                        vigilManager.WarningFeedback = feedback;
+                        return;
+                    }
+                    else
+                        return;
+                }
+            }
+        }
+        //voleur était en vue mais ne l'est plus
+        if (vigilManager.WarningFeedback != null)
+        {
+            vigilManager.WarningFeedback.GetComponent<WarningFeedback>().DestroyFeedback();
+            vigilManager.WarningFeedback = null;
+        }
     }
 
     public float ColliderRadius
