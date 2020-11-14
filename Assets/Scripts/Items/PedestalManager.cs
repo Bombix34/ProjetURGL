@@ -1,41 +1,48 @@
 ﻿using Mirror;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public class PedestalManager : NetworkBehaviour
 {
     private readonly List<Pedestal> pedestals = new List<Pedestal>();
-    [SyncVar(hook = nameof(OnHasAnyValuableItemsStolenChange))]
-    private bool hasAnyValuableItemsStolen;
-    public bool HasAnyValuableItemsStolen { get => hasAnyValuableItemsStolen; }
     public static PedestalManager Instance;
+    public Action onItemStolen;
+    public Action onItemRetrieve;
 
     public override void OnStartServer()
     {
-        print("OnStartServer");
         Instance = this;
     }
 
+    [Server]
     public void Register(Pedestal pedestal)
     {
         this.pedestals.Add(pedestal);
         pedestal.StolenStateChanged += this.RefreshPedestal;
     }
 
-    private void RefreshPedestal()
+    [Server]
+    private void RefreshPedestal(bool pedestalStolen)
     {
-        this.hasAnyValuableItemsStolen = this.pedestals.Any(p => p.Item.IsValuableItem && p.Stolen);
-    }
-
-    private void OnHasAnyValuableItemsStolenChange(bool oldValue, bool newValue)
-    {
-        if (newValue)
+        if (pedestalStolen)
         {
-            print("ALARME_ON");
+            this.RpcOnItemStolen();
         }
         else
         {
-            print("ALARME_OFF");
+            this.RpcOnItemRetrieve();
         }
+    }
+
+    [ClientRpc]
+    private void RpcOnItemStolen()
+    {
+        onItemStolen?.Invoke();
+    }
+
+    [ClientRpc]
+    private void RpcOnItemRetrieve()
+    {
+        onItemRetrieve?.Invoke();
     }
 }
