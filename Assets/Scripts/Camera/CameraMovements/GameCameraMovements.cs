@@ -1,26 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameCameraMovements : BaseCameraMovements
 {
-    private Transform playerTransform;
+    protected Transform playerTransform;
 
     public GameCameraMovements(Transform transform, float smoothness, float offsetZ, Transform playerTransform) : base(transform, smoothness, offsetZ)
     {
         this.playerTransform = playerTransform;
     }
 
+    protected GameCameraMovements(Transform transform, float smoothness, float offsetZ) : base(transform, smoothness, offsetZ)  {}
+
     public override void Move()
     {
-        if (playerTransform)
+        if (!playerTransform)
         {
-            this.MoveToPosition(playerTransform.position);
+            return;
         }
-    }
 
-    public void NextPlayer()
-    {
-        this.playerTransform = GameManager.Instance.GetNextThief(this.playerTransform.gameObject).transform;
+        this.MoveToPosition(playerTransform.position);
     }
 }

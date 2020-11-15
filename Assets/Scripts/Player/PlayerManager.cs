@@ -1,7 +1,5 @@
 ﻿using Mirror;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 
 public abstract class PlayerManager : ObjectManager
@@ -13,6 +11,8 @@ public abstract class PlayerManager : ObjectManager
 
     [SyncVar]
     private string playerName;
+    [SyncVar]
+    private bool alive = true;
 
     public static PlayerManager localPlayer;
     public CharacterRenderer Renderer { get; private set; }
@@ -24,9 +24,20 @@ public abstract class PlayerManager : ObjectManager
     private InteractionZone interactionTriggerZone;
     private CameraManager cameraManager;
 
+    public bool Alive
+    {
+        get => alive; 
+        protected set
+        {
+            alive = value;
+            onAliveChange?.Invoke(this);
+        }
+    }
+
     public Rigidbody2D Body { get; private set; }
     public string PlayerName { get => playerName; }
     public PlayerType PlayerType { get => settings.PlayerType; }
+    public Action<PlayerManager> onAliveChange;
 
     public Vector2 MovementInput
     {
@@ -89,9 +100,9 @@ public abstract class PlayerManager : ObjectManager
 
     protected override void Update()
     {
-        if(!GameManager.Instance.AllowMovements)
+        if (!GameManager.Instance.AllowMovements)
         {
-            if(currentState != null)
+            if (currentState != null)
             {
                 ChangeState(new PlayerIdleState(this));
             }

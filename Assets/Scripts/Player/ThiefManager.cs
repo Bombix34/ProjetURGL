@@ -10,6 +10,7 @@ public class ThiefManager : PlayerManager, ICaughtable
     public void GetCaught()
     {
         this.inventory.DropAllItems(true);
+        this.Alive = false;
         this.RpcDisable();
     }
 
@@ -19,7 +20,7 @@ public class ThiefManager : PlayerManager, ICaughtable
         this.gameObject.SetActive(false);
         if (isLocalPlayer)
         {
-            CameraManager.Instance.NextPlayer();
+            CameraManager.Instance.StartFollowPlayerCameraMovements(PlayerType.THIEF);
         }
     }
 
