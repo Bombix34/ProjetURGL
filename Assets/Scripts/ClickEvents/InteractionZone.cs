@@ -65,6 +65,8 @@ public class InteractionZone : MonoBehaviour
                 return;
             visibleObjects.Add(obj);
             obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
+            if (obj.GetComponent<PlayerNameUI>() != null)
+                obj.GetComponent<PlayerNameUI>().DisplayName(true);
         }
         else if (obj.CompareTag("Vigil"))
         {
@@ -72,6 +74,8 @@ public class InteractionZone : MonoBehaviour
                 return;
             visibleObjects.Add(obj);
             obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
+            if (obj.GetComponent<PlayerNameUI>() != null)
+                obj.GetComponent<PlayerNameUI>().DisplayName(true);
         }
         else if(obj.CompareTag("Door"))
         {
@@ -94,12 +98,16 @@ public class InteractionZone : MonoBehaviour
             visibleObjects.Remove(obj);
             if (obj.GetComponentInChildren<CharacterRenderer>() != null)
                 obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
+            if (obj.GetComponent<PlayerNameUI>() != null)
+                obj.GetComponent<PlayerNameUI>().DisplayName(false);
         }
         else if (obj.CompareTag("Vigil"))
         {
             visibleObjects.Remove(obj);
             if (obj.GetComponentInChildren<CharacterRenderer>() != null)
                 obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(false);
+            if (obj.GetComponent<PlayerNameUI>() != null)
+                obj.GetComponent<PlayerNameUI>().DisplayName(false);
         }
         else if (obj.CompareTag("Door"))
         {

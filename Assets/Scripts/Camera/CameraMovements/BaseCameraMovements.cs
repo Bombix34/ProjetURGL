@@ -14,6 +14,7 @@ public abstract class BaseCameraMovements
         this.Smoothness = smoothness;
         this.OffsetZ = offsetZ;
     }
+    public virtual void Update() { }
 
     public abstract void Move();
 
