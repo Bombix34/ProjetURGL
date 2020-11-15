@@ -9,12 +9,13 @@ public class WarningFeedback : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale = Vector3.zero;
-        Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(transform.DOScale(Vector3.one * 3f, 0.3f))
-            .Append(transform.DOPunchScale(Vector3.one * 5f, 0.2f, 1, 1))
-            .OnComplete(() => isInit = true);
-        mySequence.Play();
+        StartCoroutine(WaitForEndInitAnim());
+    }
+
+    private IEnumerator WaitForEndInitAnim()
+    {
+        yield return new WaitForSeconds(0.75f);
+        isInit = true;
     }
 
     private void Update()
