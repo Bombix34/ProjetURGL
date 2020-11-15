@@ -30,7 +30,10 @@ public class PlayerNameUI : MonoBehaviour
                 throw new NotImplementedException($"The value {RoomPlayerData.LocalPlayer.PlayerType} is not implemented");
         }
 
-        this.DisplayName(true);
+        if(playerManager.PlayerName == RoomPlayerData.LocalPlayer.PlayerIndentifier)
+        {
+            this.DisplayName(true);
+        }
     }
 
 
