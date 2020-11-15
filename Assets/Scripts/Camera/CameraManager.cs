@@ -24,6 +24,10 @@ public class CameraManager : MonoBehaviour
     {
         FieldOfView = GetComponentInChildren<FieldOfView>();
     }
+    private void Update()
+    {
+        cameraMovement.Update();
+    }
     private void FixedUpdate()
     {
         cameraMovement.Move();
@@ -45,16 +49,8 @@ public class CameraManager : MonoBehaviour
         this.cameraMovement = new GameCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, this.playerTransform);
     }
 
-    public void NextPlayer()
+    public void StartFollowPlayerCameraMovements(PlayerType? playerType = null)
     {
-        switch (this.cameraMovement)
-        {
-            case GameCameraMovements gameCameraMovements:
-                gameCameraMovements.NextPlayer();
-                break;
-            default:
-                Debug.LogWarning("Wrong moment to switch player");
-                break;
-        }
+        this.cameraMovement = new FollowPlayerCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, playerType);
     }
 }
