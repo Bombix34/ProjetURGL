@@ -45,4 +45,9 @@ public class PedestalManager : NetworkBehaviour
     {
         onItemRetrieve?.Invoke();
     }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 }

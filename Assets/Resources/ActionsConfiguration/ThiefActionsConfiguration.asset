@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurations:
   - actionType: 2
-    cooldown: 0
+    waitingActionConfigurationParameter:
+      enabled: 0
+      cooldown: 0
+    chargeActionConfigurationParameter:
+      enabled: 0
+      charges: 0
