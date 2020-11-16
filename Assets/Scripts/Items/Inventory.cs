@@ -1,5 +1,6 @@
 ﻿using Mirror;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,9 +13,16 @@ public class Inventory : NetworkBehaviour
     [NotNull]
     private GameObject valuableItemPrefab = null;
     private readonly SyncList<ItemScriptableObject> _items = new SyncList<ItemScriptableObject>();
+    [SerializeField]
+    private List<ItemScriptableObject> defaultItemsInInventory = new List<ItemScriptableObject>();
 
     public static Inventory Instance { get; private set; }
     public bool HasValuableItem => _items.Any(q => q.IsValuableItem);
+
+    public override void OnStartServer()
+    {
+        this._items.AddRange(defaultItemsInInventory);
+    }
     public override void OnStartClient()
     {
         Instance = this;
@@ -55,7 +63,7 @@ public class Inventory : NetworkBehaviour
     [Server]
     public void DropItem(ItemScriptableObject item, bool deathDrop)
     {
-        if (item.CanBeDrop == false)
+        if (PedestalManager.Instance.ExistPedestalForItem(item) == false)
         {
             return;
         }
@@ -81,7 +89,7 @@ public class Inventory : NetworkBehaviour
         Vector3 position = transform.position;
         if (deathDrop)
         {
-            position = item.Pedestal.ItemInitialPosition;
+            position = PedestalManager.Instance.GetPedestalForItem(item).ItemInitialPosition;
         }
 
         var itemGameObject = Instantiate(prefabToInstantiate, position, transform.rotation);

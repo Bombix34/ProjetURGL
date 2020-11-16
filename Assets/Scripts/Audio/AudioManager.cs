@@ -22,13 +22,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlaySoundOnItemStolen()
+    private void PlaySoundOnItemStolen(ItemScriptableObject item)
     {
-        audioDatabase.PlaySound(this.audioSource, AudioFieldEnum.ALARME_ON);
+        switch (item.Type)
+        {
+            case ItemType.VALUABLE_ITEM:
+                audioDatabase.PlaySound(this.audioSource, AudioFieldEnum.ALARME_ON);
+                break;
+            case ItemType.NORMAL_ITEM:
+            default:
+                break;
+        }
     }
 
-    private void PlaySoundOnItemRetrieve()
+    private void PlaySoundOnItemRetrieve(ItemScriptableObject item)
     {
-        audioDatabase.PlaySound(this.audioSource, AudioFieldEnum.ALARME_OFF);
+        switch (item.Type)
+        {
+            case ItemType.VALUABLE_ITEM:
+                audioDatabase.PlaySound(this.audioSource, AudioFieldEnum.ALARME_OFF);
+                break;
+            case ItemType.NORMAL_ITEM:
+            default:
+                break;
+        }
     }
 }
