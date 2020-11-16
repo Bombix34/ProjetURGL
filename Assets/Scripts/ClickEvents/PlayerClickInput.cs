@@ -31,6 +31,7 @@ public class PlayerClickInput : NetworkBehaviour
 
     private void Start()
     {
+        actionsConfiguration.Init();
         manager = this.GetComponent<PlayerManager>();
         this.managerClickTrigger = manager.GetComponentInChildren<ClickTrigger>();
         playerTriggerArea = Camera.main.GetComponentInChildren<InteractionZone>();

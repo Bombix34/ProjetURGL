@@ -8,6 +8,12 @@ public abstract class BaseActionConfigurationParameter
     private bool enabled = false;
 
     public bool Enabled { get => enabled; }
+
+    public virtual void Init()
+    {
+
+    }
+
     public bool CanDoAction()
     {
         if (!enabled)

@@ -10,7 +10,7 @@ public class ChargeActionConfigurationParameter : BaseActionConfigurationParamet
 
     public uint CurrentCharges { get => currentCharges; }
 
-    public ChargeActionConfigurationParameter()
+    public override void Init()
     {
         this.currentCharges = this.charges;
     }
