@@ -13,6 +13,12 @@ public class ActionConfiguration
 
     public ActionTypes ActionType => actionType;
 
+    public void Init()
+    {
+        this.waitingActionConfigurationParameter.Init();
+        this.chargeActionConfigurationParameter.Init();
+    }
+
     public bool CanDoAction()
     {
         return this.waitingActionConfigurationParameter.CanDoAction() 
