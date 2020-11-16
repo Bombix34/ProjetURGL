@@ -25,18 +25,17 @@ public class Pedestal : NetworkBehaviour
                 return;
             }
             stolen = value;
-            StolenStateChanged?.Invoke(stolen);
+            StolenStateChanged?.Invoke(this);
         }
     }
 
     public ItemScriptableObject Item { get; private set; }
-    public Action<bool> StolenStateChanged;
+    public Action<Pedestal> StolenStateChanged;
     private bool stolen;
 
     public override void OnStartServer()
     {
         ItemInitialPosition = networkItem.transform.position;
-        networkItem.Item.Pedestal = this;
         Item = networkItem.Item;
         StartCoroutine(nameof(Register));
     }

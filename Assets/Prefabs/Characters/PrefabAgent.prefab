@@ -273,6 +273,8 @@ MonoBehaviour:
     type: 3}
   valuableItemPrefab: {fileID: 652287626893680915, guid: 80795534ed2a3f04c8c0b77b3eb4ef42,
     type: 3}
+  defaultItemsInInventory:
+  - {fileID: 11400000, guid: 495e1ef285c932e43a5444b02cc98e2c, type: 2}
 --- !u!61 &6051909988036883962
 BoxCollider2D:
   m_ObjectHideFlags: 0

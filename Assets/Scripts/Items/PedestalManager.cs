@@ -1,13 +1,14 @@
 ﻿using Mirror;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PedestalManager : NetworkBehaviour
 {
     private readonly List<Pedestal> pedestals = new List<Pedestal>();
     public static PedestalManager Instance;
-    public Action onItemStolen;
-    public Action onItemRetrieve;
+    public Action<ItemScriptableObject> onItemStolen;
+    public Action<ItemScriptableObject> onItemRetrieve;
 
     public override void OnStartServer()
     {
@@ -22,32 +23,42 @@ public class PedestalManager : NetworkBehaviour
     }
 
     [Server]
-    private void RefreshPedestal(bool pedestalStolen)
+    private void RefreshPedestal(Pedestal pedestal)
     {
-        if (pedestalStolen)
+        if (pedestal.Stolen)
         {
-            this.RpcOnItemStolen();
+            this.RpcOnItemStolen(pedestal.Item);
         }
         else
         {
-            this.RpcOnItemRetrieve();
+            this.RpcOnItemRetrieve(pedestal.Item);
         }
     }
 
     [ClientRpc]
-    private void RpcOnItemStolen()
+    private void RpcOnItemStolen(ItemScriptableObject item)
     {
-        onItemStolen?.Invoke();
+        onItemStolen?.Invoke(item);
     }
 
     [ClientRpc]
-    private void RpcOnItemRetrieve()
+    private void RpcOnItemRetrieve(ItemScriptableObject item)
     {
-        onItemRetrieve?.Invoke();
+        onItemRetrieve?.Invoke(item);
     }
 
     private void OnDestroy()
     {
         Instance = null;
+    }
+
+    public Pedestal GetPedestalForItem(ItemScriptableObject item)
+    {
+        return this.pedestals.SingleOrDefault(p => p.Item == item);
+    }
+
+    public bool ExistPedestalForItem(ItemScriptableObject item)
+    {
+        return this.pedestals.Any(p => p.Item == item);
     }
 }

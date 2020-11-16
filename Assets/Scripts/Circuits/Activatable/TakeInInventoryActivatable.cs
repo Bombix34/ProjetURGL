@@ -18,7 +18,7 @@ public class TakeInInventoryActivatable : BaseActivatable
         var inventory = sender.identity.GetComponent<Inventory>();
         if (inventory.AddItem(networkItem.Item))
         {
-            networkItem.Item.Pedestal.OnItemDestroy();
+            PedestalManager.Instance.GetPedestalForItem(networkItem.Item).OnItemDestroy();
             Destroy(this.gameObject);
         }
     }
