@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Mirror;
 using System;
 
@@ -48,7 +48,10 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     /// This is invoked on clients when the server has caused this object to be destroyed.
     /// <para>This can be used as a hook to invoke effects or do client specific cleanup.</para>
     /// </summary>
-    public override void OnStopClient() { }
+    public override void OnStopClient() 
+    {
+        RoomPlayerContainerUI.Instance.RemovePlayer(this);
+    }
 
     /// <summary>
     /// Called when the local player object has been set up.
@@ -79,7 +82,7 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     /// </summary>
     public override void OnClientEnterRoom()
     {
-        if(this.RoomPlayerData != null)
+        if (this.RoomPlayerData != null)
         {
             RoomPlayerContainerUI.Instance.AddPlayer(this);
         }
