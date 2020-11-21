@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  showRoomGUI: 1
+  showRoomGUI: 0
   readyToBegin: 0
   index: 0
 --- !u!114 &-408722319743222275
@@ -112,3 +112,4 @@ MonoBehaviour:
   position: {x: 5, y: 5}
   fontSize: 14
   textColor: {r: 0.034264866, g: 0.6603774, b: 0.09307263, a: 1}
+  format: '{0}ms'
