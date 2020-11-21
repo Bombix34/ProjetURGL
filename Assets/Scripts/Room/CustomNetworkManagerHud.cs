@@ -16,13 +16,15 @@ public class CustomNetworkManagerHud : MonoBehaviour
     {
         if(scene.name == "MenuScene")
         {
-            this.networkManagerHUD.offsetX = 0;
-            this.networkManagerHUD.offsetY = 0;
+            this.networkManagerHUD.enabled = true;
+            //this.networkManagerHUD.offsetX = 0;
+            //this.networkManagerHUD.offsetY = 0;
         }
         else
         {
-            this.networkManagerHUD.offsetX = 500;
-            this.networkManagerHUD.offsetY = -96;
+            this.networkManagerHUD.enabled = false;
+            //this.networkManagerHUD.offsetX = 500;
+            //this.networkManagerHUD.offsetY = -96;
         }
     }
 

@@ -67,6 +67,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         if (SceneComparer.Compare(newSceneName, this.GameplayScene))
         {
             LoadingManager.Instance.Enable();
+            RoomExitButtons.Instance.EnterGame();
         }
         base.OnServerChangeScene(newSceneName);
     }
@@ -80,6 +81,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         if (SceneComparer.Compare(sceneName, this.onlineScene))
         {
             LoadingManager.Instance?.ResetPlayerLoadedCounter();
+            RoomExitButtons.Instance.EnterRoom();
         }
     }
 
@@ -190,7 +192,22 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     /// <summary>
     /// This is a hook to allow custom behaviour when the game client enters the room.
     /// </summary>
-    public override void OnRoomClientEnter() { }
+    public override void OnRoomClientEnter()
+    {
+        switch (mode)
+        {
+            case NetworkManagerMode.ClientOnly:
+                RoomExitButtons.Instance.Init(this);
+                break;
+            case NetworkManagerMode.Host:
+                RoomExitButtons.Instance.Init(this, true);
+                break;
+            case NetworkManagerMode.Offline:
+            case NetworkManagerMode.ServerOnly:
+            default:
+                break;
+        }
+    }
 
     /// <summary>
     /// This is a hook to allow custom behaviour when the game client exits the room.
@@ -290,4 +307,8 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         GUILayout.EndArea();
     }
     #endregion
+    public void ReturnToRoom()
+    {
+        this.ServerChangeScene(RoomScene);
+    }
 }
