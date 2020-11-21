@@ -15,7 +15,9 @@ using System;
 /// </summary>
 public class CustomNetworkRoomPlayer : NetworkRoomPlayer
 {
-    private RoomPlayerData roomPlayerData;
+    public Action<bool> onReadyStateChange;
+
+    public RoomPlayerData RoomPlayerData { get; private set; }
 
     #region Start & Stop Callbacks
 
@@ -38,7 +40,8 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     /// </summary>
     public override void OnStartClient()
     {
-        this.roomPlayerData = GetComponent<RoomPlayerData>();
+        this.RoomPlayerData = GetComponent<RoomPlayerData>();
+        RoomPlayerContainerUI.Instance.AddPlayer(this);
     }
 
     /// <summary>
@@ -74,7 +77,13 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     /// This is a hook that is invoked on all player objects when entering the room.
     /// <para>Note: isLocalPlayer is not guaranteed to be set until OnStartLocalPlayer is called.</para>
     /// </summary>
-    public override void OnClientEnterRoom() { }
+    public override void OnClientEnterRoom()
+    {
+        if(this.RoomPlayerData != null)
+        {
+            RoomPlayerContainerUI.Instance.AddPlayer(this);
+        }
+    }
 
     /// <summary>
     /// This is a hook that is invoked on all player objects when exiting the room.
@@ -100,6 +109,7 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
     public override void ReadyStateChanged(bool _, bool readyState)
     {
         base.ReadyStateChanged(_, readyState);
+        onReadyStateChange?.Invoke(readyState);
     }
 
     #endregion
@@ -124,14 +134,14 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
 
     void DrawPlayerReadyState()
     {
-        if(this.roomPlayerData == null)
+        if(this.RoomPlayerData == null)
         {
             return;
         }
 
         GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
 
-        GUILayout.Label(this.roomPlayerData.PlayerIndentifier);
+        GUILayout.Label(this.RoomPlayerData.PlayerIndentifier);
 
         if (readyToBegin)
             GUILayout.Label("Ready");
@@ -140,27 +150,27 @@ public class CustomNetworkRoomPlayer : NetworkRoomPlayer
 
         if (isLocalPlayer)
         {
-            switch (roomPlayerData.PlayerType)
+            switch (RoomPlayerData.PlayerType)
             {
                 case PlayerType.THIEF:
                     if (GUILayout.Button($"{PlayerType.THIEF}"))
-                        roomPlayerData.CmdChangePlayerType(PlayerType.VIGIL);
+                        RoomPlayerData.CmdChangePlayerType(PlayerType.VIGIL);
                     break;
                 case PlayerType.VIGIL:
                     if (GUILayout.Button($"{PlayerType.VIGIL}"))
-                        roomPlayerData.CmdChangePlayerType(PlayerType.SPECTATOR);
+                        RoomPlayerData.CmdChangePlayerType(PlayerType.SPECTATOR);
                     break;
                 case PlayerType.SPECTATOR:
                     if (GUILayout.Button($"{PlayerType.SPECTATOR}"))
-                        roomPlayerData.CmdChangePlayerType(PlayerType.THIEF);
+                        RoomPlayerData.CmdChangePlayerType(PlayerType.THIEF);
                     break;
                 default:
-                    throw new NotImplementedException($"The value {roomPlayerData.PlayerType} is not implemented");
+                    throw new NotImplementedException($"The value {RoomPlayerData.PlayerType} is not implemented");
             }
         }
         else
         {
-            GUILayout.Label($"{roomPlayerData.PlayerType}");
+            GUILayout.Label($"{RoomPlayerData.PlayerType}");
         }
         
 

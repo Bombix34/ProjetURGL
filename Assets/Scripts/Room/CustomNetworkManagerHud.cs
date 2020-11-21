@@ -21,7 +21,7 @@ public class CustomNetworkManagerHud : MonoBehaviour
         }
         else
         {
-            this.networkManagerHUD.offsetX = 50;
+            this.networkManagerHUD.offsetX = 500;
             this.networkManagerHUD.offsetY = -96;
         }
     }
