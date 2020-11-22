@@ -77,6 +77,13 @@ public class CharacterRenderer : NetworkBehaviour
         }
     }
 
+    public void ActiveRenderer(bool isActive)
+    {
+        SetupFogShader(isActive);
+        bodyRenderer.enabled = isActive;
+        animator.enabled = isActive;
+    }
+
     private void SetupFogShader(bool isFogShaderOn)
     {
         bodyRenderer.GetComponent<FogOfWarSprite>().enabled = isFogShaderOn;

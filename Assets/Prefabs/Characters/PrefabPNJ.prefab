@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 3939514950178751926}
   - component: {fileID: 6646740268652620238}
   - component: {fileID: 3925371458134188937}
+  - component: {fileID: 436637265661519926}
   m_Layer: 12
   m_Name: PrefabPNJ
   m_TagString: PNJ
@@ -243,6 +244,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &436637265661519926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712186628324270518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a6aaaff6b3fa44b3cfb7687e8285c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  datas: {fileID: 11400000, guid: 0a2fa655eda0ec1468f4f59bc19fcad8, type: 2}
+  bodySprite: {fileID: 712186628964533519}
+  animator: {fileID: 884065244836304654}
 --- !u!1 &712186628964533517
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +393,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3600471115442164576}
   - component: {fileID: 5872565546624290413}
-  - component: {fileID: 3874675101540346540}
   - component: {fileID: 2821717188752981812}
   m_Layer: 0
   m_Name: Renderer
@@ -416,23 +433,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &3874675101540346540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6927430619342279196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e1a6aaaff6b3fa44b3cfb7687e8285c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  datas: {fileID: 11400000, guid: 0a2fa655eda0ec1468f4f59bc19fcad8, type: 2}
-  bodySprite: {fileID: 712186628964533519}
-  animator: {fileID: 884065244836304654}
 --- !u!114 &2821717188752981812
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,6 +33,11 @@ PrefabInstance:
       propertyPath: m_MaskInteraction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2437610380325127265, guid: 759c2423b6003554794771ccc3c28970,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3330215503466374365, guid: 759c2423b6003554794771ccc3c28970,
         type: 3}
       propertyPath: m_Name
@@ -154,6 +159,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaskInteraction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736124498027292704, guid: 759c2423b6003554794771ccc3c28970,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6750306847752262381, guid: 759c2423b6003554794771ccc3c28970,
         type: 3}

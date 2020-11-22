@@ -12,6 +12,8 @@ public class GameManager : NetworkBehaviour
 
     private readonly SyncList<GameObject> aliveThieves = new SyncList<GameObject>();
 
+    private PNJPoolManager pnjsManager;
+
     public bool AllowMovements
     {
         get
@@ -24,18 +26,22 @@ public class GameManager : NetworkBehaviour
     private void Awake()
     {
         GameManager.Instance = this;
+        pnjsManager = GetComponent<PNJPoolManager>();
     }
 
     [ClientRpc]
     public void RpcStartIntroduction()
     {
         this.GameState = GameState.INTRODUCTION;
+        if(isServer)
+            pnjsManager.InitPNJ();
         CameraManager.Instance.StartIntro(OnEndIntroduction);
     }
 
     [ServerCallback]
     public void OnEndIntroduction()
     {
+        pnjsManager.LaunchGame();
         this.RpcStartPlaying();
     }
     
@@ -83,6 +89,7 @@ public class GameManager : NetworkBehaviour
     public void EndGame(VictoryType victoryType)
     {
         this.gameState = GameState.END_GAME;
+        pnjsManager.StopAllPNJ();
         this.RpcEndGame(victoryType);
     }
 

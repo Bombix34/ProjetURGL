@@ -7,6 +7,8 @@ public class WarningFeedback : MonoBehaviour
 {
     private bool isInit = false;
 
+    private float baseScale;
+
     private void Start()
     {
         StartCoroutine(WaitForEndInitAnim());
@@ -15,6 +17,7 @@ public class WarningFeedback : MonoBehaviour
     private IEnumerator WaitForEndInitAnim()
     {
         yield return new WaitForSeconds(0.75f);
+        baseScale = transform.localScale.x;
         isInit = true;
     }
 
@@ -22,7 +25,7 @@ public class WarningFeedback : MonoBehaviour
     {
         if (!isInit)
             return;
-        transform.localScale = (Vector3.one * 3f) + (Mathf.PingPong(Time.time * 2f, 1.5f) * Vector3.one);
+        transform.localScale = (Vector3.one * baseScale) + (Mathf.PingPong(Time.time * 2f, 0.5f) * Vector3.one);
     }
 
     public void DestroyFeedback()
