@@ -22,13 +22,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class CustomNetworkRoomManager : NetworkRoomManager
 {
-    [SerializeField]
-    [NotNull]
-    private GameSettings settings = null;
     private bool quitting = false;
-
-    public GameSettings Settings { get => settings; }
-
 
     #region Server Callbacks
 
@@ -113,14 +107,18 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     {
         var roomPlayerData = roomPlayer.GetComponent<RoomPlayerData>();
 
+        PlayerSettings playerSettings;
         GameObject prefabPlayer;
+
         switch (roomPlayerData.PlayerType)
         {
             case PlayerType.THIEF:
-                prefabPlayer = settings.VoleurSettings.PlayerPrefab;
+                playerSettings = RoomSettings.Instance.Settings.VoleurSettings;
+                prefabPlayer = playerPrefab;
                 break;
             case PlayerType.VIGIL:
-                prefabPlayer = settings.AgentSettings.PlayerPrefab;
+                playerSettings = RoomSettings.Instance.Settings.AgentSettings;
+                prefabPlayer = spawnPrefabs.Where(q => q.name == "PrefabAgent").Single();
                 break;
             case PlayerType.SPECTATOR:
             default:
@@ -135,7 +133,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         {
             GameManager.Instance.AddThief(player);
         }
-        player.GetComponent<PlayerManager>().Init(roomPlayerData.PlayerIndentifier);
+        player.GetComponent<PlayerManager>().Init(playerSettings, roomPlayerData.PlayerIndentifier);
         NetworkServer.AddPlayerForConnection(conn, player);
         return player;
     }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "URGL/PlayerSettings")]
 public class PlayerSettings : ScriptableObject
@@ -13,8 +11,6 @@ public class PlayerSettings : ScriptableObject
     [Header("MOVEMENT SETTINGS")]
     [Range(0f, 500f)]
     public float MovementSpeed;
-    [Range(0f, 1f)]
-    public float MovementSpeedWithValuableItemMultiplier;
 
     [Header("MOVEMENT PNJ SETTINGS")]
     [Range(0f, 50f)]

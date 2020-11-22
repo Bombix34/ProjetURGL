@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class DestroyManager : MonoBehaviour
 {
     [SerializeField]
-    [NotNull]
     private string sceneName = null;
 
     private static bool instantiated = false;
