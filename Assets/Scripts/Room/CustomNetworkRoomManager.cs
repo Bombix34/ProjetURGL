@@ -27,6 +27,8 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     private GameSettings settings = null;
     private bool quitting = false;
 
+    public GameSettings Settings { get => settings; }
+
 
     #region Server Callbacks
 
@@ -82,6 +84,10 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         {
             LoadingManager.Instance?.ResetPlayerLoadedCounter();
             RoomExitButtons.Instance.EnterRoom();
+            if(mode == NetworkManagerMode.Host)
+            {
+                RoomGameSettingsUI.Instance.Init(this);
+            }
         }
     }
 
@@ -136,7 +142,6 @@ public class CustomNetworkRoomManager : NetworkRoomManager
 
     private Vector3 GetStartPosition(PlayerType playerType)
     {
-        var a = FindObjectsOfType<StartPosition>();
         var startPositions = FindObjectsOfType<StartPosition>().Where(q => q.PlayerType == playerType).ToArray();
         if (startPositions.Length == 0)
         {
@@ -291,20 +296,6 @@ public class CustomNetworkRoomManager : NetworkRoomManager
     public override void OnGUI()
     {
         base.OnGUI();
-
-        GUILayout.BeginArea(new Rect(Screen.width - 210f, 40f, 200f, 30f));
-        var sceneName = Path.GetFileNameWithoutExtension(GameplayScene);
-        if (GUILayout.Button(sceneName))
-        {
-            var index = this.settings.GameScenes.IndexOf(sceneName) + 1;
-            if (index >= this.settings.GameScenes.Count)
-            {
-                index = 0;
-            }
-
-            this.GameplayScene = this.settings.GameScenes[index];
-        }
-        GUILayout.EndArea();
     }
     #endregion
     public void ReturnToRoom()
