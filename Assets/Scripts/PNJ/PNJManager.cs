@@ -6,8 +6,6 @@ using UnityEngine.AI;
 
 public class PNJManager : ObjectManager, ICaughtable
 {
-    [SerializeField]
-    [NotNull] 
     private PlayerSettings Settings = null;
     public NavMeshAgent Agent { get; private set; }
     public PNJPositionDatas PositionDatas { get; private set; }
@@ -25,6 +23,7 @@ public class PNJManager : ObjectManager, ICaughtable
         Agent.updateUpAxis = false;
         if (!isServer)
             return;
+        Settings = RoomSettings.Instance.Settings.VoleurSettings;
         Agent.speed = Settings.MovementSpeed*Settings.pnjSpeedMultiplicator;
         Animator = GetComponent<Animator>();
         PositionDatas = FindObjectOfType<PNJPositionDatas>();
