@@ -32,7 +32,6 @@ public class RoomPlayerContainerUI : MonoBehaviour
 
     public void RemovePlayer(CustomNetworkRoomPlayer player)
     {
-        print(player.RoomPlayerData.PlayerIndentifier);
         if (!this.players.Contains(player))
         {
             return;
