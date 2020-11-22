@@ -32,11 +32,11 @@ public class InteractionZone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        UpdateVisibleObjects();
         GameObject obj = collision.gameObject;
         if (obj == PlayerController || visibleObjects.Contains(obj))
             return;
         TriggerEnterZone(obj);
-        UpdateVisibleObjects();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -52,14 +52,14 @@ public class InteractionZone : MonoBehaviour
 
     private void TriggerEnterZone(GameObject obj)
     {
-        if (obj.CompareTag("Item"))
+        if (obj.IsTagValid(TagSelection.ITEM))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
             visibleObjects.Add(obj);
             obj.GetComponentInChildren<ClickTrigger>().SetupFogShader(false);
         }
-        else if (obj.CompareTag("PNJ") || obj.CompareTag("Thief"))
+        else if (obj.IsTagValid(TagSelection.PNJ) || obj.IsTagValid(TagSelection.THIEF))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
@@ -68,7 +68,7 @@ public class InteractionZone : MonoBehaviour
             if (obj.GetComponent<PlayerNameUI>() != null)
                 obj.GetComponent<PlayerNameUI>().DisplayName(true);
         }
-        else if (obj.CompareTag("Vigil"))
+        else if (obj.IsTagValid(TagSelection.VIGIL))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
@@ -82,18 +82,18 @@ public class InteractionZone : MonoBehaviour
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
             visibleObjects.Add(obj);
-            obj.GetComponentInParent<FogVisibilityRenderer>().SwitchVisibility(true);
+            obj.GetComponentInParent<FogVisibilityRenderer>()?.SwitchVisibility(true);
         }
     }
 
     private void TriggerExitZone(GameObject obj)
     {
-        if (obj.CompareTag("Item"))
+        if (obj.IsTagValid(TagSelection.ITEM))
         {
             visibleObjects.Remove(obj);
             obj.GetComponentInChildren<ClickTrigger>().SetupFogShader(true);
         }
-        else if (obj.CompareTag("PNJ") || obj.CompareTag("Thief"))
+        else if (obj.IsTagValid(TagSelection.PNJ) || obj.IsTagValid(TagSelection.THIEF))
         {
             visibleObjects.Remove(obj);
             if (obj.GetComponentInChildren<CharacterRenderer>() != null)
@@ -101,7 +101,7 @@ public class InteractionZone : MonoBehaviour
             if (obj.GetComponent<PlayerNameUI>() != null)
                 obj.GetComponent<PlayerNameUI>().DisplayName(false);
         }
-        else if (obj.CompareTag("Vigil"))
+        else if (obj.IsTagValid(TagSelection.VIGIL))
         {
             visibleObjects.Remove(obj);
             if (obj.GetComponentInChildren<CharacterRenderer>() != null)
@@ -112,7 +112,7 @@ public class InteractionZone : MonoBehaviour
         else if (obj.CompareTag("Door"))
         {
             visibleObjects.Remove(obj);
-            obj.GetComponentInParent<FogVisibilityRenderer>().SwitchVisibility(false);
+            obj.GetComponentInParent<FogVisibilityRenderer>()?.SwitchVisibility(false);
         }
     }
 
@@ -146,7 +146,7 @@ public class InteractionZone : MonoBehaviour
         VigilManager vigilManager = PlayerController.GetComponent<VigilManager>();
         foreach (var obj in visibleObjects)
         {
-            if(obj.CompareTag("Thief"))
+            if(obj.IsTagValid(TagSelection.THIEF))
             {
                 Inventory thiefInventory = obj.GetComponent<Inventory>();
                 //voleur en vue
