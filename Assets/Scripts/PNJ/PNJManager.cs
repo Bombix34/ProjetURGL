@@ -28,18 +28,20 @@ public class PNJManager : ObjectManager, ICaughtable
         Agent.speed = Settings.MovementSpeed*Settings.pnjSpeedMultiplicator;
         Animator = GetComponent<Animator>();
         PositionDatas = FindObjectOfType<PNJPositionDatas>();
+        ChangeState(new PNJDeadState(this));
     }
 
     protected override void Update()
     {
         if (!isServer)
             return;
-
+        /*
         if (!GameManager.Instance.AllowMovements)
         {
             ChangeState(new PNJWaitState(this));
             return;
         }
+        */
 
         Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
         UpdatePNJRotation();
@@ -65,6 +67,21 @@ public class PNJManager : ObjectManager, ICaughtable
     [Server]
     public void GetCaught()
     {
-        NetworkServer.Destroy(gameObject);
+        ChangeState(new PNJDeadState(this));
+    }
+
+    public CharacterRenderer Renderer
+    {
+        get => characterRenderer;
+    }
+
+    public bool IsDead
+    {
+        get
+        {
+            if (currentState == null)
+                return false;
+            return currentState.stateName == "PNJ_DEAD";
+        }
     }
 }

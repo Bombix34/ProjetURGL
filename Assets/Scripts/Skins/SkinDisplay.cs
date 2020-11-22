@@ -22,6 +22,7 @@ public class SkinDisplay : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        Debug.Log("ALOOOO");
         bodySprite.color = datas.colors[colorId];
         animator.runtimeAnimatorController = datas.animatorController[animatorID];
     }
