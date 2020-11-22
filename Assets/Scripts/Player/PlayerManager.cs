@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class PlayerManager : ObjectManager
 {
     private const float FOG_OF_WAR_SIZE_COLLIDER_MULTIPLIER = 0.95f;
-    [SerializeField]
-    [NotNull]
+
+    [SyncVar]
     protected PlayerSettings settings;
 
     [SyncVar]
@@ -69,8 +69,9 @@ public abstract class PlayerManager : ObjectManager
         }
     }
 
-    public void Init(string playerName)
+    public void Init(PlayerSettings playerSettings, string playerName)
     {
+        this.settings = playerSettings;
         this.playerName = playerName;
     }
 
