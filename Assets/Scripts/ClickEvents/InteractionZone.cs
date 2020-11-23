@@ -173,6 +173,13 @@ public class InteractionZone : MonoBehaviour
         }
     }
 
+    public void SwitchPlayer(PlayerManager playerManager)
+    {
+        this.PlayerController = playerManager.gameObject;
+        this.visibleObjects.Add(playerManager.gameObject);
+        playerManager.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
+    }
+
     public float ColliderRadius
     {
         set

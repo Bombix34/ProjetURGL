@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,10 +7,12 @@ public class FollowPlayerCameraMovements : GameCameraMovements
 {
     private readonly List<PlayerManager> players;
     private int index = 0;
-    private bool arePlayersAlive;
+    private bool arePlayersAlive = true;
+    private readonly InteractionZone interactionZone;
 
     public FollowPlayerCameraMovements(Transform transform, float smoothness, float offsetZ, PlayerType? playerType = null) : base(transform, smoothness, offsetZ)
     {
+        this.interactionZone = Camera.main.GetComponentInChildren<InteractionZone>();
         if (playerType.HasValue)
         {
             switch (playerType.Value)
@@ -34,8 +36,15 @@ public class FollowPlayerCameraMovements : GameCameraMovements
         {
             player.onAliveChange += RemovePlayer;
         }
-        this.playerTransform = players.FirstOrDefault(p => p.Alive)?.transform;
-        this.arePlayersAlive = playerTransform != null;
+        var firstAlivePlayer = players.FirstOrDefault(p => p.Alive);
+        if(firstAlivePlayer is null)
+        {
+            this.arePlayersAlive = false;
+            this.playerTransform = null;
+            return;
+        }
+        this.index = this.players.IndexOf(firstAlivePlayer);
+        this.SetPlayer(firstAlivePlayer);
     }
 
     public override void Update()
@@ -58,7 +67,6 @@ public class FollowPlayerCameraMovements : GameCameraMovements
 
     private void RemovePlayer(PlayerManager playerManager)
     {
-        this.players.Remove(playerManager);
         if(this.players.All(p => !p.Alive))
         {
             this.playerTransform = null;
@@ -80,10 +88,16 @@ public class FollowPlayerCameraMovements : GameCameraMovements
         var currentPlayer = this.players[index];
         if (currentPlayer.Alive)
         {
-            this.playerTransform = currentPlayer.transform;
+            SetPlayer(currentPlayer);
             return true;
         }
         return false;
+    }
+
+    private void SetPlayer(PlayerManager currentPlayer)
+    {
+        this.playerTransform = currentPlayer.transform;
+        this.interactionZone.SwitchPlayer(currentPlayer);
     }
 
     private void PreviousPlayer()
