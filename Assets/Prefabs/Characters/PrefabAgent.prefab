@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 2863798710047520211}
   - component: {fileID: 6051909988036883962}
   - component: {fileID: 2561496275508032785}
+  - component: {fileID: 5166550722762748633}
+  - component: {fileID: 632687105763503690}
   m_Layer: 12
   m_Name: PrefabAgent
   m_TagString: Vigil
@@ -164,7 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  settings: {fileID: 11400000, guid: c8860cc24ffe31643a553c93ef5f3578, type: 2}
 --- !u!95 &8898629381136237773
 Animator:
   serializedVersion: 3
@@ -314,6 +315,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textUi: {fileID: 1796964425184369769}
+--- !u!114 &5166550722762748633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3632e1be5b607d846bfe1b9c00f895c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagSelections: 01000000
+  activatable: {fileID: 632687105763503690}
+--- !u!114 &632687105763503690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773344343124318752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0cff94059882246a1d4b468bfc5b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  itemName: KeyCard
 --- !u!1 &4858778346235626514
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,3 +20,10 @@ MonoBehaviour:
     chargeActionConfigurationParameter:
       enabled: 0
       charges: 0
+  - actionType: 3
+    waitingActionConfigurationParameter:
+      enabled: 0
+      cooldown: 0
+    chargeActionConfigurationParameter:
+      enabled: 0
+      charges: 0
