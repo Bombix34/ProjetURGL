@@ -41,8 +41,6 @@ public class PNJManager : ObjectManager, ICaughtable
             return;
         }
         */
-
-        Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
         UpdatePNJRotation();
         if (currentState == null)
         {
@@ -83,4 +81,5 @@ public class PNJManager : ObjectManager, ICaughtable
             return currentState.stateName == "PNJ_DEAD";
         }
     }
+
 }

@@ -15,6 +15,6 @@ MonoBehaviour:
   PlayerType: 1
   PlayerPrefab: {fileID: 1773344343124318752, guid: d68b92712825c5f41a62f400c9017081,
     type: 3}
-  MovementSpeed: 182
+  MovementSpeed: 210
   pnjSpeedMultiplicator: 0
   FogOfWarSize: 11
