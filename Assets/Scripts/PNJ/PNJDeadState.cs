@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PNJDeadState : PNJState
 {
@@ -15,8 +13,7 @@ public class PNJDeadState : PNJState
 
     public override void Enter()
     {
-        manager.Renderer.ActiveRenderer(false);
-        manager.gameObject.SetActive(false);
+        manager.Disable();
         manager.Animator.SetTrigger("IDLE");
         manager.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }

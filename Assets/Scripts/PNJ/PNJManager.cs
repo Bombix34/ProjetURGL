@@ -14,6 +14,21 @@ public class PNJManager : ObjectManager, ICaughtable
 
     private float previousPosX;
 
+    public CharacterRenderer Renderer
+    {
+        get => characterRenderer;
+    }
+
+    public bool IsDead
+    {
+        get
+        {
+            if (currentState == null)
+                return false;
+            return currentState.stateName == "PNJ_DEAD";
+        }
+    }
+
     private void Start()
     {
         characterRenderer = GetComponentInChildren<CharacterRenderer>();
@@ -67,19 +82,19 @@ public class PNJManager : ObjectManager, ICaughtable
         ChangeState(new PNJDeadState(this));
     }
 
-    public CharacterRenderer Renderer
+    [Server]
+    public void Enable()
     {
-        get => characterRenderer;
+        Renderer.ActiveRenderer(true);
+        gameObject.SetActive(true);
+        this.RpcEnable();
     }
 
-    public bool IsDead
+    [ClientRpc]
+    private void RpcEnable()
     {
-        get
-        {
-            if (currentState == null)
-                return false;
-            return currentState.stateName == "PNJ_DEAD";
-        }
+        Renderer.ActiveRenderer(true);
+        gameObject.SetActive(true);
     }
 
 }
