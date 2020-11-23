@@ -56,16 +56,14 @@ public class InteractionZone : MonoBehaviour
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
-            if (!visibleObjects.Contains(obj))
-                visibleObjects.Add(obj);
+            visibleObjects.Add(obj);
             obj.GetComponentInChildren<ClickTrigger>().SetupFogShader(false);
         }
         else if (obj.IsTagValid(TagSelection.PNJ) || obj.IsTagValid(TagSelection.THIEF))
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
-            if(!visibleObjects.Contains(obj))
-                visibleObjects.Add(obj);
+            visibleObjects.Add(obj);
             obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
             if (obj.GetComponent<PlayerNameUI>() != null)
                 obj.GetComponent<PlayerNameUI>().DisplayName(true);
@@ -74,8 +72,7 @@ public class InteractionZone : MonoBehaviour
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
-            if (!visibleObjects.Contains(obj))
-                visibleObjects.Add(obj);
+            visibleObjects.Add(obj);
             obj.GetComponentInChildren<CharacterRenderer>().SwitchVisibility(true);
             if (obj.GetComponent<PlayerNameUI>() != null)
                 obj.GetComponent<PlayerNameUI>().DisplayName(true);
@@ -84,8 +81,7 @@ public class InteractionZone : MonoBehaviour
         {
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
                 return;
-            if (!visibleObjects.Contains(obj))
-                visibleObjects.Add(obj);
+            visibleObjects.Add(obj);
             obj.GetComponentInParent<FogVisibilityRenderer>()?.SwitchVisibility(true);
         }
     }
@@ -133,10 +129,6 @@ public class InteractionZone : MonoBehaviour
             if (!fieldViewManager.IsObjectVisibleFromPlayer(PlayerController, obj))
             {
                 toRemove.Add(obj);
-            }
-            else
-            {
-                TriggerEnterZone(obj);
             }
         }
         foreach(var old in toRemove)

@@ -97,4 +97,19 @@ public class PNJManager : ObjectManager, ICaughtable
         gameObject.SetActive(true);
     }
 
+    [Server]
+    public void Disable()
+    {
+        Renderer.ActiveRenderer(false);
+        gameObject.SetActive(false);
+        this.RpcDisable();
+    }
+
+    [ClientRpc]
+    private void RpcDisable()
+    {
+        Renderer.ActiveRenderer(false);
+        gameObject.SetActive(false);
+    }
+
 }
