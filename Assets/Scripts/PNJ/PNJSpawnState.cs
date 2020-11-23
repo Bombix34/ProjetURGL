@@ -22,8 +22,7 @@ public class PNJSpawnState : PNJState
     public override void Enter()
     {
         manager.transform.position = spawnPosition;
-        manager.Renderer.ActiveRenderer(true);
-        manager.gameObject.SetActive(true);
+        manager.Enable();
         manager.Animator.SetTrigger("IDLE");
         manager.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         manager.Agent.ResetPath();
