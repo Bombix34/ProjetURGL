@@ -49,8 +49,13 @@ public class PNJManager : ObjectManager, ICaughtable
     {
         if (!isServer)
             return;
-
-        Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
+        /*
+        if (!GameManager.Instance.AllowMovements)
+        {
+            ChangeState(new PNJWaitState(this));
+            return;
+        }
+        */
         UpdatePNJRotation();
         if (currentState == null)
         {
@@ -92,17 +97,4 @@ public class PNJManager : ObjectManager, ICaughtable
         gameObject.SetActive(true);
     }
 
-    [Server]
-    public void Disable()
-    {
-        Renderer.ActiveRenderer(false);
-        gameObject.SetActive(false);
-        this.RpcDisable();
-    }
-    [ClientRpc]
-    private void RpcDisable()
-    {
-        Renderer.ActiveRenderer(false);
-        gameObject.SetActive(false);
-    }
 }

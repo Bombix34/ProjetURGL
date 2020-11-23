@@ -49,7 +49,7 @@ public class PNJPoolManager : NetworkBehaviour
 
     public void LaunchGame()
     {
-        int randPNJ = Random.Range(5, 8);
+        int randPNJ = Random.Range(TOTAL_PNJ/6, TOTAL_PNJ/3);
         int nbToSpawn = TOTAL_PNJ - randPNJ;
         for (int i = 0; i < nbToSpawn; ++i)
         {
