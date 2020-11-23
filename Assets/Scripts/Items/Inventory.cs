@@ -97,9 +97,14 @@ public class Inventory : NetworkBehaviour
         NetworkServer.Spawn(itemGameObject);
     }
 
-    public bool HasItem(string ItemName)
+    public bool HasItem(string itemName)
     {
-        return this._items.Any(item => item.ItemName == ItemName);
+        return this._items.Any(item => item.ItemName == itemName);
+    }
+
+    public ItemScriptableObject GetItemByName(string itemName)
+    {
+        return this._items.SingleOrDefault(item => item.ItemName == itemName);
     }
 
     public ItemScriptableObject GetValuableItem()

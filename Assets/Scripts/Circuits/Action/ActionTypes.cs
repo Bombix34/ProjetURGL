@@ -2,5 +2,6 @@
 {
     NOT_SET,
     ARREST_CHARACTER,
-    TAKE_ITEM
+    TAKE_ITEM,
+    STEAL_ITEM,
 }
