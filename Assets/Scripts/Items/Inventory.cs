@@ -19,6 +19,12 @@ public class Inventory : NetworkBehaviour
     public static Inventory Instance { get; private set; }
     public bool HasValuableItem => _items.Any(q => q.IsValuableItem);
 
+    public Action<ItemScriptableObject> OnItemAdded { get; set; }
+
+    public Action<ItemScriptableObject> OnItemRemoved { get; set; }
+
+    public List<ItemScriptableObject> Items => _items.ToList();
+
     public override void OnStartServer()
     {
         this._items.AddRange(defaultItemsInInventory);
@@ -26,6 +32,12 @@ public class Inventory : NetworkBehaviour
     public override void OnStartClient()
     {
         Instance = this;
+        _items.Callback += this.OnInventoryUpdated;
+    }
+
+    public override void OnStopClient()
+    {
+        Instance = null;
     }
 
     [Server]
@@ -110,6 +122,20 @@ public class Inventory : NetworkBehaviour
     public ItemScriptableObject GetValuableItem()
     {
         return this._items.SingleOrDefault(item => item.IsValuableItem);
+    }
+
+    void OnInventoryUpdated(SyncList<ItemScriptableObject>.Operation op, int index, ItemScriptableObject oldItem, ItemScriptableObject newItem)
+    {
+        switch (op)
+        {
+            case SyncList<ItemScriptableObject>.Operation.OP_ADD:
+            case SyncList<ItemScriptableObject>.Operation.OP_INSERT:
+                OnItemAdded.Invoke(newItem);
+                break;
+            case SyncList<ItemScriptableObject>.Operation.OP_REMOVEAT:
+                OnItemRemoved.Invoke(oldItem);
+                break;
+        }
     }
 
 }
