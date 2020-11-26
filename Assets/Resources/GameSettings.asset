@@ -21,3 +21,4 @@ MonoBehaviour:
   - TestScene-Pnj
   - TestScene-ValuableItem
   - GameScene-04
+  CameraDistance: 6

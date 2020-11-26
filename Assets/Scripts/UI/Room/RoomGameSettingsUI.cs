@@ -12,6 +12,9 @@ public class RoomGameSettingsUI : MonoBehaviour
     private TMP_Dropdown sceneDropdown;
     [SerializeField]
     [NotNull]
+    private TMP_InputField cameraDistanceInput;
+    [SerializeField]
+    [NotNull]
     private PlayerSettingsUI thiefSettingsUI;
     [SerializeField]
     [NotNull]
@@ -30,6 +33,7 @@ public class RoomGameSettingsUI : MonoBehaviour
     {
         this.roomManager = customNetworkRoomManager;
         InitSceneDropdown();
+        InitCameraDistanceInput();
         gameSettingsPanel.SetActive(true);
         this.thiefSettingsUI.Init(RoomSettings.Instance.Settings.VoleurSettings);
         this.vigilSettingsUI.Init(RoomSettings.Instance.Settings.AgentSettings);
@@ -48,5 +52,16 @@ public class RoomGameSettingsUI : MonoBehaviour
     public void ChangeGameScene(int index)
     {
         this.roomManager.GameplayScene = RoomSettings.Instance.Settings.GameScenes[index];
+    }
+
+    private void InitCameraDistanceInput()
+    {
+        cameraDistanceInput.text = RoomSettings.Instance.Settings.CameraDistance.ToString();
+        cameraDistanceInput.onValueChanged.AddListener(OnCameraDistanceChange);
+    }
+
+    private void OnCameraDistanceChange(string speed)
+    {
+        RoomSettings.Instance.Settings.CameraDistance = float.Parse(speed.Replace('.', ','));
     }
 }

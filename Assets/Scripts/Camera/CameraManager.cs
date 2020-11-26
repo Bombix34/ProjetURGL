@@ -14,7 +14,8 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         FieldOfViewManager = GetComponentInChildren<FieldOfView>();
-        CameraManager.Instance = this;
+        Instance = this;
+        GetComponent<Camera>().orthographicSize = RoomSettings.Instance.Settings.CameraDistance;
         this.cameraMovement = new InitialCameraMovements(transform, cameraConfig.Smoothness, cameraConfig.OffsetZ, cameraConfig.IntroStartPosition);
     }
 
