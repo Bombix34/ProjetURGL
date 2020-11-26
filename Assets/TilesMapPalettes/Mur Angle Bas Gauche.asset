@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Mur Angle Bas Gauche
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 0a1b66d53f5f6f04da3efa6558470a46, type: 3}
+  m_Sprite: {fileID: -1051047902398835199, guid: 1578b0d2a1573c142b44cd67c26eebbd,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

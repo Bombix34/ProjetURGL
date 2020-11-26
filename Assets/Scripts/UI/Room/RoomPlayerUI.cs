@@ -22,6 +22,7 @@ public class RoomPlayerUI : MonoBehaviour
         this.customNetworkRoomPlayer = customNetworkRoomPlayer;
         this.customNetworkRoomPlayer.onReadyStateChange += OnReadyStateChange;
         this.customNetworkRoomPlayer.RoomPlayerData.onPlayerTypeChange += OnChangePlayerType;
+        this.customNetworkRoomPlayer.RoomPlayerData.onPlayerIdentifierChange += OnChangePseudo;
         isLocalPlayer = customNetworkRoomPlayer.isLocalPlayer;
         if (!isLocalPlayer)
         {
@@ -45,6 +46,10 @@ public class RoomPlayerUI : MonoBehaviour
             return;
         }
         customNetworkRoomPlayer.CmdChangeReadyState(playerReadyToggle.isOn);
+    }
+    public void OnChangePseudo(string pseudo)
+    {
+        this.playerNameText.text = pseudo;
     }
     public void OnChangePlayerType(PlayerType playerType)
     {

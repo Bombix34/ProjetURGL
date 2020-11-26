@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: KeyCard
   type: 0
-  sprite: {fileID: 21300000, guid: c75da572ab987db41a1b8f7642ff6da2, type: 3}
+  sprite: {fileID: 21300000, guid: 76cb15d967884ab4f9ea9a98c03d1a44, type: 3}

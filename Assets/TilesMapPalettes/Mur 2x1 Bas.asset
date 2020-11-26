@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Mur 2x1 Bas
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -54744011143807460, guid: a2176bbc34ceb024ebf2f5c8a98dda62, type: 3}
+  m_Sprite: {fileID: 3606105010084634153, guid: baa7c4dca99060d46936629d3b053da7,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

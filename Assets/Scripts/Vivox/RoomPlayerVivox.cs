@@ -13,7 +13,6 @@ public class RoomPlayerVivox : NetworkBehaviour
     public static RoomPlayerVivox Instance;
     private string matchIdentifier="TODO";
     private VivoxVoiceManager vivoxVoiceManager;
-    private RoomPlayerData roomPlayerData;
     public ChannelTextMessageReceived channelTextMessageReceived;
 
     private string RoomChannelName => $"{matchIdentifier}-room";
@@ -32,9 +31,8 @@ public class RoomPlayerVivox : NetworkBehaviour
         Instance = this;
         this.matchIdentifier = RoomSettings.Instance.roomUniqueIdentifier;
         this.vivoxVoiceManager = VivoxVoiceManager.Instance;
-        this.roomPlayerData = GetComponent<RoomPlayerData>();
 
-        vivoxVoiceManager.Login(this.roomPlayerData.PlayerIndentifier);
+        vivoxVoiceManager.Login(AccountManager.Instance.Account.Pseudo);
         vivoxVoiceManager.OnUserLoggedInEvent += OnLogin;
     }
 

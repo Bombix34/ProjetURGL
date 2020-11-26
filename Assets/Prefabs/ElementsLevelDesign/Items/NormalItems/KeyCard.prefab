@@ -7,10 +7,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2974260024706041959, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415573637465123312, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570259982312125172, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570259982312125172, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 76cb15d967884ab4f9ea9a98c03d1a44,
+        type: 3}
     - target: {fileID: 4280388973731168915, guid: a7242af9023042544bec4cd31e31c4f7,
         type: 3}
       propertyPath: m_Name
-      value: BaseNormalItem
+      value: KeyCard
       objectReference: {fileID: 0}
     - target: {fileID: 4280388973731168924, guid: a7242af9023042544bec4cd31e31c4f7,
         type: 3}
@@ -66,6 +87,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433618984225255661, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.764
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433618984225255661, guid: a7242af9023042544bec4cd31e31c4f7,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.164
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7242af9023042544bec4cd31e31c4f7, type: 3}
