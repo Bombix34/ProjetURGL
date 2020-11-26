@@ -130,10 +130,10 @@ public class Inventory : NetworkBehaviour
         {
             case SyncList<ItemScriptableObject>.Operation.OP_ADD:
             case SyncList<ItemScriptableObject>.Operation.OP_INSERT:
-                OnItemAdded.Invoke(newItem);
+                OnItemAdded?.Invoke(newItem);
                 break;
             case SyncList<ItemScriptableObject>.Operation.OP_REMOVEAT:
-                OnItemRemoved.Invoke(oldItem);
+                OnItemRemoved?.Invoke(oldItem);
                 break;
         }
     }
