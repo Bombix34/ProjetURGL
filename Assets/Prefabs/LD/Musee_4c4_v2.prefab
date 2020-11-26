@@ -366,12 +366,12 @@ MonoBehaviour:
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
+  m_OverrideTileSize: 1
+  m_TileSize: 512
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.036666665
+  m_VoxelSize: 0.2
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 581d998f96793cd458f028450ccbc901, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 284691a52aaf9914fa4d9cb16e9421dc, type: 2}
 --- !u!1 &3055319153840429587
 GameObject:
   m_ObjectHideFlags: 0
@@ -27507,7 +27507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZoneType: 1
-  rectangleSize: {x: 6, y: 2}
+  rectangleSize: {x: 6, y: 1.5}
   circleRadius: 2.5
 --- !u!1 &4990669176622057719
 GameObject:
@@ -28992,7 +28992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZoneType: 0
   rectangleSize: {x: 4, y: 5}
-  circleRadius: 3
+  circleRadius: 2.5
 --- !u!1 &4990669176997851790
 GameObject:
   m_ObjectHideFlags: 0
@@ -32426,7 +32426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4990669177979687507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.92, y: -2.67, z: 0}
+  m_LocalPosition: {x: -19.92, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6954009719119262139}
@@ -32445,7 +32445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZoneType: 1
-  rectangleSize: {x: 12, y: 2}
+  rectangleSize: {x: 12, y: 1.5}
   circleRadius: 2.5
 --- !u!1 &4990669177990824939
 GameObject:

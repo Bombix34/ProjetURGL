@@ -5,6 +5,9 @@ using UnityEngine;
 public class PNJMoveState : PNJState
 {
     private Vector2 target;
+    private float UPDATE_TIMER = 0.3f;
+    private float curChrono = 0f;
+    private Vector2 savedVelocity;
 
     public PNJMoveState(ObjectManager curObject) : base(curObject)
     {
@@ -36,10 +39,23 @@ public class PNJMoveState : PNJState
         {
             if (manager.Agent.velocity == Vector3.zero)
                 return;
-            float magnitude = manager.Agent.desiredVelocity.magnitude;
-            Vector2 newDirVector = SnapTo(manager.Agent.desiredVelocity.normalized);
-           //Debug.Log(magnitude);
-            manager.Agent.velocity = newDirVector*magnitude;
+            curChrono -= Time.deltaTime;
+            if(curChrono<=0f)
+            {
+                float magnitude = manager.Agent.desiredVelocity.magnitude;
+                Vector2 newDirVector = SnapTo(manager.Agent.desiredVelocity.normalized);
+                savedVelocity = newDirVector * magnitude;
+                manager.Agent.velocity = savedVelocity;
+                if(Vector3.Distance(manager.transform.position, target) < 1f)
+                    UPDATE_TIMER = Random.Range(0.1f, 0.2f);
+                else
+                    UPDATE_TIMER = Random.Range(0.15f, 0.4f);
+                curChrono = UPDATE_TIMER;
+            }
+            else
+            {
+                manager.Agent.velocity = savedVelocity;
+            }
         }
     }
 
@@ -54,7 +70,7 @@ public class PNJMoveState : PNJState
         float y = 0;
         if(Mathf.Abs(v3.x) > Mathf.Abs(v3.y))
         {
-            if(Mathf.Abs(v3.y) < 0.2f)
+            if(Mathf.Abs(v3.y) < 0.1f)
             {
                 x = v3.x > 0 ? 1f : -1f;
                 y = 0f;
@@ -67,10 +83,10 @@ public class PNJMoveState : PNJState
         }
         else
         {
-            if (Mathf.Abs(v3.x) < 0.2f)
+            if (Mathf.Abs(v3.x) < 0.1f)
             {
                 x = 0f;
-                y = v3.y > 0 ? 2f : -2f;
+                y = v3.y > 0 ? 2.3f : -2.3f;
             }
             else
             {

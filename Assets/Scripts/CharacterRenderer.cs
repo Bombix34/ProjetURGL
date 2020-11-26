@@ -54,27 +54,14 @@ public class CharacterRenderer : NetworkBehaviour
         //PASSAGE A LETAT INVISIBLE
         if(!isVisible && this.IsVisible)
         {
-            Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
-            bodyRenderer.DOColor(finalColor, 0.4f)
-                .OnComplete(() =>
-                SetupFogShader(true)
-            );
-            this.IsVisible = isVisible;
+            SetupFogShader(true);
         }
         //PASSAGE A LETAT VISIBLE
         else if(isVisible && !this.IsVisible)
         {
-            if(bodyRenderer.enabled)
-            {
-                SetupFogShader(true);
-                bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
-            }
             SetupFogShader(false);
-            bodyRenderer.color = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 0f);
-            Color finalColor = new Color(bodyRenderer.color.r, bodyRenderer.color.g, bodyRenderer.color.b, 1f);
-            bodyRenderer.DOColor(finalColor, 0.4f);
-            this.IsVisible = isVisible;
         }
+        this.IsVisible = isVisible;
     }
 
     public void ActiveRenderer(bool isActive)
