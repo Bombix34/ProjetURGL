@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 216f3703dfcdeed43aa29954222bbac6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1467999643247359590
+    second: Grande Porte_0
+  - first:
+      213: 124449187323848919
+    second: Grande Porte_1
+  - first:
+      213: -8473923541105897385
+    second: Grande Porte_2
+  - first:
+      213: -2762677279396625258
+    second: Grande Porte_3
+  - first:
+      213: -6617384992253393480
+    second: Grande Porte_4
+  - first:
+      213: 1807394331917518435
+    second: Grande Porte_5
+  - first:
+      213: 4744797382962786270
+    second: Grande Porte_6
+  - first:
+      213: -3380938653121432151
+    second: Grande Porte_7
+  - first:
+      213: -6167353814768634634
+    second: Grande Porte_0
+  - first:
+      213: 84842462405310246
+    second: Grande Porte_1
+  - first:
+      213: 1730828455852186665
+    second: Grande Porte_2
+  - first:
+      213: -1717927495898409589
+    second: Grande Porte_3
+  - first:
+      213: -6057736452813537773
+    second: Grande Porte_4
+  - first:
+      213: 7304899337006327776
+    second: Grande Porte_5
+  - first:
+      213: -5718974752043837192
+    second: Grande Porte_6
+  - first:
+      213: -2552538724110271673
+    second: Grande Porte_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,12 +88,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 250
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,7 +157,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Grande Porte_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 500
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f4b09aa168296aa0800000000000000
+      internalID: -6167353814768634634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grande Porte_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 13
+        width: 500
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627b98125cb6d2100800000000000000
+      internalID: 84842462405310246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
