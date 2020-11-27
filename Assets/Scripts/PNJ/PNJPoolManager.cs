@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Linq;
 
 public class PNJPoolManager : NetworkBehaviour
 {
@@ -74,6 +75,7 @@ public class PNJPoolManager : NetworkBehaviour
     {
         GameObject instantiatePNJ = Instantiate(pnjPrefab);
         instantiatePNJ.transform.position = spawnPosition;
+        instantiatePNJ.GetComponent<PNJManager>().Init();
         NetworkServer.Spawn(instantiatePNJ);
         return instantiatePNJ;
     }
@@ -90,12 +92,9 @@ public class PNJPoolManager : NetworkBehaviour
     {
         get
         {
-            foreach(var pnj in pnjsInScene)
-            {
-                if (pnj.GetComponent<PNJManager>().IsDead)
-                    return pnj.GetComponent<PNJManager>();
-            }
-            return null;
+            return pnjsInScene
+                .FirstOrDefault(pnj => pnj.GetComponent<PNJManager>().IsDead)
+                ?.GetComponent<PNJManager>();
         }
     }
 }

@@ -54,7 +54,7 @@ public class LoadingManager : NetworkBehaviour
         if (playerLoaded == NetworkManager.singleton.numPlayers)
         {
             RpcDisable();
-            GameManager.Instance.RpcStartIntroduction();
+            GameManager.Instance.CmdStartIntroduction();
         }
     }
 }
