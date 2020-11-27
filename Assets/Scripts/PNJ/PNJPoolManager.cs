@@ -15,7 +15,7 @@ public class PNJPoolManager : NetworkBehaviour
     private GameObject[] pnjsInScene;
 
     [SerializeField]
-    private Vector2 spawnPosition;
+    private List<Vector2> spawnPositions;
 
     [SerializeField]
     private RangedFloat randomChronoSpawn;
@@ -36,7 +36,8 @@ public class PNJPoolManager : NetworkBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 0.4f, 0.2f, 1f);
-        Gizmos.DrawSphere(spawnPosition, 0.3f);
+        foreach(var pos in spawnPositions)
+            Gizmos.DrawSphere(pos, 0.3f);
     }
 
     public void InitPNJ()
@@ -74,7 +75,7 @@ public class PNJPoolManager : NetworkBehaviour
     private GameObject InstantiatePNJ()
     {
         GameObject instantiatePNJ = Instantiate(pnjPrefab);
-        instantiatePNJ.transform.position = spawnPosition;
+        instantiatePNJ.transform.position = RandomSpawnPosition;
         instantiatePNJ.GetComponent<PNJManager>().Init();
         NetworkServer.Spawn(instantiatePNJ);
         return instantiatePNJ;
@@ -85,7 +86,7 @@ public class PNJPoolManager : NetworkBehaviour
         PNJManager pnjToSpawn = AvailablePNJ;
         if (pnjToSpawn == null)
             return;
-        pnjToSpawn.ChangeState(new PNJSpawnState(pnjToSpawn, spawnPosition));
+        pnjToSpawn.ChangeState(new PNJSpawnState(pnjToSpawn, RandomSpawnPosition));
     }
 
     private PNJManager AvailablePNJ
@@ -96,5 +97,10 @@ public class PNJPoolManager : NetworkBehaviour
                 .FirstOrDefault(pnj => pnj.GetComponent<PNJManager>().IsDead)
                 ?.GetComponent<PNJManager>();
         }
+    }
+
+    public Vector2 RandomSpawnPosition
+    {
+        get => spawnPositions[Random.Range(0, spawnPositions.Count)];
     }
 }
