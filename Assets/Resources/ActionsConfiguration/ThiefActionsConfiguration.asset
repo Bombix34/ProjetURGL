@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurations:
   - actionType: 2
+    radius: 1
     waitingActionConfigurationParameter:
       enabled: 0
       cooldown: 0
@@ -21,6 +22,7 @@ MonoBehaviour:
       enabled: 0
       charges: 0
   - actionType: 3
+    radius: 0.5
     waitingActionConfigurationParameter:
       enabled: 0
       cooldown: 0

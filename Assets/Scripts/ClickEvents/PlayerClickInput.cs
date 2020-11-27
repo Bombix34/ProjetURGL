@@ -149,6 +149,9 @@ public class PlayerClickInput : NetworkBehaviour
         CurrentObjectClicked = CurrentObjectOver;
         CurrentObjectOver = null;
 
+        var action = this.actionsConfiguration.GetAction(CurrentObjectClicked.CurrentInteractionAvailable.Activatable.ActionType);
+        CurrentObjectClicked.AreaRange = action.Radius;
+
         bool canInteract = CurrentObjectClicked.OnClickObject(manager);
         if (canInteract)
         {
