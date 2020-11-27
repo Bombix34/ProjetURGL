@@ -1,6 +1,4 @@
 ﻿using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,39 +27,46 @@ public class PNJManager : ObjectManager, ICaughtable
         }
     }
 
-    private void Start()
+    public override void OnStartClient()
     {
         characterRenderer = GetComponentInChildren<CharacterRenderer>();
         previousPosX = transform.position.x;
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
-        if (!isServer)
-            return;
-        Settings = RoomSettings.Instance.Settings.VoleurSettings;
-        Agent.speed = Settings.MovementSpeed*Settings.pnjSpeedMultiplicator;
-        Animator = GetComponent<Animator>();
-        PositionDatas = FindObjectOfType<PNJPositionDatas>();
-        ChangeState(new PNJDeadState(this));
     }
 
     protected override void Update()
     {
         if (!isServer)
             return;
-        /*
-        if (!GameManager.Instance.AllowMovements)
-        {
-            ChangeState(new PNJWaitState(this));
-            return;
-        }
-        */
+
         UpdatePNJRotation();
         if (currentState == null)
         {
             ChangeState(new PNJMoveState(this, PositionDatas.GetPosition()));
         }
         currentState.Execute();
+    }
+
+    private void SetLocalData()
+    {
+        characterRenderer = GetComponentInChildren<CharacterRenderer>();
+        previousPosX = transform.position.x;
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.updateRotation = false;
+        Agent.updateUpAxis = false;
+    }
+
+    [Server]
+    public void Init()
+    {
+        this.SetLocalData();
+        Settings = RoomSettings.Instance.Settings.VoleurSettings;
+        Agent.speed = Settings.MovementSpeed * Settings.pnjSpeedMultiplicator;
+        Animator = GetComponent<Animator>();
+        PositionDatas = FindObjectOfType<PNJPositionDatas>();
+        ChangeState(new PNJDeadState(this));
     }
 
     public override void ChangeState(State newState = null)

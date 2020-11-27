@@ -13,29 +13,25 @@ public class FollowPlayerCameraMovements : GameCameraMovements
     public FollowPlayerCameraMovements(Transform transform, float smoothness, float offsetZ, PlayerType? playerType = null) : base(transform, smoothness, offsetZ)
     {
         this.interactionZone = Camera.main.GetComponentInChildren<InteractionZone>();
-        if (playerType.HasValue)
+        switch (playerType)
         {
-            switch (playerType.Value)
-            {
-                case PlayerType.THIEF:
-                    this.players = UnityEngine.Object.FindObjectsOfType<ThiefManager>().Cast<PlayerManager>().ToList();
-                    break;
-                case PlayerType.VIGIL:
-                    this.players = UnityEngine.Object.FindObjectsOfType<VigilManager>().Cast<PlayerManager>().ToList();
-                    break;
-                case PlayerType.SPECTATOR:
-                default:
-                    throw new NotImplementedException($"The value {playerType.Value} is not implemented");
-            }
+            case PlayerType.THIEF:
+                this.players = UnityEngine.Object.FindObjectsOfType<ThiefManager>().Cast<PlayerManager>().ToList();
+                break;
+            case PlayerType.VIGIL:
+                this.players = UnityEngine.Object.FindObjectsOfType<VigilManager>().Cast<PlayerManager>().ToList();
+                break;
+            case PlayerType.SPECTATOR:
+            default:
+                this.players = UnityEngine.Object.FindObjectsOfType<PlayerManager>().ToList();
+                break;
         }
-        else
-        {
-            this.players = UnityEngine.Object.FindObjectsOfType<PlayerManager>().ToList();
-        }
+
         foreach (var player in this.players)
         {
             player.onAliveChange += RemovePlayer;
         }
+
         var firstAlivePlayer = players.FirstOrDefault(p => p.Alive);
         if(firstAlivePlayer is null)
         {
@@ -96,7 +92,7 @@ public class FollowPlayerCameraMovements : GameCameraMovements
 
     private void SetPlayer(PlayerManager currentPlayer)
     {
-        this.playerTransform = currentPlayer.transform;
+        this.ChangePlayerTransform(currentPlayer.transform);
         this.interactionZone.SwitchPlayer(currentPlayer);
     }
 
