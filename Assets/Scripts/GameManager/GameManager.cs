@@ -29,12 +29,24 @@ public class GameManager : NetworkBehaviour
         pnjsManager = GetComponent<PNJPoolManager>();
     }
 
+    [Command(ignoreAuthority = true)]
+    public void CmdStartIntroduction()
+    {
+        pnjsManager.InitPNJ();
+        if (RoomSettings.Instance.Settings.PlayIntroduction)
+        {
+            this.RpcStartIntroduction();
+        }
+        else
+        {
+            this.OnEndIntroduction();
+        }
+    }
+
     [ClientRpc]
     public void RpcStartIntroduction()
     {
         this.GameState = GameState.INTRODUCTION;
-        if(isServer)
-            pnjsManager.InitPNJ();
         CameraManager.Instance.StartIntro(OnEndIntroduction);
     }
 
