@@ -1,6 +1,7 @@
 ﻿using Mirror;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : NetworkBehaviour
 {
@@ -102,6 +103,12 @@ public class GameManager : NetworkBehaviour
     {
         this.gameState = GameState.END_GAME;
         pnjsManager.StopAllPNJ();
+        var gamePlayers = FindObjectsOfType<RoomPlayerData>().Select(q => new GameResultPlayer
+        {
+            PlayerName = q.PlayerIndentifier,
+            PlayerType = q.PlayerType
+        }).ToList();
+        new GameResult(victoryType, gamePlayers, SceneManager.GetActiveScene().name).SaveResult();
         this.RpcEndGame(victoryType);
     }
 
