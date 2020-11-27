@@ -75,9 +75,8 @@ public class PNJPoolManager : NetworkBehaviour
     private GameObject InstantiatePNJ()
     {
         GameObject instantiatePNJ = Instantiate(pnjPrefab);
-        instantiatePNJ.transform.position = spawnPosition;
-        instantiatePNJ.GetComponent<PNJManager>().Init();
         instantiatePNJ.transform.position = RandomSpawnPosition;
+        instantiatePNJ.GetComponent<PNJManager>().Init();
         NetworkServer.Spawn(instantiatePNJ);
         return instantiatePNJ;
     }
