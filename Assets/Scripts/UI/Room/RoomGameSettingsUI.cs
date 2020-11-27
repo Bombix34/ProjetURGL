@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomGameSettingsUI : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class RoomGameSettingsUI : MonoBehaviour
     [SerializeField]
     [NotNull]
     private TMP_InputField cameraDistanceInput;
+    [SerializeField]
+    [NotNull]
+    private Toggle playIntroToggle;
     [SerializeField]
     [NotNull]
     private PlayerSettingsUI thiefSettingsUI;
@@ -34,6 +38,7 @@ public class RoomGameSettingsUI : MonoBehaviour
         this.roomManager = customNetworkRoomManager;
         InitSceneDropdown();
         InitCameraDistanceInput();
+        InitPlayIntroToggle();
         gameSettingsPanel.SetActive(true);
         this.thiefSettingsUI.Init(RoomSettings.Instance.Settings.VoleurSettings);
         this.vigilSettingsUI.Init(RoomSettings.Instance.Settings.AgentSettings);
@@ -63,5 +68,16 @@ public class RoomGameSettingsUI : MonoBehaviour
     private void OnCameraDistanceChange(string speed)
     {
         RoomSettings.Instance.Settings.CameraDistance = float.Parse(speed.Replace('.', ','));
+    }
+
+    private void InitPlayIntroToggle()
+    {
+        playIntroToggle.isOn = RoomSettings.Instance.Settings.PlayIntroduction;
+        playIntroToggle.onValueChanged.AddListener(OnPlayIntroChange);
+    }
+
+    private void OnPlayIntroChange(bool playIntro)
+    {
+        RoomSettings.Instance.Settings.PlayIntroduction = playIntro;
     }
 }

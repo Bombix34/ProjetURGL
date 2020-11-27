@@ -6,7 +6,13 @@ public class GameCameraMovements : BaseCameraMovements
 
     public GameCameraMovements(Transform transform, float smoothness, float offsetZ, Transform playerTransform) : base(transform, smoothness, offsetZ)
     {
+        this.ChangePlayerTransform(playerTransform);
+    }
+
+    protected void ChangePlayerTransform(Transform playerTransform)
+    {
         this.playerTransform = playerTransform;
+        this.Transform.position = playerTransform.position;
     }
 
     protected GameCameraMovements(Transform transform, float smoothness, float offsetZ) : base(transform, smoothness, offsetZ)  {}

@@ -114,11 +114,10 @@ MonoBehaviour:
   roomPlayerPrefab: {fileID: 3057842513603033846, guid: 378a1d2b8eb97bf469ad1b55e9d24e04,
     type: 3}
   RoomScene: Assets/Scenes/RoomScene.unity
-  GameplayScene: Assets/Scenes/GameScenes/GameScene-02.unity
+  GameplayScene: Assets/Scenes/GameScenes/Musee4v4.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  settings: {fileID: 11400000, guid: 679a533aee1017749ae5f0195c1fbd7b, type: 2}
 --- !u!114 &6949273706321461567
 MonoBehaviour:
   m_ObjectHideFlags: 0

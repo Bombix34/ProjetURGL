@@ -22,3 +22,4 @@ MonoBehaviour:
   - TestScene-ValuableItem
   - CentreCo2v2
   CameraDistance: 6
+  PlayIntroduction: 0

@@ -9,4 +9,5 @@ public class GameSettings : ScriptableObject
     public PlayerSettings AgentSettings;
     public List<string> GameScenes;
     public float CameraDistance;
+    public bool PlayIntroduction;
 }
