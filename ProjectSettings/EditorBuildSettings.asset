@@ -20,16 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScenes/TestScene-Pnj.unity
     guid: ecbc860ceb984b3479b47804d0c90a6f
-  - enabled: 0
-    path: Assets/Scenes/JeanScene/LDCreation.unity
-    guid: ecd045d8e3cbadc4fa5ea09af57fb6e5
   - enabled: 1
     path: Assets/Scenes/GameScenes/DeuxMagasins1v1.unity
     guid: b452c1eb2dfe5ee4fb58299175bfba6d
   - enabled: 1
     path: Assets/Scenes/GameScenes/Musee4v4.unity
     guid: 3978a4c1e75ea9345a32146c1dfe5870
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/CentreCo2v2.unity
+    guid: b710d404e5ca8624ab3c467f8593769d
   m_configObjects: {}
