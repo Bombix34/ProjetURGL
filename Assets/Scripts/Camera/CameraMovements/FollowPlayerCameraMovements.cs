@@ -94,6 +94,7 @@ public class FollowPlayerCameraMovements : GameCameraMovements
     {
         this.ChangePlayerTransform(currentPlayer.transform);
         this.interactionZone.SwitchPlayer(currentPlayer);
+        InventoryUI.Instance.ChangeInventory(currentPlayer.GetComponent<Inventory>());
     }
 
     private void PreviousPlayer()
