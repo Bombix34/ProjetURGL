@@ -77,13 +77,8 @@ public abstract class PlayerManager : ObjectManager
 
     protected abstract void OnStart();
 
-    protected void Start()
+    public override void OnStartLocalPlayer()
     {
-        Renderer = GetComponentInChildren<CharacterRenderer>();
-        inventory = GetComponent<Inventory>();
-        this.OnStart();
-        if (!hasAuthority)
-            return;
         localPlayer = this;
         Body = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
@@ -97,6 +92,12 @@ public abstract class PlayerManager : ObjectManager
         ChangeFieldOfViewSize();
         ChangeState(new PlayerIdleState(this));
         RoomPlayerVivox.Instance.StartGame(settings.PlayerType);
+    }
+    public override void OnStartClient()
+    {
+        Renderer = GetComponentInChildren<CharacterRenderer>();
+        inventory = GetComponent<Inventory>();
+        this.OnStart();
     }
 
     protected override void Update()
