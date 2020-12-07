@@ -29,11 +29,14 @@ public class Inventory : NetworkBehaviour
     {
         this._items.AddRange(defaultItemsInInventory);
     }
+    public override void OnStartClient()
+    {
+        _items.Callback += this.OnInventoryUpdated;
+    }
 
     public override void OnStartAuthority()
     {
         Instance = this;
-        _items.Callback += this.OnInventoryUpdated;
     }
 
     public override void OnStopAuthority()

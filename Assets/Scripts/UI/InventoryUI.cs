@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance;
+
     private Inventory inventory;
     private RectTransform rectTransform;
 
@@ -12,21 +14,45 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         rectTransform = GetComponent<RectTransform>();
         StartCoroutine(nameof(Init));
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     IEnumerator Init()
     {
         yield return new WaitUntil(() => Inventory.Instance != null);
-        inventory = Inventory.Instance;
-        foreach (var item in inventory.Items)
+        this.ChangeInventory(Inventory.Instance);
+    }
+
+    public void ChangeInventory(Inventory newInventory)
+    {
+        if(this.inventory != null)
+        {
+            this.inventory.OnItemAdded -= AddItem;
+            this.inventory.OnItemRemoved -= RemoveItem;
+
+            var itemUIKeys = _itemUIDict.Keys;
+            foreach (var key in itemUIKeys)
+            {
+                this.RemoveItem(key);
+            }
+        }
+
+        this.inventory = newInventory;
+
+        foreach (var item in this.inventory.Items)
         {
             this.AddItem(item);
         }
-        inventory.OnItemAdded += AddItem;
-        inventory.OnItemRemoved += RemoveItem;
-    }
+        this.inventory.OnItemAdded += AddItem;
+        this.inventory.OnItemRemoved += RemoveItem;
+    } 
 
     private void AddItem(ItemScriptableObject item)
     {
