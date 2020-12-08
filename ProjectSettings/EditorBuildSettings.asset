@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/CentreCo2v2.unity
     guid: b710d404e5ca8624ab3c467f8593769d
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/NewProtal.unity
+    guid: bb16ae69d5ad671459133707486c2d19
   m_configObjects: {}

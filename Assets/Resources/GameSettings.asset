@@ -21,5 +21,6 @@ MonoBehaviour:
   - TestScene-Pnj
   - TestScene-ValuableItem
   - CentreCo2v2
+  - NewProtal
   CameraDistance: 6
   PlayIntroduction: 0
